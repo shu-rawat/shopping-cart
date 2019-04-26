@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="header-wrapper">
+            <img src="./static/images/logo.png" alt="logo" class="logo">
+            <div class="nav-wrapper">
+                <nav class="nav-div">
+                    <ul class="nav-ul">
+                        <li>
+                            <a href="#home">Home</a>                            
+                        </li>
+                        <li>
+                            <a href="#products">Products</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="right-header-div">
+                    <div class="login-div">
+                        <ul class="login-ul">                            
+                            <li>
+                                <a href="#login">Login</a>                                
+                            </li>
+                            <li>
+                                <a href="#register">Register</a>
+                            </li>
+                        </ul>
+                        <div class="cart-container">
+                            <div class="cart-button">
+                                <img src="./static/images/cart.svg" alt="cart image" class="cart-img">
+                                <span class="cart-header-count">0 Items</span>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </header>
+    <div class="line-bottom">
+    </div>
+    <div class="top-slider-wrapper">
+        <div class="slider-content">
+            <img src="./static//images/offers/offer1.jpg" alt="offer1 slider" class="active-image gallery-image" id="img1"/>
+            <img src="./static//images/offers/offer2.jpg" alt="offer2 slider" class="inactive-image gallery-image" id="img2"/>
+            <img src="./static//images/offers/offer3.jpg" alt="offer3 slider" class="inactive-image gallery-image" id="img3"/>
+            <img src="./static//images/offers/offer4.jpg" alt="offer4 slider" class="inactive-image gallery-image" id="img4"/>
+            <img src="./static//images/offers/offer5.jpg" alt="offer5 slider" class="inactive-image gallery-image" id="img5"/>
+        </div>
+        <div class="dots-wrapper">
+            <span class="dots active-dot" id="dot1"></span>
+            <span class="dots" id="dot2"></span>
+            <span class="dots" id="dot3"></span>
+            <span class="dots" id="dot4"></span>
+            <span class="dots" id="dot5"></span>
+        </div>
+        <div class="slider-controls-wrapper">
+            <div class="controls-content">
+                    <span class="slider-control slider-left" id="prev">
+                        PREV
+                    </span>
+                    <span class="slider-control slider-right" id="next">
+                        NEXT
+                    </span>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="./static/app.js"></script>
+</html>
