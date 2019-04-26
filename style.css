@@ -132,11 +132,18 @@
     float:left;
     width:30%;
 }
+.catg-img-even{
+    float:right;
+}
 .category-info{
     float:right;
     width:70%;
     text-align: center;
 }
+.info-even{
+    float:left;
+}
+
 .category-info button{
     color:white;
     background:rgb(171, 16, 42);
@@ -150,4 +157,16 @@
     clear: both;
     width:40%;
     margin:0 auto;
+}
+footer{
+    background:rgb(175, 169, 169);
+    height:40px;
+    margin-bottom:0px;
+    padding:5px 0px;
+}
+footer p{
+    text-align: center;
+}
+.category-box{
+    padding:30px 0px;
 }
