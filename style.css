@@ -146,8 +146,9 @@
 
 .category-info button{
     color:white;
-    background:rgb(171, 16, 42);
+    background:orangered;
     padding:5px;
+    border:0px;
 }
 .category-info h3{
     font-weight: 800;
@@ -170,3 +171,118 @@ footer p{
 .category-box{
     padding:30px 0px;
 }
+
+@media only screen and (max-width: 600px) {
+    .nav-div{
+        display: none;
+    }
+    .login-ul{
+        display:none;
+    }
+    .cart-container {
+        margin-top:0px;
+        position: absolute;
+        top: 16px;
+        right: 130px;
+    }
+  }
+
+  .login-wrapper{
+      padding:0% 15%;
+      box-sizing: border-box;
+      width: 100%;
+      height: 200px;
+  }
+  .signup-wrapper{
+    padding:0% 15%;
+    box-sizing: border-box;
+    width: 100%;
+    height: 450px;
+  }
+
+  .left-login{
+      width:40%;
+      float:left;
+  }
+  .right-login{
+      width:50%;
+      float: left;
+  }
+
+  .left-signup{
+    width:40%;
+    float:left;
+}
+.right-signup{
+    width:50%;
+    float: left;
+}
+
+  .form-group{
+      padding:20px 0px;    
+  }
+  .form-group input{
+      border:0;
+      outline: none;
+      width:100%;
+      border-bottom:1px solid black;
+  }
+  .form-group input:focus{
+      border:0;
+      border-bottom:1px solid rgb(97, 210, 230);
+  }
+  .form-group label{
+    display: block;
+    color:rgb(97, 210, 230);
+  }
+
+  .login-btn{
+      background:orangered;
+      padding:10px 0px;
+      color:white;
+      width:50%;
+      border:0px;
+  }
+
+  .my-cart{
+      position: relative;
+      height:70vh;
+      width:400px;
+      background:greenyellow;      
+  }
+
+  .my-cart-header{
+    background:black;
+    width:100%;
+    height:60px;
+    color:white;
+    position: relative;
+  }
+  .my-cart-header .close{
+      float:right;
+      margin-right:10px;
+      color:white;
+      top: 20px;
+      right: 15px;
+      position: absolute;
+  }
+  .my-cart-header div h3{
+      display: inline-block;
+      font-weight:bold;
+      padding-top:0px;
+      margin-left:10px;
+  }
+
+  .my-cart-items-wrapper ul{
+      list-style-type:none;
+  }
+
+  .my-cart-footer{
+      width:100%;
+      position: absolute;
+      left:0px;
+      bottom:0px;
+      height:30px;
+      background:black;
+      color:white;      
+  }

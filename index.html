@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:400,600,700">
+    <title>Sabka Bazaar</title>
 </head>
 
 <body>
@@ -46,6 +47,57 @@
         </div>
     </header>
     <div class="line-bottom">
+    </div>
+    <div class="login-wrapper">
+        <div class="left-login">
+            <h1>Login</h1>
+            <p>Get access to your Orders, Wishlist and Recommandations.</p>
+        </div>
+        <div class="right-login">
+            <form action="/">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" />
+                </div>
+                <button class="login-btn">login</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="signup-wrapper">
+        <div class="left-signup">
+            <h1>Signup</h1>
+            <p>We do not share your personal details with anyone.</p>
+        </div>
+        <div class="right-signup">
+            <form action="/">
+                <div class="form-group">
+                    <label for="fname">First Name</label>
+                    <input type="text" />
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name</label>
+                    <input type="text" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Confirm Password</label>
+                    <input type="password" />
+                </div>
+                <button class="login-btn">Signup</button>
+            </form>
+        </div>
     </div>
     <div class="top-slider-wrapper">
         <div class="slider-content">
@@ -150,6 +202,55 @@
                     <div class="shadow-bottom"></div>
                 </li>
             </ul>
+        </div>
+    </div>
+
+    <div class="my-cart">
+        <div class="my-cart-header">
+            <div>
+                <h3>My Cart</h3>(<span>1</span> Item)
+            </div>
+            <span class="close">X</span>
+        </div>
+        <div class="my-cart-body">
+            <div class="my-cart-items-wrapper">
+                <ul>
+                    <li>
+                        <div class="item">
+                            <img src="" alt="">
+                            <div>
+                                <h2>Apple Washington regular,4pcs</h2>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-control">
+                                    <button class="item-decr">-</button>
+                                    <span class="item-count">1</span>
+                                    <button class="item-incr">+</button>
+                                    <span>X</span>
+                                    <span>Rs</span>
+                                    <span class="item-price">187</span>
+                                </div>
+                                <div class="item-final">
+                                    <span>Rs</span>
+                                    <span class="item-tot-price">187</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="advt-div">
+                    <img src="./static/images/lowest-price.png" alt="lowest price">
+                    <p>Your won't find it cheaper anywhere</p>
+                </div>
+            </div>
+        </div>
+        <div class="my-cart-footer">
+            <p>Promo Code can be applied on payment page</p>
+            <div class="checkout-div">
+                <span>Proceed to checkout</span>
+                <span>Rs</span>
+                <span class="cart-final-price">187</span>
+            </div>
         </div>
     </div>
 
