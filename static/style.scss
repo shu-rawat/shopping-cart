@@ -1,4 +1,24 @@
 
+$orangered:#D00155;
+$gray:#8080804f;
+
+i.arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
 .header-wrapper {
 	padding-left: 60px;
     padding-right: 60px;
@@ -65,7 +85,7 @@
 	clear: both;
 	width: 100%;
 	height: 1px;
-	background-color: gray;
+	background-color: $gray;
 }
 .cart-header-count {
 	position: relative;
@@ -150,7 +170,7 @@
                 text-align: center;
                 button {
                     color: white;
-                    background: orangered;
+                    background: $orangered;
                     padding: 5px;
                     border: 0px;
                 }
@@ -206,8 +226,9 @@ footer {
 	width: 100%;
 	height: 200px;
     .left-login {
-        width: 40%;
+        width: 30%;
         float: left;
+        margin-right: 10%;
     }
     .right-login {
         width: 50%;
@@ -223,8 +244,9 @@ footer {
 	width: 100%;
 	height: 450px;
     .left-signup {
-        width: 40%;
+        width: 30%;
         float: left;
+        margin-right:10%;
     }
     .right-signup {
         width: 50%;
@@ -238,10 +260,10 @@ footer {
 
 
 .login-btn {
-	background: orangered;
+	background: $orangered;
 	padding: 10px 0px;
 	color: white;
-	width: 50%;
+	width: 100%;
 	border: 0px;
 }
 
@@ -288,7 +310,7 @@ footer {
             height: 40px;
             padding:13px;
             box-sizing: border-box;
-            background: orangered;
+            background: $orangered;
             text-align: center;
             margin:10px auto;
             color:white;
@@ -302,22 +324,24 @@ footer {
     }
     .my-cart-body{
         .my-cart-items-wrapper {
+            overflow: hidden;
             ul {
                 list-style-type: none;
                 margin:0;
                 padding:0;
+                max-height:200px;
+                overflow: auto;
                 .item{
                     background: white;
                     margin: 10px 0px;
+                    padding:8px;
                     img{
                         width:86px;
                         display: inline-block;
+                        float:left;
                     }
                     .right-cart{
                         display: inline-block;
-                        width:65%;
-                        position: relative;
-                        top:-25px;
                         .item-header{
                             h2{
                                 font-size:18px;
@@ -331,7 +355,7 @@ footer {
                                     margin:0px 3px;
                                 }
                                 button{
-                                    background: orangered;
+                                    background: $orangered;
                                     border: 0px;
                                     border-radius: 50%;
                                     color: white;
@@ -371,25 +395,45 @@ footer {
 }
 
 .plp-wrapper{
-    width:80%;
+    width:84%;
     margin:0 auto;
+    background: $gray;
     .plp-catg-wrapper{
-        width:200px;
+        width:25%;
         display: inline-block;
-        background:red;
+        float:left;
+        ul{
+            list-style: none;
+            padding:0px;
+            margin:0px;
+            li{
+                border-bottom:1px solid black;
+                padding:10px 22px;
+                i.arrow{
+                    display: none;
+                }
+                a{
+                    color:black;
+                    text-decoration: none;
+                }
+            }
+        }
     }
-    ul{
+    .items-ul{
         margin:0px;
+        background:white;
         padding:0px;
         overflow: hidden;
         list-style: none;
+        width:75%;
+        display: inline-block;
         li{       
-            width: 22%;      
+            width: 25%;      
             list-style-type: none;
             display: inline-block;
             box-sizing: border-box;
             float: left;
-            margin-right:3%;
+            padding:2%;
             margin-bottom:8px;
             .plp-items-wrapper{              
                 .plp-box{
@@ -414,11 +458,13 @@ footer {
                         overflow:auto;
                         span{
                             width:44%;
+                            font-size:12px;
                             display:inline-block;
                         }
                         button{                            
-                            color:white;
-                            background: orangered;
+                            color:white;                            
+                            font-size:12px;
+                            background: $orangered;
                             border: 0px;
                             outline: none;
                             padding: 4px 10px;
@@ -438,16 +484,25 @@ footer {
 }
 
 @media only screen and (max-width: 880px) {
+
+    .my-cart.cart-mob-tbl{
+        width:100%;
+        .my-cart-header {
+            background:white;
+            color:black;
+            margin-top:20px;
+            margin-bottom:10px;
+        }
+    }
     .plp-wrapper{
-        width:80%;
+        width:100%;
         margin:0 auto;
         .plp-catg-wrapper{
             display: inline-block;
-            background:red;
         }
-        ul{
+        .items-ul{
             li{       
-                width: 46%;      
+                width: 50%;      
                 display: inline-block;
                 box-sizing: border-box;
                 overflow: hidden;
@@ -483,13 +538,14 @@ footer {
                             span{
                                 margin-right: 4px;
                             }
-                            button{
+                            button{                                
+                                padding:5px 0px;
                                 display: block;
                                 color:white;
                                 border:0px;
                                 outline:none;
                                 width:100%;
-                                background:orangered;
+                                background:$orangered;
                                 text-align: center;                         
                             }
                         }
@@ -515,15 +571,38 @@ footer {
 		top: 16px;
 		right: 130px;
     }
+    .my-cart-body{
+        .my-cart-items-wrapper {
+            font-size: 14px;
+        }
+    }
     .plp-wrapper{
-        width:80%;
+        width:100%;
         margin:0 auto;
         .plp-catg-wrapper{
-            width:200px;
+            width:100%;
+            color:white;
             display: inline-block;
-            background:red;
+            ul{
+                li{
+                    position: relative;
+                    a{
+                        color:white;
+                    }
+                    i.arrow{
+                        display: inline-block;
+                        position: absolute;
+                        right:0px;
+                        top:12px;
+                    }
+                }
+                li:not(.visible){
+                    display: none;
+                }
+            }
         }
-        ul{
+        .items-ul{
+            width:100%;
             li{       
                 width: 100%;      
                 display: inline-block;
@@ -554,7 +633,7 @@ footer {
                                     position: absolute;
                                     bottom: 0px;
                                     width: 50%;
-                                    background: orangered;
+                                    background: $orangered;
                                     color: white;
                                     padding: 5px 0px;
                                     outline: none;
