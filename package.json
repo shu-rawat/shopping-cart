@@ -4,7 +4,7 @@
   "description": "This is a shopping cart coding exercise",
   "main": "index.js",
   "scripts": {
-    "build": "webpack -p"
+    "build": "webpack -p -w"
   },
   "author": "",
   "license": "MIT",

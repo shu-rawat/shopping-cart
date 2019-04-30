@@ -19,6 +19,7 @@ a{
     color:black;
 }
 
+
 .header-wrapper {
 	padding-left: 60px;
     padding-right: 60px;
@@ -81,6 +82,26 @@ a{
 	padding: 5px;
 	box-sizing: border-box;
 }
+
+.cart-button-mob{
+    display: none;
+}
+
+.cart-button-desk{
+    position: relative;
+}
+.cart-button-desk .my-cart{
+    display:none;
+}
+
+.cart-button-desk:hover .my-cart{
+    position: absolute;
+    right:0px;
+    top:45px;
+    display:block;
+    z-index: 100;
+}
+
 .line-bottom {
 	clear: both;
 	width: 100%;
@@ -91,6 +112,7 @@ a{
 	position: relative;
 	top: -8px;
 }
+
 
 
 .top-slider-wrapper {
@@ -156,6 +178,7 @@ a{
         margin: 0px;
         padding: 0px;
         .category-box {
+            overflow: hidden;
             padding: 30px 0px;
             .category-img {
 	            float: left;
@@ -186,18 +209,27 @@ a{
 }
 @mixin form-group() {
     padding: 20px 0px;
+    display: flex;
+    flex-direction: column-reverse;
     input {
         border: 0;
         outline: none;
         width: 100%;
+        transition: all ease-in 0.3s;
         border-bottom: 1px solid black;
         &:focus {
             border: 0;
             border-bottom: 1px solid rgb(97, 210, 230);
         }
     }
+   
     label {
         display: block;
+        color:gray;
+    }
+    .effect:focus + label{
+        position: relative;
+        top:-5px;
         color: rgb(97, 210, 230);
     }
 }
@@ -211,8 +243,7 @@ a{
 	margin: 0 auto;
 }
 footer {
-	background: rgb(175, 169, 169);
-	height: 40px;
+	background: rgb(175, 169, 169);	
 	margin-bottom: 0px;
 	padding: 5px 0px;
 	p {
@@ -283,8 +314,9 @@ footer {
             float: right;
             margin-right: 10px;
             color: white;
-            top: 20px;
+            top: 11px;
             right: 15px;
+            font-size:35px;
             position: absolute;
         }
         div {
@@ -323,6 +355,13 @@ footer {
         }
     }
     .my-cart-body{
+        .empty-cart{
+            text-align: center;
+            h3{
+                font-weight: bold;
+                font-size:24px;
+            }
+        }
         .my-cart-items-wrapper {
             overflow: hidden;
             ul {
@@ -341,6 +380,7 @@ footer {
                         float:left;
                     }
                     .right-cart{
+                        width: calc(100% - 90px);
                         display: inline-block;
                         .item-header{
                             h2{
@@ -484,7 +524,10 @@ footer {
 }
 
 @media only screen and (max-width: 880px) {
-
+    .my-cart .my-cart-body .my-cart-items-wrapper ul .item .right-cart .item-info .item-control button{
+        padding: 5px 20px;
+        border-radius: 7px;
+    }
     .my-cart.cart-mob-tbl{
         width:100%;
         .my-cart-header {
@@ -493,13 +536,26 @@ footer {
             margin-top:20px;
             margin-bottom:10px;
         }
+        .item-info {
+            .item-control{
+                button{
+                    background: #D00155;
+                    border: 0px;
+                    border-radius: 2px;
+                    padding: 2px 10px;
+                    color: white;
+                }
+            }
+        }
     }
+    
     .plp-wrapper{
         width:100%;
         margin:0 auto;
         .plp-catg-wrapper{
             display: inline-block;
         }
+       
         .items-ul{
             li{       
                 width: 50%;      
@@ -559,6 +615,12 @@ footer {
 }
 
 @media only screen and (max-width: 600px) {
+    .cart-button-desk{
+        display: none;
+    }
+    .cart-button-mob{
+        display: block;
+    }
 	.nav-div {
 		display: none;
 	}
@@ -576,9 +638,30 @@ footer {
             font-size: 14px;
         }
     }
+    .top-slider-wrapper .dots-wrapper {
+        width: 49%;
+        top: -8px;
+    }
+   
+    .category-wrapper{
+        margin-bottom: 30px;
+        .category-ul .category-box {
+            .category-img{
+                width: 50%;
+                margin-top: 45px;
+            }
+            .category-info {
+                width: 50%;
+                font-size:14px;
+            }
+        }
+    }
+    
+  
     .plp-wrapper{
         width:100%;
         margin:0 auto;
+        background: $orangered;
         .plp-catg-wrapper{
             width:100%;
             color:white;
@@ -592,7 +675,7 @@ footer {
                     i.arrow{
                         display: inline-block;
                         position: absolute;
-                        right:0px;
+                        right:15px;
                         top:12px;
                     }
                 }
