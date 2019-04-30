@@ -452,7 +452,6 @@ footer {
     background: $gray;
     .plp-catg-wrapper{
         width:25%;
-        display: inline-block;
         float:left;
         ul{
             list-style: none;
@@ -488,9 +487,6 @@ footer {
             margin-bottom:8px;
             .plp-items-wrapper{              
                 .plp-box{
-                    h3{
-        
-                    }
                     .content{
                         img{
                            width:100%;
@@ -699,10 +695,7 @@ footer {
                 .plp-items-wrapper{   
                     overflow: hidden;           
                     .plp-box{
-                        overflow:hidden;
-                        h3{
-            
-                        }
+                        overflow:hidden;                        
                         .content{
                             overflow:hidden;
                             position: relative;
