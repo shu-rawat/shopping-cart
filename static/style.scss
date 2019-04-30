@@ -2,21 +2,6 @@
 $orangered:#D00155;
 $gray:#8080804f;
 
-.shadow{
-	position:relative;
-	}
-.shadow:after{
-	z-index:-1;
-	content:"";
-	position:absolute;
-	-webkit-box-shadow:0 0 40px rgba(0,0,0,0.8);
-	-moz-box-shadow: 0 0 40px rgba(0,0,0,0.8);
-	box-shadow:0 0 40px rgba(0,0,0,0.8);
-	height:20%;left:10%;right:10%;width:80%;bottom:0px;
-	-webkit-border-radius:100%;
-	-moz-border-radius:100%;
-	border-radius:100%;
-	}
 i.arrow {
     border: solid white;
     border-width: 0 3px 3px 0;
