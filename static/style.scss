@@ -110,8 +110,6 @@ a{
     height:100%;
     z-index: 70;
     background:rgba(0,0,0,0.3);
-}
-.overlay{
     display:none;
 }
 .cart-button-desk:hover + .overlay{
@@ -132,16 +130,10 @@ a{
 
 
 .top-slider-wrapper {
-	padding: 0% 10%;
-    position: relative;
-    .active-image {
-        display: block;
-    }
-    .inactive-image {
-        display: none;
-    }
-    .gallery-image {
-        width: 100%;
+	margin: 0% 10%;
+    position: relative;  
+    .gallery-image {        
+        display:inline-block;
     }
     .dots-wrapper {
         width: 30%;
@@ -166,12 +158,19 @@ a{
     .slider-controls-wrapper {
         position: absolute;
         top: 40%;
-        width: 80%;
+        width: 100%;
         .controls-content {
             position: relative;
             .slider-control {
-                background: rgba(0,0,0,0.2);
+                background: rgba(0,0,0,0.3);
                 padding: 10px;
+                border:0px;
+                outline:none;
+                color:white;
+            }
+            .slider-control:disabled{
+                background: rgba(0,0,0,0.1);
+                cursor:auto;
             }
             .slider-left {
                 position: absolute;
