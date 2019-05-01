@@ -2,7 +2,6 @@ import './static/style.scss';
 
 
 var slideshow = (function(activeBanrIndx,prevBtnId, nextBtnId,banrWrprClass,banrOuterWrpr,sliderTime){
-
     
     let prevBtnEle,nextBtnEle,allBannersEles,bannerWrapperEle,
     bannersLength,bannerWrapperOuter,bannerWrapperWidth,initOnce = false;
