@@ -6,7 +6,9 @@ var slideshow = (function(activeBanrIndx,prevBtnId, nextBtnId,banrWrprClass,banr
     
     let prevBtnEle,nextBtnEle,allBannersEles,bannerWrapperEle,
     bannersLength,bannerWrapperOuter,bannerWrapperWidth,initOnce = false;
-
+    if(!document.getElementById(prevBtnId)){
+        return;
+    }
     function initData(){
         prevBtnEle = document.getElementById(prevBtnId);
         nextBtnEle = document.getElementById(nextBtnId);
@@ -60,7 +62,7 @@ var slideshow = (function(activeBanrIndx,prevBtnId, nextBtnId,banrWrprClass,banr
         bannerWrapperEle.style.width = `${bannerWrapperWidth * bannersLength + 100}px`;
         bannerWrapperEle.style.left = `-${activeBanrIndx * bannerWrapperWidth}px`;  
         bannerWrapperEle.style.height = `${bannerWrapperWidth / 4}px`;   
-        bannerWrapperEle.style.transition = `left ${sliderTime/1000}s ease-in`; 
+        bannerWrapperEle.style.transition = `left ${sliderTime/1000}s linear`; 
         allBannersEles.forEach(banerImg=>{
             banerImg.style.width = `${bannerWrapperWidth}px`;
             banerImg.style.display = "inline-block";
@@ -83,6 +85,3 @@ var slideshow = (function(activeBanrIndx,prevBtnId, nextBtnId,banrWrprClass,banr
         init();
     });
 })(0,'prev','next',"slider-content","top-slider-wrapper",600);
-
-console.log(slideshow);
-
