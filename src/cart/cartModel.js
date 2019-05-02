@@ -1,0 +1,84 @@
+import Item from './cartItem';
+import products from '../server/products/index.get.json';
+
+
+export default function CartModel(){
+    this.products = products; // all products list
+    this.items = []; //cart items list
+}
+
+CartModel.prototype.addItemCount = function(id){
+    //finding item from cart.
+    let item = this.getItem(id);
+    if(!item){
+        //item not present in cart
+        //finding product by it's id in product list
+        let product = this.findProductById(id);
+        if(!product){
+            //item with particular id not present in products list
+            alert("Sorry could not find this product!"); 
+            return;          
+        }
+        else{
+            //item created and added to cart
+            item = new Item(id,product.price,1);
+            this.items.push(item);
+        }
+    }
+    else{
+        // item present in cart
+        item.increaseCount();    
+    }
+
+    return item;
+}
+
+CartModel.prototype.getTotalAmount = function(){
+    //returns total amount of cart
+    return this.items.reduce((item,sum)=>sum+item.getTotalAmount(),0);
+}
+
+CartModel.prototype.getTotalQty = function(){
+    //return total number of items quanity present in cart
+    return this.items.reduce((item,sum)=>sum+item.quantity,0);
+}
+
+CartModel.prototype.removeItemCount = function(id){
+    //finding item in cart
+    let item = this.getItem(id);
+    if(!item){
+        //item not found in cart
+        alert("Can not remove. Item not found in cart!");
+        return;
+    }
+    else{
+        //decreases item count and removes item from cart if  quantiy is 0
+        if(item.decreaseCount() == 0){
+            this.removeItem(item.id);
+        }
+    }
+    return item;
+}
+
+CartModel.prototype.removeItem = function(id){
+    //finding index of item in items array
+    let itemIndex = this.items.findIndex((item)=>{
+        return item.id == id;
+    });
+    
+    if(itemIndex >= 0){
+        //removing item from items.
+        this.items.splice(itemIndex,1);
+    }
+    else{
+        alert("Item Not found in Cart. Can't remove");
+    }
+}
+
+CartModel.prototype.getItem = function(id){
+    return this.items.find((item)=>item.id == id);
+}
+
+CartModel.prototype.findProductById = function(id){
+    return this.products.find(product=>product.id==id);
+}

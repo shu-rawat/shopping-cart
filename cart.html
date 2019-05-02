@@ -38,7 +38,7 @@
                         <div class="cart-container">
                             <div class="cart-button">
                                 <img src="./static/images/cart.svg" alt="cart image" class="cart-img">
-                                <span class="cart-header-count">0 Items</span>
+                                <span class="cart-header-count js-cart-count">0 </span> <span class="cart-header-count"> Items</span>
                             </div>
                         </div>
                     </div>
@@ -57,10 +57,10 @@
             <span class="close">&times;</span>
         </div>
         <div class="my-cart-body">
-            <div class="my-cart-items-wrapper">
+            <div class="my-cart-items-wrapper " >
                 <ul>
                     <li>
-                        <div class="item">
+                        <div class="item" id="js-item-wrapper">
                             <img src="./static/images/products/fruit-n-veg/apple.jpg" alt="apple image">
                             <div class="right-cart">
                                 <div class="item-header">
@@ -68,16 +68,16 @@
                                 </div>
                                 <div class="item-info">
                                     <div class="item-control">
-                                        <button class="item-decr">-</button>
-                                        <span class="item-count">1</span>
-                                        <button class="item-incr">+</button>
+                                        <button class="item-decr js-remove-item">-</button>
+                                        <span class="item-count js-item-count">1</span>
+                                        <button class="item-incr js-add-item">+</button>
                                         <span>&times;</span>
                                         <span>Rs</span>
                                         <span class="item-price">187</span>
                                     </div>
                                     <div class="item-final">
                                         <span>Rs</span>
-                                        <span class="item-tot-price">187</span>
+                                        <span class="item-tot-price js-item-total">187</span>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
             <p>Promo Code can be applied on payment page</p>
             <div class="checkout-div">
                 <span class="checkout-txt">Proceed to checkout</span>
-                <span class="cart-final-price">Rs <span>187</span> </span>
+                <span class="cart-final-price js-cart-final">Rs <span>187</span> </span>
 
             </div>
         </div>
