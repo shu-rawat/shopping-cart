@@ -5,6 +5,7 @@
     if(!document.getElementById(prevBtnId)){
         return;
     }
+    
     function initData(){
         prevBtnEle = document.getElementById(prevBtnId);
         nextBtnEle = document.getElementById(nextBtnId);

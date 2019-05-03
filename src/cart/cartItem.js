@@ -20,6 +20,6 @@ Item.prototype.decreaseCount = function(){
 
 //returns total price of item based on number of item and price
 Item.prototype.getTotalAmount = function(){
-    return price*quantity;
+    return this.price*this.quantity;
 }
 

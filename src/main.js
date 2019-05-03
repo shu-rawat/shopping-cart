@@ -1,4 +1,2 @@
 import '../static/style.scss';
-import './slider.js';
-console.log(this);
-
+import './cart/cartController.js';

@@ -1,14 +1,16 @@
 import Item from './cartItem';
-import products from '../server/products/index.get.json';
+import products from '../../server/products/index.get.json';
 
 
 export default function CartModel(){
     this.products = products; // all products list
     this.items = []; //cart items list
+    //reads local storage for saved cart items
+    this.readStorage();
 }
 
 CartModel.prototype.addItemCount = function(id){
-    //finding item from cart.
+    //finding item from cart.    
     let item = this.getItem(id);
     if(!item){
         //item not present in cart
@@ -22,6 +24,7 @@ CartModel.prototype.addItemCount = function(id){
         else{
             //item created and added to cart
             item = new Item(id,product.price,1);
+            debugger;
             this.items.push(item);
         }
     }
@@ -29,18 +32,20 @@ CartModel.prototype.addItemCount = function(id){
         // item present in cart
         item.increaseCount();    
     }
-
+    this.saveCart();
     return item;
 }
 
 CartModel.prototype.getTotalAmount = function(){
     //returns total amount of cart
-    return this.items.reduce((item,sum)=>sum+item.getTotalAmount(),0);
+    return this.items.reduce((sum,item)=>{
+        return  sum+item.getTotalAmount();
+    },0);
 }
 
 CartModel.prototype.getTotalQty = function(){
     //return total number of items quanity present in cart
-    return this.items.reduce((item,sum)=>sum+item.quantity,0);
+    return this.items.reduce((sum,item)=>sum+item.quantity,0);
 }
 
 CartModel.prototype.removeItemCount = function(id){
@@ -57,6 +62,7 @@ CartModel.prototype.removeItemCount = function(id){
             this.removeItem(item.id);
         }
     }
+    this.saveCart();
     return item;
 }
 
@@ -81,4 +87,21 @@ CartModel.prototype.getItem = function(id){
 
 CartModel.prototype.findProductById = function(id){
     return this.products.find(product=>product.id==id);
+}
+
+CartModel.prototype.saveCart = function(){
+    localStorage.setItem("items",JSON.stringify(this.items));
+}
+
+CartModel.prototype.getSavedCart = function(){
+    let itemsString = localStorage.getItem("items");
+    let items  = JSON.parse(itemsString);
+    if(!items){
+        items = [];
+    }   
+    return items;
+}
+
+CartModel.prototype.readStorage = function(){
+    this.items = this.getSavedCart();
 }
