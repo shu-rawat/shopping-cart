@@ -1,7 +1,13 @@
-export default function Item(id,price,quantity=0){
+export default function Item(id,price,quantity=0,name,imageURL,description,stock,category,sku){
     this.id = id;   // item unique id
     this.price = price;    // individual item  price
     this.quantity = quantity;  // item quantity
+    this.name = name;
+    this.imageURL = imageURL;
+    this.description = description;
+    this.stock = stock;
+    this.category = category;
+    this.sku = sku;
 }
 
 

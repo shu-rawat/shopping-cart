@@ -1,11 +1,11 @@
-(function(activeBanrIndx,prevBtnId, nextBtnId,banrWrprClass,banrOuterWrpr,sliderTime){
-    
+export function slider(activeBanrIndx,prevBtnId, nextBtnId,banrWrprClass,banrOuterWrpr,sliderTime){
+   
     let prevBtnEle,nextBtnEle,allBannersEles,bannerWrapperEle,
     bannersLength,bannerWrapperOuter,bannerWrapperWidth,initOnce = false;
     if(!document.getElementById(prevBtnId)){
         return;
     }
-    
+
     function initData(){
         prevBtnEle = document.getElementById(prevBtnId);
         nextBtnEle = document.getElementById(nextBtnId);
@@ -67,7 +67,7 @@
         bannerWrapperOuter.style.overflow = "hidden";
     }
 
-    function init(){        
+    function init(){           
         initData();        
         if(!initOnce){                          
             attachEvents();
@@ -75,10 +75,16 @@
         applyCss();
         setDisableBtns();
     }
-    
-    init();
+
 
     window.addEventListener("resize",function(){
         init();
     });
-})(0,'prev','next',"slider-content","top-slider-wrapper",600);
+
+    return {
+        start:init
+    }
+};
+
+
+console.log("Test");

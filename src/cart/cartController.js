@@ -2,15 +2,18 @@
 import { cartElements, cartView } from './cartView.js';
 import CartModel from './cartModel.js';
 
-let cartModel = new CartModel();
+window.cartModel = new CartModel();
 
-(function(){
+export function cartController(){
     let eventListeners = {
         addItemElListener : function(addItemEl){
             let test = addItemEl;
             addItemEl.addEventListener("click",function(e){
                 let cartItemId = cartElements.getItemId(e.target);
                 let cartItem = cartModel.addItemCount(cartItemId);
+                if(cartItem.quantity == 1){
+                    cartView.addCartItem(cartItem);
+                }
                 updateCartUI(cartItem);
             });
         },
@@ -24,14 +27,18 @@ let cartModel = new CartModel();
     }
 
     window.onload = function(){        
+        attachEvents();
+
+    };
+
+    function attachEvents(){
         let addItemEls = cartElements.getAddItemBtnEls();
         let removeItemEls = cartElements.getRemoveItemBtnEls();
 
         Array.from(addItemEls,eventListeners.addItemElListener.bind(cartModel));
 
         Array.from(removeItemEls,eventListeners.removeItemElListener.bind(cartModel));
-
-    };
+    }
 
     function updateCartUI(cartItem){
         let itemTotalCount = cartItem.quantity;
@@ -45,5 +52,9 @@ let cartModel = new CartModel();
         cartView.updateCartTotalAmount(cartTotalAmount);
     }
 
-})();
+    return {
+        attachEvents
+    }
+
+};
 

@@ -1,3 +1,5 @@
+import cartItemRowTemp from '../../views/shared/cartItemRow.html';
+
 export const cartElements = {
     getCartCountEls:function(){
         return document.getElementsByClassName("js-cart-count")
@@ -43,6 +45,20 @@ export const cartView = (function(){
         updateCartItemAmount: function(cartItemId,itemPrice){
             let el = cartElements.getItemTotalAmountEl(cartItemId);
             el?el.textContent = itemPrice:null;
+        },
+        addCartItem: function(cartItem){
+            document.querySelector(".my-cart-items-wrapper>ul").innerHTML += cartTemplates.getCartItemRowHtml(cartItem);
+        },
+        renderCart: function(cartModel){
+            
         }
     }
 })();
+
+
+
+export const  cartTemplates = {
+    getCartItemRowHtml : function(data){
+        return cartItemRowTemp(data);
+    }
+}

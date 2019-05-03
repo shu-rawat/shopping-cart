@@ -1,0 +1,28 @@
+<div class="my-cart cart-mob-tbl">
+    <div class="my-cart-header">
+        <div>
+            <h3>My Cart</h3>(<span>{{ totalQuantity }}</span> Item)
+        </div>
+        <span class="close">&times;</span>
+    </div>
+    <div class="my-cart-body">
+        <div class="my-cart-items-wrapper">
+            <ul>
+                {{#each items}}
+                    {{> cartItemRow }}
+                {{/each}}
+            </ul>
+            <div class="advt-div">
+                <img src="./static/images/lowest-price.png" alt="lowest price">
+                <p>Your won't find it cheaper anywhere</p>
+            </div>
+        </div>
+    </div>
+    <div class="my-cart-footer">
+        <p>Promo Code can be applied on payment page</p>
+        <div class="checkout-div">
+            <span class="checkout-txt">Proceed to checkout</span>
+            <span class="cart-final-price">Rs</span> <span class="js-cart-final">{{totalAmount}}</span> 
+        </div>
+    </div>
+</div>

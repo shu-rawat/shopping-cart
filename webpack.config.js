@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry: {
         main:"./src/main",
-        slider: "./src/slider",
         cart: "./src/cart/cartController", 
     },
     output: {
@@ -41,6 +40,13 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: "babel-loader"
+            },
+            {
+                test: /\.html$/,
+                include: [
+                    path.resolve(__dirname, 'views/shared')
+                ],
+                loader: "handlebars-loader"
             }
         ]
     },

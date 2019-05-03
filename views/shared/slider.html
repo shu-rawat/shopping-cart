@@ -1,0 +1,24 @@
+<div class="top-slider-wrapper">
+    
+    <div class="slider-content">
+            {{# each banners}}
+        <img src="{{bannerImageUrl}}" alt="{{bannerImageAlt}}" class="active-image gallery-image"
+            id="img1" />
+            {{/each}}
+    </div>
+    <div class="dots-wrapper">
+        {{# each banners}}
+            <span class="dots"></span>
+        {{/each }}
+    </div>
+    <div class="slider-controls-wrapper">
+        <div class="controls-content">
+            <button class="slider-control slider-left" id="prev">
+                PREV
+            </button>
+            <button class="slider-control slider-right" id="next">
+                NEXT
+            </button>
+        </div>
+    </div>
+</div>

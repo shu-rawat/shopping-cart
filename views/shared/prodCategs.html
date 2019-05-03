@@ -1,0 +1,21 @@
+<div class="category-wrapper">
+    <div class="category-content">
+        <ul class="category-ul">
+            {{# each categories}}
+            {{#if enabled}}
+            <li>
+                <div class="category-box"  data-categ-id="{{id}}">
+                    <img src="{{imageUrl}}" alt="{{name}}" class="category-img">
+                    <div class="category-info">
+                        <h3>{{name}}</h3>
+                        <p>{{description}}</p>
+                        <button>Explore {{name}}</button>
+                    </div>
+                </div>
+                <div class="shadow-bottom"></div>
+            </li>
+            {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+</div>

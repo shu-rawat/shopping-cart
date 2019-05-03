@@ -23,8 +23,8 @@ CartModel.prototype.addItemCount = function(id){
         }
         else{
             //item created and added to cart
-            item = new Item(id,product.price,1);
-            debugger;
+            item = new Item(product.id,product.price,1,product.name,product.imageURL,product.description,product.stock,
+                product.category,product.sku);    
             this.items.push(item);
         }
     }
@@ -95,10 +95,16 @@ CartModel.prototype.saveCart = function(){
 
 CartModel.prototype.getSavedCart = function(){
     let itemsString = localStorage.getItem("items");
-    let items  = JSON.parse(itemsString);
-    if(!items){
+    let itemsObject  = JSON.parse(itemsString);
+    let items = []
+    if(!itemsObject){
         items = [];
     }   
+    else{
+        items = itemsObject.map(item=>{
+            return new Item(item.id,item.price,item.quantity);
+        });
+    }
     return items;
 }
 
