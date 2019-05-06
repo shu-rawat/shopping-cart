@@ -26,6 +26,7 @@ export default function SPA(routes,moduleConfig) {
     let currentPage = null;
     let activeComponents = {};
     let maxCompId = 0;
+    let routeParams = {};
     const defaultOutlet = "router-outlet";
     function bootstrap() {
         window.onhashchange = function (e) {
@@ -70,10 +71,10 @@ export default function SPA(routes,moduleConfig) {
     }
 
     function createComponent(componentSelector, componentWrapperEl) {
-        let ComponentClass = rootModule.registeredComponents[componentSelector];
-        let component = null;
+        let ComponentClass = rootModule.registeredComponents[componentSelector];    
         if (ComponentClass) {
             let component = new ComponentClass();
+            component.routeParams = routeParams;
             Object.defineProperty(component, "__id__", {
                 value: getNextCompId(),
                 configurable: false,
@@ -104,8 +105,42 @@ export default function SPA(routes,moduleConfig) {
     }
 
     function navigateToPage(_pageName) {
-        let ComponentClass = routes[_pageName];
-        let component;
+        let pathFragments = _pageName.split("/");
+        let ComponentClass;
+        routeParams = {};
+        if(pathFragments.length == 0){
+            ComponentClass = routes[_pageName];     
+        }
+        else{
+            let allRoutes = Object.keys(routes);
+            let routeMatchedFragments;
+            let routeMatched = allRoutes.find(route=>{
+                let routeFragments = route.split("/");
+                if(routeFragments.length == pathFragments.length){
+                    let fragMatched = routeFragments.every(function(routeFragment,index){
+                        if(!routeFragment.includes(":")){
+                            return routeFragment == pathFragments[index]; 
+                        }
+                        return true;
+                    });
+                    routeMatchedFragments = fragMatched?routeFragments:null;
+                    return fragMatched;
+                }                
+                return false;
+            });
+
+            if(routeMatched){
+                if(routeMatched.includes(":")){                    
+                    routeMatchedFragments.map(function(fragment,index){
+                        if(fragment.includes(":")){
+                            let param = fragment.split(":")[1];
+                            routeParams[param] = pathFragments[index];
+                        }
+                    },{});
+                }
+                ComponentClass = routes[routeMatched];                
+            }
+        }
         if (!ComponentClass) {
             alert("Page Not Registered With Routes");
             return;
@@ -126,7 +161,7 @@ export default function SPA(routes,moduleConfig) {
                 if(removeElementComp){
                     removeChildComponents(removeElementComp.getAttribute("__id__"));
                 }
-                let component = createComponent(componentSelector,compWrapperEl);
+                createComponent(componentSelector,compWrapperEl);
             }
         }
     }

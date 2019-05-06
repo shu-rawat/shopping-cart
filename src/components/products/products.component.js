@@ -1,5 +1,6 @@
 import hbsTemplate from '../../../views/shared/products.html';
 import products from '../../../server/products/index.get.json';
+import categories from '../../../server/categories/index.get.json';
 import { Component } from  '../../base/component';
 import subject from '../../base/subject';
 
@@ -13,9 +14,17 @@ export class ProductsComponent extends Component{
 
     init(){
         this.state = {
-            products
+            categories
         };
         this.onBuyNowListener = this.onBuyNow.bind(this);
+        if(this.routeParams && this.routeParams.id){
+            this.state.products = products.filter(product=>{
+                return product.category == this.routeParams.id;
+            })
+        }
+        else{
+            this.state.products = this.routeParams.id;
+        }
     }
     
     afterViewInit(){

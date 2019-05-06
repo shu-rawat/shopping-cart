@@ -16,6 +16,7 @@ export const routes = {
     '': HomeComponent,
     'home': HomeComponent,
     'products':ProductsComponent,
+    'products/:id':ProductsComponent,
     'login':LoginComponent,
     'register':RegisterComponent,
     'cart':CartComponent
