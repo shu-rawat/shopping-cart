@@ -1,5 +1,5 @@
 import SPA from './base/spa';
-
+import  '../static/style.scss';
 import { HeaderComponent } from './components/header.component';
 import { FooterComponent } from './components/footer.component';
 import { HomeComponent } from './components/home/home.component';

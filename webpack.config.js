@@ -15,7 +15,7 @@ module.exports = {
             {
                 test: /\.s?[ac]ss$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    {   loader:MiniCssExtractPlugin.loader, options: { publicPath: './dist'}},
                     { loader: 'css-loader', options: { url: false, sourceMap: true } },
                     { loader: 'sass-loader', options: { sourceMap: true } }
                 ],

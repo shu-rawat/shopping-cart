@@ -12,7 +12,8 @@
                     {{> cartItemRow.html }}
                 {{/each}}
             </ul>
-            <div class="advt-div">
+      
+            <div class="advt-div" {{#if items.length}} class="d-none" {{/if}}>
                 <img src="./static/images/lowest-price.png" alt="lowest price">
                 <p>Your won't find it cheaper anywhere</p>
             </div>
