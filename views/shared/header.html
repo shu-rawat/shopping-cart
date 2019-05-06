@@ -26,14 +26,14 @@
                         <div class="cart-button cart-button-mob">
                             <a href="#cart">
                                 <img src="./static/images/cart.svg" alt="cart image" class="cart-img">
-                                <span class="cart-header-count js-cart-count" >0</span>
+                                <span class="cart-header-count js-cart-count" >{{cartCount}}</span>
                                 <span class="cart-header-count"> Items</span>
                             </a>
 
                         </div>
                         <div class="cart-button cart-button-desk">
                             <img src="./static/images/cart.svg" alt="cart image" class="cart-img">
-                            <span class="cart-header-count js-cart-count" >0 </span>
+                            <span class="cart-header-count js-cart-count" >{{cartCount}}</span>
                             <span class="cart-header-count">Items</span>
                             <component comp-selector="app-cart"></component>
                         </div>

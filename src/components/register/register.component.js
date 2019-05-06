@@ -16,10 +16,6 @@ export class RegisterComponent extends Component{
 
     }
 
-    render(){
-
-    }
-
     destroy(){
 
     }

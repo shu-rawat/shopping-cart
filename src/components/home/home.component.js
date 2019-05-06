@@ -15,10 +15,6 @@ export class HomeComponent extends Component{
 
     }
 
-    render(){
-
-    }
-
     destroy(){
 
     }

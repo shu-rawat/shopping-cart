@@ -1,24 +1,22 @@
-<li>
-    <div class="item js-item-wrapper" data-item-id="{{id}}">
-        <img src="{{imageURL}}" alt="{{name}}">
-        <div class="right-cart">
-            <div class="item-header">
-                <h2>{{name}}</h2>
+<div class="item js-item-wrapper" data-item-id="{{id}}">
+    <img src="{{imageURL}}" alt="{{name}}">
+    <div class="right-cart">
+        <div class="item-header">
+            <h2>{{name}}</h2>
+        </div>
+        <div class="item-info">
+            <div class="item-control">
+                <button class="item-decr js-remove-item">-</button>
+                <span class="item-count js-item-count">{{quantity}}</span>
+                <button class="item-incr js-add-item">+</button>
+                <span>&times;</span>
+                <span>Rs</span>
+                <span class="item-price">{{price}}</span>
             </div>
-            <div class="item-info">
-                <div class="item-control">
-                    <button class="item-decr js-remove-item">-</button>
-                    <span class="item-count js-item-count">{{quantity}}</span>
-                    <button class="item-incr js-add-item">+</button>
-                    <span>&times;</span>
-                    <span>Rs</span>
-                    <span class="item-price">{{price}}</span>
-                </div>
-                <div class="item-final">
-                    <span>Rs</span>
-                    <span class="item-tot-price js-item-total">{{totalPrice}}</span>
-                </div>
+            <div class="item-final">
+                <span>Rs</span>
+                <span class="item-tot-price js-item-total">{{totalPrice}}</span>
             </div>
         </div>
     </div>
-</li>
+</div>

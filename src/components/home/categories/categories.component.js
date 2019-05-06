@@ -20,9 +20,6 @@ export class CategoriesComponent extends Component{
 
     }
 
-    render(){
-
-    }
 
     destroy(){
 

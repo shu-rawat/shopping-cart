@@ -9,11 +9,14 @@
         <div class="my-cart-items-wrapper">
             <ul>
                 {{#each items}}
-                    {{> cartItemRow.html }}
+                    <li>
+                        {{> cartItemRow.html }}
+                    </li>
+                    
                 {{/each}}
             </ul>
       
-            <div class="advt-div" {{#if items.length}} class="d-none" {{/if}}>
+            <div class="advt-div" {{#showEmptyCart}}class="d-block"{{/showEmptyCart}}>
                 <img src="./static/images/lowest-price.png" alt="lowest price">
                 <p>Your won't find it cheaper anywhere</p>
             </div>

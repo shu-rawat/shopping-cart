@@ -9,41 +9,68 @@ export class CartComponent extends Component{
         super();
         this.selector = "app-cart";
         this.hbsTemplate = hbsTemplate;
+        this.onCartItemAddedListener = this.onCartItemAdded.bind(this);
+        this.onAddItemElListener =  this.onAddItemEl.bind(this);
+        this.onRemoveItemElListener = this.onRemoveItemEl.bind(this);
+        this.cartUIUpdateListener = this.updateCartUI.bind(this);
     }
 
     init(){
         //reads cart from storage
-        window.cartModel.readStorage();  
+        window.cartModel.readStorage();
         this.state = {
             items:window.cartModel.items.map(item=>{
                 item.totalPrice = item.getTotalAmount();
                 return item;
             }),
             totalQuantity:window.cartModel.getTotalQty(),
-            totalAmount:window.cartModel.getTotalAmount()
+            totalAmount:window.cartModel.getTotalAmount(),
         };
+        this.state.showEmptyCart  = this.state.totalQuantity == 0;
+        subject.subscribe("onCartItemAdded",this.onCartItemAddedListener);
+        subject.subscribe("cartUpdated",this.cartUIUpdateListener);        
     }
 
-    addItemElListener(addItemEl){
-        let test = addItemEl;
-        addItemEl.addEventListener("click",(e)=>{
-            let cartItemId = this.getItemId(e.target);
-            let cartItem = window.cartModel.addItemCount(cartItemId);
-            if(cartItem.quantity == 1){
-                window.cartModel.addCartItem(cartItem);
-            }
-            subject.next("cartUpdated");
-            this.updateCartUI(cartItem);
-        });
+    onCartItemAdded(cartItem){
+        let ulWrapperEl = this.querySelector(".my-cart-items-wrapper ul")[0];
+        let liEl = document.createElement("li");
+        liEl.innerHTML = cartItemRowTemp(cartItem);
+        ulWrapperEl.appendChild(liEl);
+        let addBtnEl = this.getAddItemBtnEl(cartItem.id);
+        this.addItemElEvent(addBtnEl);
+        let rmvBtnEl = this.getRemoveItemBtnEl(cartItem.id);
+        this.removeItemElEvent(rmvBtnEl);        
+        subject.next("cartUpdated",cartItem);
     }
 
-    removeItemElListener(removeItemEl){
-        removeItemEl.addEventListener("click",(e)=>{
-            let cartItemId = this.getItemId(e.target);
-            let cartItem = window.cartModel.removeItemCount(cartItemId);
-            subject.next("cartUpdated");
-            this.updateCartUI(cartItem);
-        });
+    
+
+    addItemElEvent(addItemEl){
+        addItemEl.addEventListener("click",this.onAddItemElListener);
+    }
+
+    onAddItemEl(e){
+        let cartItemId = this.getItemId(e.target);
+        let cartItem = window.cartModel.addItemCount(cartItemId);
+        if(cartItem.quantity == 1){
+            window.cartModel.addCartItem(cartItem);
+        }
+        subject.next("cartUpdated",cartItem);
+    }
+
+    removeItemElEvent(removeItemEl){
+        removeItemEl.addEventListener("click",this.onRemoveItemElListener);
+    }
+
+    onRemoveItemEl(e){
+        let cartItemId = this.getItemId(e.target);
+        let cartItem = window.cartModel.removeItemCount(cartItemId);
+        if(cartItem.quantity == 0){
+            let WrapperEl = this.querySelector(`.js-item-wrapper[data-item-id='${cartItemId}']`)[0];
+            let liEl = WrapperEl.parentElement;
+            liEl.parentNode.removeChild(liEl);
+        }
+        subject.next("cartUpdated",cartItem);
     }
 
 
@@ -51,8 +78,8 @@ export class CartComponent extends Component{
         let addItemEls = this.getAddItemBtnEls();
         let removeItemEls = this.getRemoveItemBtnEls();
 
-        Array.from(addItemEls,(item)=>{this.addItemElListener(item)});
-        Array.from(removeItemEls,(item)=>{this.removeItemElListener(item)});
+        Array.from(addItemEls,(item)=>{this.addItemElEvent(item)});
+        Array.from(removeItemEls,(item)=>{this.removeItemElEvent(item)});
     }
 
     updateCartTotalCount(cartTotalItems){            
@@ -103,10 +130,19 @@ export class CartComponent extends Component{
     getAddItemBtnEls(){
         return this.querySelector(".js-add-item");
     }
+
+    getAddItemBtnEl(cartItemId){
+        return this.querySelector(`.js-item-wrapper[data-item-id='${cartItemId}'] .js-add-item`)[0];
+    }
     
     getRemoveItemBtnEls(){
         return this.querySelector(".js-remove-item");
     }
+
+    getRemoveItemBtnEl(cartItemId){
+        return this.querySelector(`.js-item-wrapper[data-item-id='${cartItemId}'] .js-remove-item`)[0];
+    }
+
 
     getItemCountEl(cartItemId){
         let els = this.querySelector(`.js-item-wrapper[data-item-id='${cartItemId}'] .js-item-count`);
@@ -132,6 +168,16 @@ export class CartComponent extends Component{
     }
 
     destroy(){
-
+        subject.unsubscribe("onCartItemAdded",this.onCartItemAddedListener);
+        subject.unsubscribe("cartUpdated",this.cartUIUpdateListener);
+        let addBtns = this.querySelector(".js-add-item");
+        let remvBtns = this.querySelector(".js-remove-item");
+        Array.from(addBtns,(btn)=>{
+            btn.removeEventListener("click",this.onAddItemElListener);
+        });
+        
+        Array.from(remvBtns,(btn)=>{
+            btn.removeEventListener("click",this.onRemoveItemElListener);
+        });
     }
 }

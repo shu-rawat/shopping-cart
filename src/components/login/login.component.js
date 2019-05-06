@@ -14,11 +14,7 @@ export class LoginComponent extends Component {
     afterViewInit(){
 
     }
-
-    render(){
-
-    }
-
+    
     destroy(){
 
     }

@@ -34,6 +34,7 @@ CartModel.prototype.addItemCount = function(id){
         item.increaseCount();    
     }
     this.saveCart();
+
     return item;
 }
 
@@ -103,7 +104,7 @@ CartModel.prototype.getSavedCart = function(){
     }   
     else{
         items = itemsObject.map(item=>{
-            return new Item(item.id,item.price,item.quantity);
+            return new Item(item.id,item.price,item.quantity,item.name,item.imageURL,item.description,item.stock,item.category,item.sku);
         });
     }
     return items;

@@ -1,6 +1,8 @@
 import hbsTemplate from '../../../views/shared/products.html';
 import products from '../../../server/products/index.get.json';
 import { Component } from  '../../base/component';
+import subject from '../../base/subject';
+
 
 export class ProductsComponent extends Component{
     constructor(){
@@ -13,18 +15,34 @@ export class ProductsComponent extends Component{
         this.state = {
             products
         };
+        this.onBuyNowListener = this.onBuyNow.bind(this);
     }
     
-
     afterViewInit(){
-
+        Array.from(this.querySelector(".js-add-item"),(item)=>{
+            item.addEventListener("click",this.onBuyNowListener);
+        });
     }
 
-    render(){
+    onBuyNow(e){
+      let cartItem = window.cartModel.addItemCount(this.getItemId(e.target));
+      //new item added
+      if(cartItem.quantity == 1){
+          subject.next("onCartItemAdded",cartItem);
+      }
+      else{
+          //cart item updated
+        subject.next("cartUpdated");
+      }
+    }
 
+    getItemId(el){
+        return el.closest(`.js-item-wrapper`).getAttribute("data-item-id");
     }
 
     destroy(){
-
+        Array.from(this.querySelector(".js-add-item"),(item)=>{
+            item.removeEventListener("click",this.onBuyNowListener);
+        });
     }
 }
