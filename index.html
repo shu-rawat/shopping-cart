@@ -13,9 +13,11 @@
 </head>
 
 <body>
-    <div id="outlet-header"></div>
-    <div id="outlet-main"></div>
-    <div id="outlet-footer"></div>
+    <layout-outlet __id__="-1">
+        <component comp-selector="app-header"></component>
+        <router-outlet>...loading</router-outlet>
+        <component comp-selector="app-footer"></component>
+    </layout-outlet>
 </body>
 <script src="./dist/main.js"></script>
 </html>

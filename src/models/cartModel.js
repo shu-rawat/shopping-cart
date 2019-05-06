@@ -6,6 +6,7 @@ export default function CartModel(){
     this.products = products; // all products list
     this.items = []; //cart items list
     //reads local storage for saved cart items
+
     this.readStorage();
 }
 

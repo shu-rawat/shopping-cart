@@ -4,11 +4,16 @@
   "description": "This is a shopping cart coding exercise",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack -p -w "
+    "dev": "webpack -p -w ",
+    "server": "live-server --port=3001"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-es2016": "^7.0.0-beta.53",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-es2015": "^6.24.1",

@@ -3,29 +3,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: {
-        main:"./src/main",
-        cart: "./src/cart/cartController", 
+        main:"./src/app", 
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: "[name].js",
         chunkFilename: "[id].js"
     },
-    // plugins: [
-    //     new MiniCssExtractPlugin({
-    //       filename: '[name].scss',
-    //       chunkFilename: '[id].css',
-    //     }),
-    //   ],
-    //   module: {
-    //     rules: [
-    //       {
-    //         test: /\.css$/,
-    //         use: [MiniCssExtractPlugin.loader, 'style-loader','css-loader','sass-loader'],
-    //       },
-    //     ],
-    //   },
-
     module : {
         rules : [
             {

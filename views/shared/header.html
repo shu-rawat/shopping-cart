@@ -24,7 +24,7 @@
                     </ul>
                     <div class="cart-container">
                         <div class="cart-button cart-button-mob">
-                            <a href="./cart.html">
+                            <a href="#cart">
                                 <img src="./static/images/cart.svg" alt="cart image" class="cart-img">
                                 <span class="cart-header-count js-cart-count" >0</span>
                                 <span class="cart-header-count"> Items</span>
@@ -35,62 +35,7 @@
                             <img src="./static/images/cart.svg" alt="cart image" class="cart-img">
                             <span class="cart-header-count js-cart-count" >0 </span>
                             <span class="cart-header-count">Items</span>
-                            <div class="my-cart ">
-                                <div class="my-cart-header">
-                                    <div>
-                                        <h3>My Cart</h3>(<span class="js-cart-count">1</span> Item)
-                                    </div>
-                                    <span class="close">&times;</span>
-                                </div>
-                                <div class="my-cart-body">
-                                    <div class="my-cart-items-wrapper">
-                                        <ul>
-                                            <li>
-                                                <div class="item">
-                                                    <img src="./static/images/products/fruit-n-veg/apple.jpg"
-                                                        alt="apple image">
-                                                    <div class="right-cart">
-                                                        <div class="item-header">
-                                                            <h2>Apple Washington regular,4pcs</h2>
-                                                        </div>
-                                                        <div class="item-info">
-                                                            <div class="item-control">
-                                                                <button class="item-decr">-</button>
-                                                                <span class="item-count">1</span>
-                                                                <button class="item-incr">+</button>
-                                                                <span>&times;</span>
-                                                                <span>Rs</span>
-                                                                <span class="item-price">187</span>
-                                                            </div>
-                                                            <div class="item-final">
-                                                                <span>Rs</span>
-                                                                <span class="item-tot-price">187</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="empty-cart">
-                                            <h3>No Items in you cart</h3>
-                                            <p>Your favourite items are just a click away</p>
-                                        </div>
-                                        <div class="advt-div">
-                                            <img src="./static/images/lowest-price.png" alt="lowest price">
-                                            <p>Your won't find it cheaper anywhere</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="my-cart-footer">
-                                    <p>Promo Code can be applied on payment page</p>
-                                    <div class="checkout-div">
-                                        <span class="checkout-txt">Proceed to checkout</span>
-                                        <span class="cart-final-price">Rs <span>187</span> </span>
-
-                                    </div>
-                                </div>
-                            </div>
+                            <component comp-selector="app-cart"></component>
                         </div>
                         <div class="overlay">
 
