@@ -16,9 +16,12 @@
                 {{/each}}
             </ul>
       
-            <div class="advt-div" {{#showEmptyCart}}class="d-block"{{/showEmptyCart}}>
+            <div class="advt-div {{#showAdvt}}d-block{{/showAdvt}} js-advt-cart">
                 <img src="./static/images/lowest-price.png" alt="lowest price">
                 <p>Your won't find it cheaper anywhere</p>
+            </div>
+            <div class="advt-div {{#showEmptyCart}}d-block{{/showEmptyCart}} js-empty-cart">
+                <h2>Cart is empty</h2>
             </div>
         </div>
     </div>

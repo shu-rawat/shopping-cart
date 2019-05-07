@@ -2,14 +2,17 @@
     <div class="plp-catg-wrapper">
         <ul>
             {{# each categories }}
-            <li class="visible">
+                {{#if enabled}}
+            <li {{#active}}class="visible"{{/active}} data-categ-id="{{id}}">
                 <a href="#products/{{id}}">{{name}}</a>
                 <i class="arrow down"> </i>
             </li>
+            {{/if}}
             {{/each}}
         </ul>
     </div>
-    <ul class="items-ul">
+    <ul class="items-ul">   
       {{> product_items.html }}
+    
     </ul>
 </div>

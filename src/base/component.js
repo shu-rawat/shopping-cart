@@ -19,6 +19,5 @@ export class Component{
 
     routePramsChanged(routeParams){
         this.routeParams = routeParams;
-        console.log("in parent",routeParams);
     }
 }

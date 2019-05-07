@@ -427,6 +427,9 @@ footer {
                 }
             }
         }
+        .advt-div.d-block{
+            display: block;
+        }
         .advt-div{
             background:white;
             margin-top:10px;
@@ -667,8 +670,7 @@ footer {
   
     .plp-wrapper{
         width:100%;
-        margin:0 auto;
-        background: $orangered;
+        margin:0 auto;        
         .plp-catg-wrapper{
             width:100%;
             color:white;
@@ -677,7 +679,7 @@ footer {
                 li{
                     position: relative;
                     a{
-                        color:white;
+                        color:black;
                     }
                     i.arrow{
                         display: inline-block;
@@ -686,6 +688,13 @@ footer {
                         top:12px;
                     }
                 }
+                li.visible{
+                    background: $orangered;
+                    a{
+                        color:white;
+                    }
+                }
+
                 li:not(.visible){
                     display: none;
                 }

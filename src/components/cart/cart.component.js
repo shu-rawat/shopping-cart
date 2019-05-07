@@ -27,7 +27,8 @@ export class CartComponent extends Component{
             totalQuantity:window.cartModel.getTotalQty(),
             totalAmount:window.cartModel.getTotalAmount(),
         };
-        this.state.showEmptyCart  = this.state.totalQuantity == 0;
+        this.state.showEmptyCart  = (this.state.totalQuantity == 0);
+        this.state.showAdvt = !this.state.showEmptyCart;
         subject.subscribe("onCartItemAdded",this.onCartItemAddedListener);
         subject.subscribe("cartUpdated",this.cartUIUpdateListener);
         subject.subscribe("deleteCartItem",this.onCartDeleteListener);
@@ -77,6 +78,7 @@ export class CartComponent extends Component{
             let liEl = WrapperEl.parentElement;
             liEl.parentNode.removeChild(liEl);
         }
+        this.checkEmptyCart(window.cartModel.getTotalQty());
     }
 
     afterViewInit(){
@@ -121,6 +123,18 @@ export class CartComponent extends Component{
         this.updateCartItemAmount(cartItem.id,itemTotalAmount);
         this.updateCartTotalCount(cartTotalCount);
         this.updateCartTotalAmount(cartTotalAmount);
+        this.checkEmptyCart(cartTotalCount);       
+    }
+
+    checkEmptyCart(cartTotalCount){
+        if(cartTotalCount == 0){
+            this.querySelector(".js-advt-cart")[0].classList.remove("d-block");
+            this.querySelector(".js-empty-cart")[0].classList.add("d-block");
+        }
+        else{
+            this.querySelector(".js-advt-cart")[0].classList.add("d-block");
+            this.querySelector(".js-empty-cart")[0].classList.remove("d-block");
+        }
     }
 
     
@@ -173,7 +187,6 @@ export class CartComponent extends Component{
     }
 
     destroy(){
-        console.log("DESTROY CART");
         subject.unsubscribe("onCartItemAdded",this.onCartItemAddedListener);
         subject.unsubscribe("cartUpdated",this.cartUIUpdateListener);
         let addBtns = this.querySelector(".js-add-item");

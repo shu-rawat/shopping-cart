@@ -36,7 +36,6 @@ const moduleConfig = {
     }
 };
 
-
 window.cartModel = new CartModel();
 //accepts routes, module configuration and initial route path to load
 const spa = new SPA(routes,moduleConfig,'');

@@ -105,7 +105,6 @@ export class SliderComponent extends Component{
 
     //invoked before component gets destroyed
     destroy(){
-        console.log("DESTROY SLIDER");
         this.prevBtnEle.removeEventListener("click",this.nextSlideEventListener);
         this.nextBtnEle.removeEventListener("click",this.prevSlideEventListener);
         window.removeEventListener("resize",this.resizeEventListener);

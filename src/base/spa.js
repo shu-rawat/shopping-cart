@@ -70,7 +70,6 @@ export default function SPA(routes,moduleConfig) {
         compIdsToRemove = compIdsToRemove.sort().reverse();
         compIdsToRemove.map(compId=>activeComponents[compId])
                         .forEach(componentInstance=>{
-                            console.log(componentInstance,"componentInstance");
                             componentInstance.destroy();
                             delete activeComponents[componentInstance.__id__]
                         });
