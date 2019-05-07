@@ -5,9 +5,11 @@ export class Component{
 
     querySelector(queryString){
         let allElements = document.querySelectorAll(`component[__id__='${this.__id__}'] ${queryString}`);
+        console.log(allElements,"allElements");
         if(!allElements){
             return [];
         }
+        console.log("array",Array.from(allElements));
         return Array.from(allElements).filter(element=>{
             let wrapperComponent = element.closest("component");
             if(wrapperComponent){

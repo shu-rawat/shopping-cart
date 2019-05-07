@@ -96,7 +96,7 @@ export class SliderComponent extends Component{
         this.bannerWrapperEle.style.left = `-${this.activeBanrIndx * this.bannerWrapperWidth}px`;  
         this.bannerWrapperEle.style.height = `${this.bannerWrapperWidth / 4}px`;   
         this.bannerWrapperEle.style.transition = `left ${this.sliderTime/1000}s linear`; 
-        this.allBannersEles.forEach(banerImg=>{
+        Array.from(this.allBannersEles,banerImg=>{
             banerImg.style.width = `${this.bannerWrapperWidth}px`;
             banerImg.style.display = "inline-block";
         });

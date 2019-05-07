@@ -11,8 +11,10 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.4.4",
+    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "babel-loader": "^8.0.5",
+    "core-js": "^2.6.5",
     "css-loader": "^2.1.1",
     "express-handlebars": "^3.0.2",
     "handlebars-loader": "^1.7.1",

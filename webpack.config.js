@@ -2,12 +2,12 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: {
-        main:["./src/app"], 
-    },
+    entry: [
+        "./src/app"
+    ],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "[name].js",
+        filename: "main.js",
         chunkFilename: "[id].js"
     },
     module : {
