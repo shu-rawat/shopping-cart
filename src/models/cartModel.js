@@ -1,10 +1,12 @@
 import Item from './cartItem';
+import categories from '../../server/categories/index.get.json';
 import products from '../../server/products/index.get.json';
 
 
 export default function CartModel(){
     this.products = products; // all products list
     this.items = []; //cart items list
+    this.categories = categories;
     //reads local storage for saved cart items
 
     this.readStorage();
@@ -25,7 +27,7 @@ CartModel.prototype.addItemCount = function(id){
         else{
             //item created and added to cart
             item = new Item(product.id,product.price,1,product.name,product.imageURL,product.description,product.stock,
-                product.category,product.sku);    
+                product.category,product.sku);
             this.items.push(item);
         }
     }

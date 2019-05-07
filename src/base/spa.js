@@ -21,13 +21,20 @@ function Module(moduleConfig) {
 
 export default function SPA(routes,moduleConfig) {
     let initialPage = window.location.href.split("#")[1];
+    const router = Object.freeze({
+        navigateByURL
+    });
+
     initialPage = initialPage?initialPage:'';
     let rootModule = new Module(moduleConfig);
-    let currentPage = null;
+    let currentRoute = null;
     let activeComponents = {};
     let maxCompId = 0;
     let routeParams = {};
+    let currentRouteParams = {};
+    let currentRouteComponent;
     const defaultOutlet = "router-outlet";
+
     function bootstrap() {
         window.onhashchange = function (e) {
             let pageName = e.newURL.split("#")[1];
@@ -35,8 +42,6 @@ export default function SPA(routes,moduleConfig) {
                 pageName = '';    
             }
             navigateToPage(pageName);
-            // let cc =new cartController();
-            // cc.attachEvents();
         }
         resolveChildComponents();
         navigateToPage(initialPage);
@@ -65,15 +70,19 @@ export default function SPA(routes,moduleConfig) {
         compIdsToRemove = compIdsToRemove.sort().reverse();
         compIdsToRemove.map(compId=>activeComponents[compId])
                         .forEach(componentInstance=>{
+                            console.log(componentInstance,"componentInstance");
                             componentInstance.destroy();
                             delete activeComponents[componentInstance.__id__]
                         });
+        activeComponents[__id__].destroy();
+        delete activeComponents[__id__];
     }
 
     function createComponent(componentSelector, componentWrapperEl) {
         let ComponentClass = rootModule.registeredComponents[componentSelector];    
         if (ComponentClass) {
-            let component = new ComponentClass();
+            let component = new ComponentClass(router);
+            component.router = router;
             component.routeParams = routeParams;
             Object.defineProperty(component, "__id__", {
                 value: getNextCompId(),
@@ -104,17 +113,26 @@ export default function SPA(routes,moduleConfig) {
         }
     }
 
+    function navigateByURL(url){
+        history.pushState({}, null, `#${url}`);
+        navigateToPage(url);
+    }
+
     function navigateToPage(_pageName) {
         let pathFragments = _pageName.split("/");
         let ComponentClass;
+        let routeMatched = null;
         routeParams = {};
-        if(pathFragments.length == 0){
+        if(pathFragments.length == 1){
             ComponentClass = routes[_pageName];     
+            if(ComponentClass){
+                routeMatched = _pageName;
+            }
         }
         else{
             let allRoutes = Object.keys(routes);
             let routeMatchedFragments;
-            let routeMatched = allRoutes.find(route=>{
+            routeMatched = allRoutes.find(route=>{
                 let routeFragments = route.split("/");
                 if(routeFragments.length == pathFragments.length){
                     let fragMatched = routeFragments.every(function(routeFragment,index){
@@ -146,11 +164,17 @@ export default function SPA(routes,moduleConfig) {
             return;
         }
         else {
-            if (currentPage == _pageName) {
+            if (currentRoute == routeMatched || routes[currentRoute] == routes[routeMatched]) {
+                currentRoute = routeMatched;
+                let a = JSON.stringify(routeParams);
+                let b = JSON.stringify(currentRouteParams);               
+                if(currentRouteComponent &&  a!=b){
+                    currentRouteComponent.routePramsChanged(routeParams);
+                }
                 return;
             }
             else {
-                currentPage = _pageName;
+                currentRoute = routeMatched;
                 let componentSelector = rootModule.findSelector(ComponentClass);
                 if(!componentSelector){
                     alert("Page Not declared in Module");
@@ -161,13 +185,12 @@ export default function SPA(routes,moduleConfig) {
                 if(removeElementComp){
                     removeChildComponents(removeElementComp.getAttribute("__id__"));
                 }
-                createComponent(componentSelector,compWrapperEl);
+                currentRouteComponent = createComponent(componentSelector,compWrapperEl);
             }
         }
     }
 
     return {
-        navigateToPage,
         bootstrap
     }
 }

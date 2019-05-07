@@ -1,6 +1,5 @@
 import hbsTemplate from '../../../views/shared/products.html';
-import products from '../../../server/products/index.get.json';
-import categories from '../../../server/categories/index.get.json';
+import prodItemsTemplate from '../../../views/shared/product_items.html';
 import { Component } from  '../../base/component';
 import subject from '../../base/subject';
 
@@ -14,17 +13,27 @@ export class ProductsComponent extends Component{
 
     init(){
         this.state = {
-            categories
+            categories:window.cartModel.categories
         };
+
         this.onBuyNowListener = this.onBuyNow.bind(this);
         if(this.routeParams && this.routeParams.id){
-            this.state.products = products.filter(product=>{
+            this.state.products = window.cartModel.products.filter(product=>{
                 return product.category == this.routeParams.id;
             })
         }
         else{
-            this.state.products = this.routeParams.id;
+            this.state.products = window.cartModel.products;
         }
+    }
+
+    routePramsChanged(routeParams){
+            super.routePramsChanged(routeParams);
+            //for detaching events on previous products
+            this.destroy();
+            this.init();
+            this.querySelector(".items-ul")[0].innerHTML = prodItemsTemplate(this.state);
+            this.afterViewInit();
     }
     
     afterViewInit(){
@@ -41,7 +50,7 @@ export class ProductsComponent extends Component{
       }
       else{
           //cart item updated
-        subject.next("cartUpdated");
+        subject.next("cartUpdated",cartItem);
       }
     }
 

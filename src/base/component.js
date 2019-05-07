@@ -1,4 +1,8 @@
 export class Component{
+    constructor(router){
+        this.router = router;
+    }
+
     querySelector(queryString){
         let allElements = document.querySelectorAll(`component[__id__='${this.__id__}'] ${queryString}`);
         if(!allElements){
@@ -12,4 +16,9 @@ export class Component{
             return false;
         });
     };
+
+    routePramsChanged(routeParams){
+        this.routeParams = routeParams;
+        console.log("in parent",routeParams);
+    }
 }

@@ -1,8 +1,8 @@
 import hbsTemplate from '../../../views/shared/home.html';
 import { Component } from  '../../base/component';
 export class HomeComponent extends Component{
-    constructor(){
-        super();
+    constructor(router){
+        super(router);
     }
 
     init(){

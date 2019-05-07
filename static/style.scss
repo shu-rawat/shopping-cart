@@ -387,7 +387,7 @@ footer {
                 list-style-type: none;
                 margin:0;
                 padding:0;
-                max-height:200px;
+                max-height:600px;
                 overflow: auto;
                 .item{
                     background: white;
@@ -537,7 +537,10 @@ footer {
         padding: 5px 20px;
         border-radius: 7px;
     }
-    header .my-cart{
+    .cart-button-desk .my-cart{
+        width: 400px;
+    }
+    .my-cart{
         width:100%;
         .my-cart-header {
             background:white;

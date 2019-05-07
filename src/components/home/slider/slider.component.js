@@ -22,8 +22,8 @@ export class SliderComponent extends Component{
         this.applyCss();
     }
 
-    constructor(){
-        super();
+    constructor(router){
+        super(router);
         this.hbsTemplate = hbsTemplate;
         this.selector = "app-slider";
         this.activeBanrIndx = 0;
@@ -39,6 +39,7 @@ export class SliderComponent extends Component{
         this.applyCss();
         this.attachEvents();
         this.updatePoints();
+        this.setDisableBtns();
     }
 
     initData(){
@@ -104,6 +105,7 @@ export class SliderComponent extends Component{
 
     //invoked before component gets destroyed
     destroy(){
+        console.log("DESTROY SLIDER");
         this.prevBtnEle.removeEventListener("click",this.nextSlideEventListener);
         this.nextBtnEle.removeEventListener("click",this.prevSlideEventListener);
         window.removeEventListener("resize",this.resizeEventListener);

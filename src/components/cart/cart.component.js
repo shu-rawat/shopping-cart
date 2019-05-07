@@ -11,6 +11,7 @@ export class CartComponent extends Component{
         this.hbsTemplate = hbsTemplate;
         this.onCartItemAddedListener = this.onCartItemAdded.bind(this);
         this.onAddItemElListener =  this.onAddItemEl.bind(this);
+        this.onCartDeleteListener = this.deleteCartItem.bind(this);
         this.onRemoveItemElListener = this.onRemoveItemEl.bind(this);
         this.cartUIUpdateListener = this.updateCartUI.bind(this);
     }
@@ -28,7 +29,8 @@ export class CartComponent extends Component{
         };
         this.state.showEmptyCart  = this.state.totalQuantity == 0;
         subject.subscribe("onCartItemAdded",this.onCartItemAddedListener);
-        subject.subscribe("cartUpdated",this.cartUIUpdateListener);        
+        subject.subscribe("cartUpdated",this.cartUIUpdateListener);
+        subject.subscribe("deleteCartItem",this.onCartDeleteListener);
     }
 
     onCartItemAdded(cartItem){
@@ -65,14 +67,17 @@ export class CartComponent extends Component{
     onRemoveItemEl(e){
         let cartItemId = this.getItemId(e.target);
         let cartItem = window.cartModel.removeItemCount(cartItemId);
-        if(cartItem.quantity == 0){
-            let WrapperEl = this.querySelector(`.js-item-wrapper[data-item-id='${cartItemId}']`)[0];
-            let liEl = WrapperEl.parentElement;
-            liEl.parentNode.removeChild(liEl);
-        }
+        subject.next("deleteCartItem",cartItem);
         subject.next("cartUpdated",cartItem);
     }
 
+    deleteCartItem(cartItem){
+        if(cartItem.quantity == 0){
+            let WrapperEl = this.querySelector(`.js-item-wrapper[data-item-id='${cartItem.id}']`)[0];
+            let liEl = WrapperEl.parentElement;
+            liEl.parentNode.removeChild(liEl);
+        }
+    }
 
     afterViewInit(){
         let addItemEls = this.getAddItemBtnEls();
@@ -168,10 +173,12 @@ export class CartComponent extends Component{
     }
 
     destroy(){
+        console.log("DESTROY CART");
         subject.unsubscribe("onCartItemAdded",this.onCartItemAddedListener);
         subject.unsubscribe("cartUpdated",this.cartUIUpdateListener);
         let addBtns = this.querySelector(".js-add-item");
         let remvBtns = this.querySelector(".js-remove-item");
+        subject.unsubscribe("deleteCartItem",this.onCartDeleteListener);
         Array.from(addBtns,(btn)=>{
             btn.removeEventListener("click",this.onAddItemElListener);
         });

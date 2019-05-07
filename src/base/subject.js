@@ -14,10 +14,10 @@ class Subject{
         };
     }
 
-    unsubscribe(observable){
-        if(this.events[observable.eventName]){
-            this.events[observable.eventName] = this.events[observable.eventName].filter(eventListener=>{
-                return eventListener != observable.eventListener;
+    unsubscribe(eventName, eventListenerToRmv){
+        if(this.events[eventName]){
+            this.events[eventName] = this.events[eventName].filter(eventListener=>{
+                return eventListener != eventListenerToRmv;
             });
             return true;
         }
