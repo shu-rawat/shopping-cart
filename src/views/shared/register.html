@@ -9,6 +9,9 @@
 
                 <input type="text" class="effect" />
                 <label for="fname" required>First Name</label>
+                <div class="error">
+                    <p class="required">First Name is required.</p>
+                </div>
             </div>
             <div class="form-group">
 
@@ -19,16 +22,28 @@
 
                 <input type="email" class="effect" />
                 <label for="email" required>Email</label>
+
+                <div class="error">
+                    <p class="required">Email is required.</p>
+                    <p class="invalid" _pattern="(.+)@(.+){2,}\.(.+){2,}">Email is invalid.</p>
+                </div>
             </div>
             <div class="form-group">
 
                 <input type="password" class="effect" />
                 <label for="password" required>Password</label>
+
+                <div class="error">
+                    <p class="required">Password is required.</p>
+                </div>
             </div>
             <div class="form-group">
 
                 <input type="password" class="effect" />
                 <label for="password" required>Confirm Password</label>
+                <div class="error">
+                    <p class="required">Confirm Password is required.</p>
+                </div>
             </div>
             <button class="login-btn">Signup</button>
         </form>
