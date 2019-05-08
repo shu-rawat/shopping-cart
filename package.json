@@ -4,9 +4,12 @@
   "description": "This is a shopping cart coding exercise",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && npm run server",
+    "deploy": "npm run build && npm run server",
+    "dev":"npm run build-dev | npm run server",
     "build": "webpack -p && npm run move",
+    "build-dev":"webpack -p -w | npm run move-dev",
     "move":"cpx \"src/**/*.{html,png,jpg,json}\" dist && cpx \"server/**/*.{html,png,jpg,json}\" dist && cpx \"static/**/*.{png,jpg,svg}\" dist/static && cpx \"index.html\" dist",
+    "move-dev":"cpx \"src/**/*.{html,png,jpg,json}\" dist --watch | cpx \"server/**/*.{html,png,jpg,json}\" dist --watch | cpx \"static/**/*.{png,jpg,svg}\" dist/static --watch | cpx \"index.html\" dist --watch",    
     "server": "live-server ./dist --port=3001 --cors"
   },
   "author": "",
