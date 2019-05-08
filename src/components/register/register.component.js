@@ -29,13 +29,43 @@ export class RegisterComponent extends Component{
         let inputEl = e.target;
         let requiredEl = inputEl.parentElement.querySelector(".required");
         let invalidEl = inputEl.parentElement.querySelector(".invalid");
+        let checkForMismatch = inputEl.hasAttribute("mismatch");
+        
         if(requiredEl){   
-            this.showError(requiredEl,inputEl.value.length == 0);            
+            this.showError(requiredEl,inputEl.value.length == 0);                        
         }
+
         if(invalidEl){
             this.showError(invalidEl,!eval(`"${inputEl.value}".match(/${invalidEl.getAttribute("_pattern")}/)`));
-            // invalidEl.getAttribute("_pattern")
         }
+
+        if(checkForMismatch){
+            this.showMismatchError();
+        }
+    }
+
+
+
+    showMismatchError(){
+        let inputsMismatch = this.querySelector("form input[mismatch]");
+        let isMismatch = false;
+        if(inputsMismatch.length){
+            let val = inputsMismatch[0].value;
+            inputsMismatch.forEach(inputMismatchEl=>{
+                if(inputMismatchEl.value.length){
+                    let misMatch = false;
+                    if(inputMismatchEl.value != val){
+                        misMatch = true;
+                        isMismatch = true;
+                    }
+                    let errEle = inputMismatchEl.parentElement.querySelector(".mismatch");
+                    if(errEle){
+                        this.showError(errEle,misMatch)
+                    }
+                }
+            });
+        }
+        return isMismatch;
     }
 
     showError(errorElement,show){
@@ -61,6 +91,10 @@ export class RegisterComponent extends Component{
                 if(!validCheck){
                     isValid = false;
                     this.showError(errorEl,true);
+                }
+
+                if(this.showMismatchError()){
+                    isValid = false;
                 }
             });
         });
