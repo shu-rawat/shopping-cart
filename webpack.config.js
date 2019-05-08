@@ -28,7 +28,7 @@ module.exports = {
             {
                 test: /\.html$/,
                 include: [
-                    path.resolve(__dirname, 'views/shared')
+                    path.resolve(__dirname, 'src/views/shared')
                 ],
                 loader: "handlebars-loader"
             }

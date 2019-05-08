@@ -1,4 +1,4 @@
-import hbsTemplate from '../../../views/shared/register.html';
+import hbsTemplate from '../../views/shared/register.html';
 import { Component } from  '../../base/component';
 
 export class RegisterComponent extends Component{

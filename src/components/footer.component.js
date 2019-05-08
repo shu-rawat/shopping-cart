@@ -1,4 +1,4 @@
-import hbsTemplate from '../../views/shared/footer.html';
+import hbsTemplate from '../views/shared/footer.html';
 import { Component } from  '../base/component';
 export class FooterComponent extends Component{
     init(){

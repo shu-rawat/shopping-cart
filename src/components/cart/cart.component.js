@@ -1,7 +1,7 @@
 import { Component } from  '../../base/component';
 import subject from '../../base/subject';
-import hbsTemplate from '../../../views/shared/cart.html';
-import cartItemRowTemp from '../../../views/shared/cartItemRow.html';
+import hbsTemplate from '../../views/shared/cart.html';
+import cartItemRowTemp from '../../views/shared/cartItemRow.html';
 
 export class CartComponent extends Component{
 

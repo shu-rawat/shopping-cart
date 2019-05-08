@@ -1,4 +1,4 @@
-import hbsTemplate from '../../../../views/shared/prodCategs.html';
+import hbsTemplate from '../../../views/shared/prodCategs.html';
 import { Component } from  '../../../base/component';
 
 export class CategoriesComponent extends Component{

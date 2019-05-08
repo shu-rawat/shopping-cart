@@ -1,4 +1,4 @@
-import hbsTemplate from '../../../views/shared/login.html';
+import hbsTemplate from '../../views/shared/login.html';
 import { Component } from  '../../base/component';
 
 export class LoginComponent extends Component {

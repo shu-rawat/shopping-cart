@@ -1,5 +1,5 @@
 import subject from '../base/subject';
-import hbsTemplate from '../../views/shared/header.html';
+import hbsTemplate from '../views/shared/header.html';
 import { Component } from  '../base/component';
 
 export class HeaderComponent extends Component{

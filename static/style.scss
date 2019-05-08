@@ -474,6 +474,12 @@ footer {
                     text-decoration: none;
                 }
             }
+            li.visible{
+                background-color:$orangered;
+                a{
+                    color:white;
+                }
+            }
         }
     }
     .items-ul{

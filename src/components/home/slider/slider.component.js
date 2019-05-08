@@ -1,4 +1,4 @@
-import hbsTemplate from '../../../../views/shared/slider.html';
+import hbsTemplate from '../../../views/shared/slider.html';
 import banners from '../../../../server/banners/index.get.json';
 import { Component } from  '../../../base/component';
 
