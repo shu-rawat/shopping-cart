@@ -8,8 +8,7 @@ export class HomeComponent extends Component{
     init(){
         this.selector = "app-home";
         this.hbsTemplate = hbsTemplate;
-    }
-    
+    }    
 
     afterViewInit(){
 

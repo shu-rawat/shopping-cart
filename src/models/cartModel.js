@@ -21,8 +21,8 @@ CartModel.prototype.addItemCount = function(id){
         let product = this.findProductById(id);
         if(!product){
             //item with particular id not present in products list
-            alert("Sorry could not find this product!"); 
-            return;          
+            alert("Could not find this product!"); 
+            return null;          
         }
         else{
             //item created and added to cart
@@ -58,7 +58,7 @@ CartModel.prototype.removeItemCount = function(id){
     if(!item){
         //item not found in cart
         alert("Can not remove. Item not found in cart!");
-        return;
+        return null;
     }
     else{
         //decreases item count and removes item from cart if  quantiy is 0

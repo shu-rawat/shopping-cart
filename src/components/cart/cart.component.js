@@ -7,9 +7,7 @@ export class CartComponent extends Component{
 
     constructor(){
         super();
-        this.selector = "app-cart";
-    let a = {a:1};
-    let b = {...a};
+        this.selector = "app-cart"; 
         this.hbsTemplate = hbsTemplate;
         this.onCartItemAddedListener = this.onCartItemAdded.bind(this);
         this.onAddItemElListener =  this.onAddItemEl.bind(this);
