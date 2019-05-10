@@ -176,22 +176,7 @@ export default function SPA(routes, moduleConfig) {
             return;
         }
         else {
-            let resolvedObj = {};
-            if (routes[routeMatched].resolve) {
-                let resolveObj = routes[routeMatched].resolve;
-
-                for (let dataKey of Object.keys(resolveObj)) {
-                    let serviceObjConf = serviceObjs.find(obj => {
-                        return obj.class == resolveObj[dataKey];
-                    });
-                    if (serviceObjConf) {
-                        resolvedObj[dataKey] = await serviceObjConf.object.resolve(_pageName, routeParams);
-                    }
-                }
-
-            }
-
-
+            let resolvedObj = await updateResolveObj(routeMatched, _pageName);
 
             if (currentRoute == routeMatched || routes[currentRoute] == routes[routeMatched]) {
                 currentRoute = routeMatched;
@@ -219,6 +204,23 @@ export default function SPA(routes, moduleConfig) {
                 currentRouteComponent = createComponent(componentSelector, compWrapperEl, resolvedObj);
             }
         }
+    }
+
+    async function updateResolveObj(routeMatched, _pageName){
+        let resolvedObj = {};
+        if (routes[routeMatched].resolve) {
+            let resolveObj = routes[routeMatched].resolve;
+
+            for (let dataKey of Object.keys(resolveObj)) {
+                let serviceObjConf = serviceObjs.find(obj => {
+                    return obj.class == resolveObj[dataKey];
+                });
+                if (serviceObjConf) {
+                    resolvedObj[dataKey] = await serviceObjConf.object.resolve(_pageName, routeParams);
+                }
+            }
+        }
+        return resolvedObj;
     }
 
 
