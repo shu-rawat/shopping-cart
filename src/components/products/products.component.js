@@ -13,27 +13,14 @@ export class ProductsComponent extends Component{
 
     init(){     
         this.state = {};
-        this.state.categories = window.cartModel.categories.map(category=>{
-            let categ = JSON.parse(JSON.stringify(category));
-            categ.active = this.routeParams.id == categ.id;
-            return categ;
-        });
-
         this.onBuyNowListener = this.onBuyNow.bind(this);
-        if(this.routeParams && this.routeParams.id){
-            this.state.categories = window.cartModel.categories.map(category=>{
-                let categ = JSON.parse(JSON.stringify(category));
-                categ.active = this.routeParams.id == categ.id;
-                return categ;
-            });
-            this.state.products = window.cartModel.products.filter(product=>{
-                return product.category == this.routeParams.id;
-            })
-        }
-        else{
-            this.state.products = window.cartModel.products;
-        }
-        this.state.empty = this.state.products.length == 0;
+
+        this.state.products = this.data.products;
+        this.state.empty = this.data.products.length == 0;
+
+        this.state.categories = this.data.categories.map(category=>{
+            return {...category, active:this.routeParams.id == category.id};
+        });        
     }
 
     routePramsChanged(routeParams){

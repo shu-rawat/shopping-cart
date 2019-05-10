@@ -1,5 +1,4 @@
 import hbsTemplate from '../../../views/shared/slider.html';
-import banners from '../../../../server/banners/index.get.json';
 import { Component } from  '../../../base/component';
 
 export class SliderComponent extends Component{
@@ -15,6 +14,7 @@ export class SliderComponent extends Component{
         this.nextSlideEventListener = null;
         this.prevSlideEventListener = null;
         this.resizeEventListener = null;
+        this.state.banners = this.data.banners;
     }
     
     onResize(){  
@@ -27,8 +27,7 @@ export class SliderComponent extends Component{
         this.hbsTemplate = hbsTemplate;
         this.selector = "app-slider";
         this.activeBanrIndx = 0;
-        this.state = {
-            banners
+        this.state = {            
         };
 
     }

@@ -1,5 +1,6 @@
 import SPA from './base/spa';
 import  '../static/style.scss';
+import CartModel from './models/cartModel';
 
 import { HeaderComponent } from './components/header.component';
 import { FooterComponent } from './components/footer.component';
@@ -11,16 +12,49 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/cart/cart.component';
 
-import CartModel from './models/cartModel';
+import DataService from './services/data.service';
+import ProductsResolver from './resolver/products.resolver';
+import CategoryResolver from './resolver/category.resolver';
+import BannerResolver from './resolver/banner.resolver';
 
 export const routes = {
-    '': HomeComponent,
-    'home': HomeComponent,
-    'products':ProductsComponent,
-    'products/:id':ProductsComponent,
-    'login':LoginComponent,
-    'register':RegisterComponent,
-    'cart':CartComponent
+    '': {
+        component: HomeComponent,
+        resolve:{
+            banners:BannerResolver,
+            categories:CategoryResolver
+        }
+    },
+    'home': {
+        component: HomeComponent,
+        resolve:{
+            banners:BannerResolver,
+            categories:CategoryResolver
+        }
+    },
+    'products': {
+        component: ProductsComponent,
+        resolve:{
+            products:ProductsResolver,
+            categories:CategoryResolver
+        }
+    },
+    'products/:id': {
+        component: ProductsComponent,
+        resolve:{
+            products:ProductsResolver,
+            categories:CategoryResolver
+        }
+    },
+    'login': {
+        component: LoginComponent
+    },
+    'register': {
+        component: RegisterComponent
+    },
+    'cart': { 
+        component: CartComponent
+    }
 };
 
 const moduleConfig = {
@@ -34,7 +68,8 @@ const moduleConfig = {
         'app-login':LoginComponent,
         'app-register':RegisterComponent,
         'app-cart':CartComponent
-    }
+    },
+    providers:[DataService, ProductsResolver, CategoryResolver, BannerResolver]
 };
 
 window.cartModel = new CartModel();

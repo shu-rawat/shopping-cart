@@ -12,7 +12,7 @@ export class CategoriesComponent extends Component{
 
     init(){
         this.state = {
-            categories:window.cartModel.categories.filter(categ=>categ.enabled).map((categ,ind)=>({...categ,even:ind%2==1}))
+            categories:this.data.categories.filter(categ=>categ.enabled).map((categ,ind)=>({...categ,even:ind%2==1}))
         };
     }
 
