@@ -1,9 +1,9 @@
 import hbsTemplate from '../../../views/shared/slider.html';
-import banners from '../../../../server/banners/index.get.json';
 import { Component } from  '../../../base/component';
 
 export class SliderComponent extends Component{
     
+    //Lifecycle hook
     //for initialising component
     init(){
         this.prevBtnId = 'prev';
@@ -15,20 +15,27 @@ export class SliderComponent extends Component{
         this.nextSlideEventListener = null;
         this.prevSlideEventListener = null;
         this.resizeEventListener = null;
+        this.state.banners = this.data.banners;
     }
-    
+
+    //when window gets resized
     onResize(){  
+        //initializing slider data again
         this.initData();       
+         //appling css based on changed data aftere resizing
         this.applyCss();
     }
 
     constructor(router){
+        
         super(router);
+        //component hbs templated file.
         this.hbsTemplate = hbsTemplate;
+        //component selector.
         this.selector = "app-slider";
         this.activeBanrIndx = 0;
-        this.state = {
-            banners
+        // data to be used by hbs template.
+        this.state = {            
         };
 
     }
@@ -43,6 +50,7 @@ export class SliderComponent extends Component{
     }
 
     initData(){
+        //saving dom elements and wrapper width 
         this.prevBtnEle = document.getElementById(this.prevBtnId);
         this.nextBtnEle = document.getElementById(this.nextBtnId);
         this.allBannersEles = document.querySelectorAll(`.${this.banrWrprClass} img`);
@@ -53,6 +61,7 @@ export class SliderComponent extends Component{
     }
     
     attachEvents(){
+        //attaching event listeners
         this.initOnce = true;
         this.nextSlideEventListener = this.slideToImageIndex.bind(this,-1);
         this.prevSlideEventListener = this.slideToImageIndex.bind(this,1);
@@ -64,20 +73,26 @@ export class SliderComponent extends Component{
         window.addEventListener("resize",this.resizeEventListener);
     }
 
-    slideToImageIndex(directionCount=0){            
+    slideToImageIndex(directionCount=0){    
+        //slides to image index given        
         var targetBnrIndx = (this.activeBanrIndx + directionCount) % this.bannersLength; 
+        //sets wrapper left 
         this.updateWrapperLeft(targetBnrIndx);            
         this.activeBanrIndx = targetBnrIndx;
+        //updated current point
         this.updatePoints();
+        //checks for disble button
         this.setDisableBtns();
     }
 
     updateWrapperLeft(targetBnrIndx){
+        //updates wrapper left based on current slider index.
         var wraprLeftWdth = targetBnrIndx * this.bannerWrapperWidth;
         this.bannerWrapperEle.style.left = `-${wraprLeftWdth}px`;         
     }
 
     updatePoints(){
+        //updates current dot based on current banner
         var activeDot = document.querySelector(".dots-wrapper .active-dot");
         if(activeDot){
             activeDot.classList.remove("active-dot");
@@ -86,11 +101,13 @@ export class SliderComponent extends Component{
     }
 
     setDisableBtns(){
+        //checks for disbling next and prev button 
         this.activeBanrIndx == (this.bannersLength - 1)?this.nextBtnEle.setAttribute("disabled", ""):this.nextBtnEle.removeAttribute("disabled");    
         this.activeBanrIndx == 0?this.prevBtnEle.setAttribute("disabled", ""):this.prevBtnEle.removeAttribute("disabled")
     }
 
     applyCss(){
+        //applies dynamic styling eg widht and height and left and animation.
         this.bannerWrapperEle.style.position = "relative";
         this.bannerWrapperEle.style.width = `${this.bannerWrapperWidth * this.bannersLength + 100}px`;
         this.bannerWrapperEle.style.left = `-${this.activeBanrIndx * this.bannerWrapperWidth}px`;  
@@ -103,6 +120,7 @@ export class SliderComponent extends Component{
         this.bannerWrapperOuter.style.overflow = "hidden";
     }
 
+    //Lifecycle hook
     //invoked before component gets destroyed
     destroy(){
         this.prevBtnEle.removeEventListener("click",this.nextSlideEventListener);
