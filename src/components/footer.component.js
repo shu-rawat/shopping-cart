@@ -1,21 +1,12 @@
 import hbsTemplate from '../views/shared/footer.html';
 import { Component } from  '../base/component';
 export class FooterComponent extends Component{
-    init(){
 
-    }
-    
     constructor(){
         super();
-        this.selector = ""
+        //component selector
+        this.selector = "app-footer"
+        //componetn hbs template view.
         this.hbsTemplate = hbsTemplate;
-    }
-
-    afterViewInit(){
-
-    }
-
-    destroy(){
-
     }
 }
