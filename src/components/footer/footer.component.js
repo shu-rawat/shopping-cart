@@ -1,12 +1,14 @@
-import hbsTemplate from '../views/shared/footer.html';
-import { Component } from  '../base/component';
+import { Component } from  '../../base/component';
+import './footer.component.scss';
+import hbsTemplate from '../../views/shared/footer.html';
+
 export class FooterComponent extends Component{
 
     constructor(){
         super();
         //component selector
         this.selector = "app-footer"
-        //componetn hbs template view.
+        //component hbs template view.
         this.hbsTemplate = hbsTemplate;
     }
 }

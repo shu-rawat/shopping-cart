@@ -1,5 +1,6 @@
-import hbsTemplate from '../../../views/shared/prodCategs.html';
 import { Component } from  '../../../base/component';
+import './categories.component.scss';
+import hbsTemplate from '../../../views/shared/prodCategs.html';
 
 export class CategoriesComponent extends Component{
     constructor(router){

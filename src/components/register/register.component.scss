@@ -1,0 +1,22 @@
+@import '../../../static/variables.scss';
+@import '../../../static/form_mixin.scss';
+
+.signup-wrapper {
+	padding: 0% 15%;
+	box-sizing: border-box;
+    width: 100%;
+    overflow:hidden;
+    margin-bottom:30px;
+    .left-signup {
+        width: 30%;
+        float: left;
+        margin-right:10%;
+    }
+    .right-signup {
+        width: 50%;
+        float: left;
+    }
+    .form-group{
+        @include form-group()
+    }
+}

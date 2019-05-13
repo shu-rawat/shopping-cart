@@ -1,5 +1,6 @@
-import hbsTemplate from '../../views/shared/login.html';
 import { Component } from  '../../base/component';
+import './login.component.scss';
+import hbsTemplate from '../../views/shared/login.html';
 
 export class LoginComponent extends Component {
     constructor(router){

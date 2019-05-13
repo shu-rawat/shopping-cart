@@ -1,4 +1,5 @@
 import { Component } from  '../../base/component';
+import './cart.component.scss';
 import subject from '../../base/subject';
 import hbsTemplate from '../../views/shared/cart.html';
 import cartItemRowTemp from '../../views/shared/cartItemRow.html';

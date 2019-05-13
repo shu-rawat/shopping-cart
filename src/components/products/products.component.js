@@ -1,6 +1,7 @@
+import { Component } from  '../../base/component';
+import './products.component.scss';
 import hbsTemplate from '../../views/shared/products.html';
 import prodItemsTemplate from '../../views/shared/product_items.html';
-import { Component } from  '../../base/component';
 import subject from '../../base/subject';
 
 
