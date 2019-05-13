@@ -1,5 +1,6 @@
-import hbsTemplate from '../../views/shared/register.html';
 import { Component } from  '../../base/component';
+import './register.component.scss';
+import hbsTemplate from '../../views/shared/register.html';
 
 export class RegisterComponent extends Component{
     constructor(){

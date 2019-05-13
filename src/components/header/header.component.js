@@ -1,6 +1,8 @@
-import subject from '../base/subject';
-import hbsTemplate from '../views/shared/header.html';
-import { Component } from  '../base/component';
+import { Component } from  '../../base/component';
+import './header.component.scss';
+import subject from '../../base/subject';
+import hbsTemplate from '../../views/shared/header.html';
+
 
 export class HeaderComponent extends Component{
     //Lifecycle hook

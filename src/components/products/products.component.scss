@@ -1,0 +1,235 @@
+@import '../../../static/variables.scss';
+.plp-wrapper{
+    width:84%;
+    margin:0 auto;
+    background: $gray;
+    .plp-catg-wrapper{
+        width:25%;
+        float:left;
+        ul{
+            list-style: none;
+            padding:0px;
+            margin:0px;
+            li{
+                border-bottom:1px solid black;
+                padding:10px 22px;
+                i.arrow{
+                    display: none;
+                }
+                a{
+                    color:black;
+                    text-decoration: none;
+                }
+            }
+            li.visible{
+                background-color:$orangered;
+                a{
+                    color:white;
+                }
+            }
+        }
+    }
+    .items-ul{
+        margin:0px;
+        background:white;
+        padding:0px;
+        overflow: hidden;
+        list-style: none;
+        width:75%;
+        display: inline-block;
+        li{       
+            width: 25%;      
+            list-style-type: none;
+            box-sizing: border-box;
+            float: left;
+            padding:2%;
+            margin-bottom:8px;
+            .plp-items-wrapper{              
+                .plp-box{
+                    .content{
+                        img{
+                           width:100%;
+                           display: block;
+                        }
+                        p{
+                            width:100%;
+                            display: block;
+                            button{
+                                display: none;
+                            }
+                        }
+                    }
+        
+                    .button{
+                        overflow:auto;
+                        span{
+                            width:44%;
+                            font-size:12px;
+                            display:inline-block;
+                        }
+                        button{                            
+                            color:white;                            
+                            font-size:12px;
+                            background: $orangered;
+                            border: 0px;
+                            outline: none;
+                            padding: 4px 10px;
+                            width: 51%;
+                            float:right;
+                        }
+                    }
+                    .button-tbl{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 880px){
+    .plp-wrapper{
+        width:100%;
+        margin:0 auto;
+        .plp-catg-wrapper{
+            display: inline-block;
+        }
+       
+        .items-ul{
+            li{       
+                width: 50%;      
+                display: inline-block;
+                box-sizing: border-box;
+                overflow: hidden;
+                .plp-items-wrapper{   
+                    overflow: hidden;           
+                    .plp-box{
+                        overflow:hidden;                      
+                        .content{
+                            overflow:hidden;
+                            img{
+                               width:50%;
+                               float:left;
+                            }
+                            p{
+                                width:50%;
+                                float:left;
+                                button{
+                                    display:none;
+                                }
+                            }
+                        }
+            
+                        .button{
+                            display: none;                          
+                        }
+                        .button-tbl{
+                            display: block;
+                            span{
+                                margin-right: 4px;
+                            }
+                            button{                                
+                                padding:5px 0px;
+                                display: block;
+                                color:white;
+                                border:0px;
+                                outline:none;
+                                width:100%;
+                                background:$orangered;
+                                text-align: center;                         
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    
+    }
+}
+
+
+@media only screen and (max-width: 680px) {
+    .plp-wrapper{
+        width:100%;
+        margin:0 auto;        
+        .plp-catg-wrapper{
+            width:100%;
+            color:white;
+            display: inline-block;
+            ul{
+                li{
+                    position: relative;
+                    a{
+                        color:black;
+                    }
+                    i.arrow{
+                        display: inline-block;
+                        position: absolute;
+                        right:15px;
+                        top:12px;
+                    }
+                }
+                li.visible{
+                    background: $orangered;
+                    a{
+                        color:white;
+                    }
+                }
+
+                li:not(.visible){
+                    display: none;
+                }
+            }
+        }
+        .items-ul{
+            width:100%;
+            li{       
+                width: 100%;      
+                display: inline-block;
+                box-sizing: border-box;
+                overflow: hidden;
+                .plp-items-wrapper{   
+                    overflow: hidden;           
+                    .plp-box{
+                        overflow:hidden;                        
+                        .content{
+                            overflow:hidden;
+                            position: relative;
+                            img{
+                               width:50%;
+                               float:left;
+                            }
+                            p{
+                                width:50%;
+                                font-size: 13px;
+                                float:left;
+                                button{
+                                    font-size: 18px;
+                                    position: absolute;
+                                    bottom: 0px;
+                                    width: 50%;
+                                    background: $orangered;
+                                    color: white;
+                                    padding: 5px 0px;
+                                    outline: none;
+                                    border: 0px;
+                                    display:block;
+                                }
+                            }
+                        }
+            
+                        .button{
+                            display: none;                          
+                        }
+
+                        .button-tbl{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }    
+    }
+}

@@ -1,5 +1,6 @@
-import hbsTemplate from '../../../views/shared/slider.html';
 import { Component } from  '../../../base/component';
+import './slider.component.scss';
+import hbsTemplate from '../../../views/shared/slider.html';
 
 export class SliderComponent extends Component{
     

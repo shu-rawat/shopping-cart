@@ -1,9 +1,9 @@
 import SPA from './base/spa';
-import  '../static/style.scss';
+import  '../static/common.scss';
 import CartModel from './models/cartModel';
 
-import { HeaderComponent } from './components/header.component';
-import { FooterComponent } from './components/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { SliderComponent } from './components/home/slider/slider.component';
 import { CategoriesComponent } from './components/home/categories/categories.component';

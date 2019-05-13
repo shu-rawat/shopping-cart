@@ -1,0 +1,60 @@
+@import '../../../../static/variables.scss';
+.category-wrapper {
+    padding: 0% 10%;
+    .category-ul {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        .category-box {
+            overflow: hidden;
+            padding: 30px 0px;
+            .category-img {
+	            float: left;
+	            width: 30%;
+            }
+            .catg-img-even {
+                float: right;
+            }
+            .category-info {
+                float: right;
+                width: 70%;
+                text-align: center;
+                button {
+                    color: white;
+                    background: $orangered;
+                    padding: 5px;
+                    border: 0px;
+                }
+                h3 {
+                    font-weight: 800;
+                }
+            }
+            .info-even {
+	            float: left;
+            }
+        }
+    }
+}
+.shadow-bottom {
+	box-shadow: 0px 3px 2px 2px rgba(0,0,0,0.2);
+	clear: both;
+	width: 40%;
+	margin: 0 auto;
+}
+
+@media only screen and (max-width: 680px) {
+   
+    .category-wrapper{
+        margin-bottom: 30px;
+        .category-ul .category-box {
+            .category-img{
+                width: 50%;
+                margin-top: 45px;
+            }
+            .category-info {
+                width: 50%;
+                font-size:14px;
+            }
+        }
+    }
+}

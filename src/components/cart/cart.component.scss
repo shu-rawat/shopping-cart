@@ -1,0 +1,179 @@
+@import '../../../static/variables.scss';
+.cart-img {
+	width: 30px;
+	color: red;
+}
+
+.my-cart {
+	position: relative;
+	height: 80vh;
+	width: 400px;
+	overflow: hidden;
+	background: #efecec;
+    .my-cart-header {
+        background: black;
+        width: 100%;
+        height: 60px;
+        color: white;
+        position: relative;
+        .close {
+            float: right;
+            margin-right: 10px;
+            color: white;
+            top: 11px;
+            right: 15px;
+            font-size:35px;            
+            cursor:pointer;
+            position: absolute;
+        }
+        div {
+            h3 {
+                display: inline-block;
+                font-weight: bold;
+                padding-top: 0px;
+                margin-left: 10px;
+            }
+        }
+    }
+    .my-cart-footer {
+        width: 100%;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        color: white;
+        background: white;
+        color: black;
+        text-align: center;
+        .checkout-div{
+            width: 90%;
+            height: 40px;
+            padding:13px;
+            box-sizing: border-box;
+            background: $orangered;
+            text-align: center;
+            margin:10px auto;
+            color:white;
+            .checkout-txt{
+                float:left;
+            }
+            .cart-final-price{
+                float:right;
+            }
+        }
+    }
+    .my-cart-body{
+        .empty-cart{
+            text-align: center;
+            h3{
+                font-weight: bold;
+                font-size:24px;
+            }
+        }
+        .my-cart-items-wrapper {
+            overflow: hidden;
+            ul {
+                list-style-type: none;
+                margin:0;
+                padding:0;
+                max-height:350px;
+                overflow: auto;
+                .item{
+                    background: white;
+                    margin: 10px 0px;
+                    padding:8px;
+                    img{
+                        width:86px;
+                        float:left;
+                    }
+                    .right-cart{
+                        width: calc(100% - 90px);
+                        display: inline-block;
+                        .item-header{
+                            h2{
+                                font-size:18px;
+                            }
+                        }
+                        .item-info{
+                            .item-control{
+                                display: inline-block;
+                                button,span{
+                                    display: inline-block;
+                                    margin:0px 3px;
+                                }
+                                button{
+                                    background: $orangered;
+                                    border: 0px;
+                                    border-radius: 50%;
+                                    color: white;
+                                }
+                            }
+                            .item-final{
+                                float:right;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .advt-div.d-block{
+            display: block;
+        }
+        .advt-div{
+            background:white;
+            margin-top:10px;
+            margin-left:8px;
+            margin-right:8px;
+            height:60px;
+            font-size:14px;
+            padding:10px;
+            display: none;
+            img{
+                display:inline-block;
+            }
+            p{
+                display:inline-block;
+                position: relative;
+                top:-20px;
+            }
+        }
+
+    }
+}
+
+
+
+@media only screen and (max-width: 880px) {
+    .my-cart .my-cart-body .my-cart-items-wrapper ul .item .right-cart .item-info .item-control button{
+        padding: 5px 20px;
+        border-radius: 7px;
+    }
+
+    .my-cart{
+        width:100%;
+        .my-cart-header {
+            background:white;
+            color:black;
+            margin-top:20px;
+            margin-bottom:10px;
+        }
+        .item-info {
+            .item-control{
+                button{
+                    background: #D00155;
+                    border: 0px;
+                    border-radius: 2px;
+                    padding: 2px 10px;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 680px) {
+    .my-cart-body{
+        .my-cart-items-wrapper {
+            font-size: 14px;
+        }
+    }
+}
