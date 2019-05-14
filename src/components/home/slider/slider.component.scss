@@ -1,65 +1,53 @@
 @import '../../../../static/variables.scss';
-.top-slider-wrapper {
-	margin: 0% 10%;
-    position: relative;  
-    .gallery-image {        
-        display:inline-block;
-    }
-    .dots-wrapper {
-        width: 30%;
-        margin: 0 auto;
-        text-align: center;
-        position: relative;
-        top: -40px;
-        .dots {
-            width: 10px;
-            height: 10px;
-            background: rgba(0,0,0,0.5);
-            display: inline-block;
-            margin-right: 10px;
-            border-radius: 100%;
-            text-align: center;
-        }
-        .active-dot {
-            background: black;
-        }
-    }
-  
-    .slider-controls-wrapper {
+@import '../../../../static/_mixins.scss';
+
+.slider-wrapper{
+    position: relative;
+    overflow: hidden;
+    .dots-wrapper{
         position: absolute;
-        top: 40%;
+    }
+    .btn-ctrl{
+        @include button(1rem, rgba(0,0,0,0.3), white);
+        position: absolute;        
+        top: 50%;
+        transform: translateY(-50%);
+        &:disabled{
+            background-color: rgba(0,0,0,0.1);
+        }
+        &:first-child{
+            left: 0px;
+        }   
+        &:last-child{
+            right: 0px;
+        }     
+    }
+    .dots-wrapper{
+        position: absolute;
         width: 100%;
-        .controls-content {
-            position: relative;
-            .slider-control {
-                background: rgba(0,0,0,0.3);
-                padding: 10px;
-                border:0px;
-                outline:none;
-                color:white;
-            }
-            .slider-control:disabled{
-                background: rgba(0,0,0,0.1);
-                cursor:auto;
-            }
-            .slider-left {
-                position: absolute;
-                left: 0px;
-                cursor: pointer;
-            }
-            .slider-right {
-                position: absolute;
-                right: 0px;
-                cursor: pointer;
-            }
+        bottom: 1rem;
+        display: flex;
+        justify-content: center;
+        .dot{
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background: rgba(0,0,0,0.4); 
+        }
+        .dot--active{
+            background: rgba(0,0,0,0.8);
         }
     }
 }
 
-@media only screen and (max-width: 680px) {
-  
-    .top-slider-wrapper .dots-wrapper {
-        width: 49%;
-        top: -8px;
+.slider-content{
+    position: relative;
+    .image-wrapper{
+        display: inline-block;
+        img{
+            display: inline-block;
+        }
     }
 }

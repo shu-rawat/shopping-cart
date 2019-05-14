@@ -38,7 +38,7 @@ export class ProductsComponent extends Component{
             //for detaching events on previous products
             this.destroy();
             this.init();
-            this.querySelector(".items-ul")[0].innerHTML = prodItemsTemplate(this.state);
+            this.querySelector(".js-items-ul")[0].innerHTML = prodItemsTemplate(this.state);
             Array.from(this.querySelector(".plp-catg-wrapper li"),ele=>{
                 ele.classList.remove("visible");
             });

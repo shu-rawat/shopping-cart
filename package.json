@@ -12,6 +12,7 @@
     "move-dev": "cpx \"src/**/*.{html,png,jpg,json}\" dist --watch | cpx \"server/**/*.{html,png,jpg,json}\" dist --watch | cpx \"static/**/*.{png,jpg,svg}\" dist/static --watch | cpx \"index.html\" dist --watch",
     "server": "live-server ./dist --port=3001 --cors",
     "unit": "karma start karma.conf.js ",
+    "webpack":"webpack -p -w",
     "test": "npm run unit"
   },
   "author": "",

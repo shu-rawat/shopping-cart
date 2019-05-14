@@ -1,8 +1,28 @@
 
 @import './variables.scss';
+@import './_mixins.scss';
+
+html,body{
+    margin:0px;
+    padding:0px;
+    font-family: 'Dosis', sans-serif;
+    font-size:10px;
+}
+
+ul, li{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container{
+    margin:0px $container-margin;
+}
+
 .d-block{
     display: block;
 }
+
 .error{
     color:red;
     font-size: 14px;
@@ -39,3 +59,8 @@ a{
 	background-color: $gray;
 }
 
+@include tablet {
+    .container{
+        margin: 0px;
+    }
+}

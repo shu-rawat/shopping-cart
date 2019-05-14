@@ -7,10 +7,11 @@ export class SliderComponent extends Component{
     //Lifecycle hook
     //for initialising component
     init(){
+        
         this.prevBtnId = 'prev';
         this.nextBtnId = 'next';
         this.banrWrprClass = "slider-content";
-        this.banrOuterWrpr = "top-slider-wrapper";
+        this.banrOuterWrpr = "slider-wrapper";
         this.initOnce = false;
         this.sliderTime = 600;
         this.nextSlideEventListener = null;
@@ -94,11 +95,11 @@ export class SliderComponent extends Component{
 
     updatePoints(){
         //updates current dot based on current banner
-        var activeDot = document.querySelector(".dots-wrapper .active-dot");
+        var activeDot = document.querySelector(".dots-wrapper .dot--active");
         if(activeDot){
-            activeDot.classList.remove("active-dot");
+            activeDot.classList.remove("dot--active");
         }
-        document.querySelectorAll(".dots-wrapper .dots")[this.activeBanrIndx].classList.add("active-dot");
+        document.querySelectorAll(".dots-wrapper .dot")[this.activeBanrIndx].classList.add("dot--active");
     }
 
     setDisableBtns(){
@@ -109,16 +110,13 @@ export class SliderComponent extends Component{
 
     applyCss(){
         //applies dynamic styling eg widht and height and left and animation.
-        this.bannerWrapperEle.style.position = "relative";
         this.bannerWrapperEle.style.width = `${this.bannerWrapperWidth * this.bannersLength + 100}px`;
         this.bannerWrapperEle.style.left = `-${this.activeBanrIndx * this.bannerWrapperWidth}px`;  
         this.bannerWrapperEle.style.height = `${this.bannerWrapperWidth / 4}px`;   
         this.bannerWrapperEle.style.transition = `left ${this.sliderTime/1000}s linear`; 
         Array.from(this.allBannersEles,banerImg=>{
-            banerImg.style.width = `${this.bannerWrapperWidth}px`;
-            banerImg.style.display = "inline-block";
+            banerImg.style.width = `${this.bannerWrapperWidth}px`;            
         });
-        this.bannerWrapperOuter.style.overflow = "hidden";
     }
 
     //Lifecycle hook

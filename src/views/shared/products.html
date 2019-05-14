@@ -1,18 +1,21 @@
 <div class="plp-wrapper">
-    <div class="plp-catg-wrapper">
-        <ul>
-            {{# each categories }}
+    <div class="container">
+        <aside class="plp-catg-wrapper">
+            <ul>
+                {{# each categories }}
                 {{#if enabled}}
-            <li {{#active}}class="visible"{{/active}} data-categ-id="{{id}}">
-                <a href="#products/{{id}}">{{name}}</a>
-                <i class="arrow down"> </i>
-            </li>
-            {{/if}}
-            {{/each}}
-        </ul>
+                <li {{#active}}class="visible" {{/active}} data-categ-id="{{id}}">
+                    <a href="#products/{{id}}">{{name}}</a>
+                    <i class="arrow down"> </i>
+                </li>
+                {{/if}}
+                {{/each}}
+            </ul>
+        </aside>
+        <main class="items-main">
+            <ul class="js-items-ul">
+                {{> product_items.html }}
+            </ul>
+        </main>
     </div>
-    <ul class="items-ul">   
-      {{> product_items.html }}
-    
-    </ul>
 </div>

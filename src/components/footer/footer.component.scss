@@ -1,8 +1,15 @@
 @import '../../../static/variables.scss';
+@import '../../../static/_mixins.scss';
+
 footer {
-	background: rgb(175, 169, 169);	
-	margin-bottom: 0px;
-	padding: 5px 0px;
+	display: flex;
+    font-weight: 600;
+    font-size: 1.3rem;
+	background: $footer-background;	
+	padding: 0.5rem 0px 0px $container-margin;	
+}
+
+@include tablet{
 	p {
 		text-align: center;
 	}

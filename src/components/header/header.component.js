@@ -20,7 +20,7 @@ export class HeaderComponent extends Component{
             cartCount:window.cartModel.getTotalQty()
         }
     }
-
+ 
     //Lifecycle hook gets called component mounted.
     afterViewInit(){
         this.carteUpdateObservable = subject.subscribe("cartUpdated",()=>{
