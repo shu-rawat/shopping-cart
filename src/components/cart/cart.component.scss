@@ -10,10 +10,11 @@
     overflow: hidden;
     .cart-header{
         margin-top: 2.5rem;
-        background: white;
+        background: white;       
     }
     section{
         margin-top: 1.5rem;
+        min-height: 50vh;
         .cart-items{
             display: flex;
             flex-direction: column;
@@ -23,8 +24,24 @@
 
 .cart-wrapper--modal{
     .cart-header{
+        margin-top: 0rem;
+        background:black;
+        color:white;       
         .close{
             display: inline-block;
+            position: absolute;
+            right: 2rem;
+            font-size: 5rem;
+            top: -8px;
+        }
+    }
+    .cart-item{
+        padding: 0.5rem 0.5rem 0.5rem 1rem;
+        .btn--cart{
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            @include flex-center;
         }
     }
 }
@@ -48,39 +65,39 @@
             flex: 2;
             display: flex;
             align-items: center;
-        }
-        .item-controls{
-            flex: 3;
-            align-items: center;
-            font-size: 1.3rem;
-            display: flex;
-            span,button{
-                margin-right: 0.5rem;
-                font-weight: 600;                
-            }
-           
-            .btn--cart{
-                padding:0.2rem 1rem;
-                outline: none;
-                border: 0px;
-                background: $orangered;
-                color:white;
-                border: 0.5rem;
-            }
+        }       
+    }
 
-            .mult{
-                font-size: 2.5rem;
-                position: relative;
-                top: -0.4rem;
-            }
-            .item-tot-price{
-              position: absolute;
-              right: 2rem;
-              font-weight: 700;
-            }
+    .item-controls{
+        flex: 3;
+        align-items: center;
+        font-size: 1.3rem;
+        display: flex;
+        span,button{
+            margin-right: 1.5rem;
+            font-weight: 600;                
         }
-        
- }
+       
+        .btn--cart{
+            padding:0.2rem 1rem;
+            outline: none;
+            border: 0px;
+            background: $orangered;
+            color:white;
+            border: 0.5rem;
+        }
+
+        .mult{
+            font-size: 2.5rem;
+            position: relative;
+            top: -0.4rem;
+        }
+        .item-tot-price{
+          position: absolute;
+          right: 2rem;
+          font-weight: 700;
+        }
+    } 
     
 }
 

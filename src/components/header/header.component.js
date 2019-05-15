@@ -23,16 +23,34 @@ export class HeaderComponent extends Component{
  
     //Lifecycle hook gets called component mounted.
     afterViewInit(){
-        this.carteUpdateObservable = subject.subscribe("cartUpdated",()=>{
-            let totalItems = window.cartModel.getTotalQty();
-            Array.from(this.querySelector(".js-cart-count"),item=>{
-                item.textContent = totalItems;
-            }); 
-        });
+        this.carteUpdateListener = this.carteUpdate.bind(this);
+        this.carteUpdateObservable = subject.subscribe("cartUpdated",this.carteUpdateListener);
+
+        this.querySelector(".cart-icon--desk .cart-link")[0].addEventListener("click",this.modalAction.bind(this,true));
+    }
+
+    carteUpdate(){
+        let totalItems = window.cartModel.getTotalQty();
+        Array.from(this.querySelector(".js-cart-count"),item=>{
+            item.textContent = totalItems;
+        }); 
+    }
+
+    modalAction(show){
+        if(show){
+            this.querySelector(".cart-wrapper--modal")[0].classList.remove("d-none");
+            document.querySelector(".overlay").classList.remove("d-none");
+            document.querySelector("body").classList.add("no-scroll");
+        }
+        else{
+            this.querySelector(".cart-wrapper--modal")[0].classList.add("d-none");
+            document.querySelector(".overlay").classList.add("d-none");
+            document.querySelector("body").classList.remove("no-scroll");
+        }
     }
 
     //lifecycle hook before component will unmount.
     destroy(){
-        subject.unsubscribe(this.carteUpdateObservable);
+        subject.unsubscribe(this.carteUpdateListener);
     }
 }

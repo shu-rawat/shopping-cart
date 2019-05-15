@@ -110,6 +110,11 @@ export class CartComponent extends Component{
         //initial add and remove event listeners binding.
         Array.from(addItemEls,(item)=>{this.addItemElEvent(item)});
         Array.from(removeItemEls,(item)=>{this.removeItemElEvent(item)});
+        this.querySelector(".close")[0].addEventListener("click",()=>{            
+            document.querySelector(".cart-wrapper--modal").classList.add("d-none");
+            document.querySelector(".overlay").classList.add("d-none");
+            document.querySelector("body").classList.remove("no-scroll");
+        });
     }
 
     updateCartTotalCount(cartTotalItems){    

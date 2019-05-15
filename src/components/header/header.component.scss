@@ -59,8 +59,13 @@ header{
 
 .cart-icon--desk{
     cursor:pointer;
-    a{
-        pointer-events: none;
+    position: relative;
+    .cart-wrapper--modal{
+        position: absolute;
+        width: 50rem;
+        right: 0px;
+        z-index: 50;
+        top: 5.5rem;
     }
 }
 

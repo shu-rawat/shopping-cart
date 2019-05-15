@@ -28,6 +28,27 @@ div.d-block{
 div.d-flex{
     display: flex;
 }
+.d-none{
+    display: none;
+}
+
+.overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 10;
+    left:0px;
+    top:0px;
+}
+
+.no-scroll{
+    overflow: hidden;
+}
+
+div.d-none{
+    display: none;
+}
 
 .error{
     color:red;
