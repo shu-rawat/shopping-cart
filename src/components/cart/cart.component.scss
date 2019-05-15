@@ -79,7 +79,6 @@
               font-weight: 700;
             }
         }
-    
         
  }
     
@@ -116,6 +115,7 @@
     display: flex;
     align-items: center;
     margin:1rem;
+    display: none;
     img{
         width:10rem;
     }
@@ -124,6 +124,59 @@
         font-size: 1.3rem;
         font-weight: 400;
         color: black;
+    }
+}
+
+.empty-div{
+    @include flex-center();
+    flex-direction: column;
+    width: 100%;
+    min-height: 50vh;
+    background-color:white;    
+    display: none;
+    position: relative;
+    h2{
+        font-size: 2rem;
+    }
+    p{
+        font-size: 1.5rem;
+        margin:0px;
+        padding: 0px;
+    }
+    a{
+        @include button(1rem,$orangered,white);
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        bottom:2rem;
+        font-size: 1.4rem;
+        text-transform: capitalize;
+    }
+}
+
+.cart-footer{
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    
+    span{
+        display: flex;
+        justify-content: center;
+        font-size: 1.5rem;
+        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+    button{
+        justify-content: center;
+        align-items: center;
+        @include button(0rem,$orangered,white);
+        display: flex;
+        .cart-final-price{
+            margin-left: auto;
+        }
     }
 }
 

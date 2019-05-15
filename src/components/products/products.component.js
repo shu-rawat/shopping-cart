@@ -68,6 +68,7 @@ export class ProductsComponent extends Component{
       //when new item gets added 
       if(cartItem.quantity == 1){
           subject.next("onCartItemAdded",cartItem);
+          subject.next("cartUpdated",cartItem);
       }
       else{
         //cart item updated

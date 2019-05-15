@@ -154,12 +154,12 @@ export class CartComponent extends Component{
     checkEmptyCart(cartTotalCount){
         //function for show/hiding empty and advt info divs
         if(cartTotalCount == 0){
-            this.querySelector(".js-advt-cart")[0].classList.remove("d-block");
-            this.querySelector(".js-empty-cart")[0].classList.add("d-block");
+            this.querySelector(".js-advt-cart")[0].classList.remove("d-flex");
+            this.querySelector(".js-empty-cart")[0].classList.add("d-flex");
         }
         else{
-            this.querySelector(".js-advt-cart")[0].classList.add("d-block");
-            this.querySelector(".js-empty-cart")[0].classList.remove("d-block");
+            this.querySelector(".js-advt-cart")[0].classList.add("d-flex");
+            this.querySelector(".js-empty-cart")[0].classList.remove("d-flex");
         }
     }
 
