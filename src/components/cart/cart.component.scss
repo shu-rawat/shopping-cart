@@ -14,7 +14,7 @@
     }
     section{
         margin-top: 1.5rem;
-        min-height: 40vh;
+        min-height: 50vh;
         .cart-items{
             display: flex;
             flex-direction: column;
@@ -36,7 +36,7 @@
         }
     }
     .cart-items{
-        max-height: 400px;
+        max-height: 40vh;
         overflow: auto;
     }
     .cart-item{
