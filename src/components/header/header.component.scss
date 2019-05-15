@@ -50,21 +50,21 @@ header{
     a{
         font-size: 1.3rem;
         font-weight: 600;
-        color: lighten(black,10%);
+        color: lighten(black,10%);       
         &:first-child{
             margin-right: 0.8rem;
         }
     }
 }
 
-.cart-header--desk{
+.cart-icon--desk{
     cursor:pointer;
     a{
         pointer-events: none;
     }
 }
 
-.cart-header{
+.cart-icon{
     flex: 1;
     display: flex;
     a{
@@ -76,6 +76,9 @@ header{
         width: 12rem;
         box-sizing: border-box;
         background-color: $color-background;
+        img{
+            width: 30px;            
+        }
         .cart-count{
             font-size: 1.6rem;
             padding-left: 0.8rem;
@@ -83,15 +86,15 @@ header{
     }
 }
 
-.cart-header--mob{
+.cart-icon--mob{
     display: none;   
 }
 
 @include mobile {
-    .cart-header--mob{
+    .cart-icon--mob{
         display: flex;
     }
-    .cart-header--desk, .nav-main, .log-reg-wrapper{
+    .cart-icon--desk, .nav-main, .log-reg-wrapper{
         display: none;
     }
     #nav-logo{

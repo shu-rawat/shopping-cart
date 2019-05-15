@@ -1,4 +1,34 @@
-<div class="my-cart">
+<main class="cart-wrapper">
+    <header class="cart-header">
+        <h3>My Cart</h3>
+        <div class="cart-count">
+            (<span class="js-cart-count">{{ totalQuantity }} </span> Item)
+        </div>
+        <span class="close">&times;</span>
+    </header>
+    <section>
+        <ul class="cart-items">
+            {{#each items}}
+                <li class="cart-item js-item-wrapper" data-item-id="{{id}}">
+                    {{> cartItemRow.html }}
+                </li>                
+            {{/each}}
+        </ul>
+        <div class="cart-advt {{#showAdvt}}d-block{{/showAdvt}} js-advt-cart">
+            <img src="./static/images/lowest-price.png" alt="lowest price">
+            <p>Your won't find it cheaper anywhere</p>
+        </div>
+        <div class="empty-div {{#showEmptyCart}}d-block{{/showEmptyCart}} js-empty-cart">
+            <h2>Cart is empty</h2>
+        </div>
+    </section>
+    <footer>
+
+    </footer>
+</main>
+
+
+<!-- <div class="my-cart">
     <div class="my-cart-header">
         <div>
             <h3>My Cart</h3>(<span class="js-cart-count">{{ totalQuantity }}</span> Item)
@@ -33,4 +63,4 @@
             <span class="cart-final-price ">Rs</span> 
         </div>
     </div>
-</div>
+</div> -->

@@ -30,6 +30,7 @@
             font-weight: 600;
             margin-bottom: 3rem;
             text-align: center;
+            color: $text-color;
         }
         button{
             @include button(1rem, $orangered, white);

@@ -1,4 +1,18 @@
-<div class="item js-item-wrapper" data-item-id="{{id}}">
+<img class="item-img" src="{{imageURL}}" alt="{{name}}">
+<div class="item-info">
+    <h2 tabindex="0">{{name}}</h2>
+    <div class="item-controls">
+        <button class="btn--cart js-remove-item" tabindex="0" role="button" aria-pressed="false">-</button>
+        <span class="item-count js-item-count" tabindex="0">{{ quantity }}</span>
+        <button class="btn--cart js-add-item" tabindex="0" role="button" aria-pressed="false">+</button>
+        <span class="mult">&times;</span>
+        <span>Rs{{price}}</span>
+        <div class="item-tot-price">            
+        Rs<span class="js-item-total">{{totalPrice}}</span>
+        </div>
+    </div>
+</div>
+<!-- <div class="item js-item-wrapper" data-item-id="{{id}}">
     <img src="{{imageURL}}" alt="{{name}}">
     <div class="right-cart">
         <div class="item-header">
@@ -19,4 +33,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
