@@ -35,6 +35,10 @@
             top: -8px;
         }
     }
+    .cart-items{
+        max-height: 400px;
+        overflow: auto;
+    }
     .cart-item{
         padding: 0.5rem 0.5rem 0.5rem 1rem;
         .btn--cart{
@@ -56,6 +60,7 @@
     }
 
     .item-info{
+        position: relative;
         display: flex;
         flex-direction: column;
         flex: 1;
@@ -170,7 +175,9 @@
         text-transform: capitalize;
     }
 }
-
+.cart-footer.d-none{
+    display: none;
+}
 .cart-footer{
     background-color: white;
     color: black;

@@ -44,8 +44,11 @@ export class CartComponent extends Component{
     }
  //adds new cartItem to the cart view
     onCartItemAdded(cartItem){
-        let ulWrapperEl = this.querySelector(".my-cart-items-wrapper ul")[0];
+        let ulWrapperEl = this.querySelector(".cart-items")[0];
         let liEl = document.createElement("li");
+        liEl.classList.add("cart-item");
+        liEl.classList.add("js-item-wrapper");
+        liEl.setAttribute("data-item-id",cartItem.id);
         liEl.innerHTML = cartItemRowTemp(cartItem);
 
         //attaching events for new add and remove btns inserted in DOM
@@ -92,9 +95,8 @@ export class CartComponent extends Component{
     deleteCartItem(cartItem){
         //checks for item quantity if zero removes from DOM
         if(cartItem.quantity == 0){
-            let WrapperEl = this.querySelector(`.js-item-wrapper[data-item-id='${cartItem.id}']`)[0];
-            let liEl = WrapperEl.parentElement;
-            liEl.parentNode.removeChild(liEl);
+            let WrapperEl = this.querySelector(`.js-item-wrapper[data-item-id='${cartItem.id}']`)[0];            
+            WrapperEl.parentNode.removeChild(WrapperEl);
         }
 
         //calling function for showing no cart item present in cart 
@@ -161,16 +163,18 @@ export class CartComponent extends Component{
         if(cartTotalCount == 0){
             this.querySelector(".js-advt-cart")[0].classList.remove("d-flex");
             this.querySelector(".js-empty-cart")[0].classList.add("d-flex");
+            this.querySelector(".cart-footer")[0].classList.add("d-none");
         }
         else{
             this.querySelector(".js-advt-cart")[0].classList.add("d-flex");
             this.querySelector(".js-empty-cart")[0].classList.remove("d-flex");
+            this.querySelector(".cart-footer")[0].classList.remove("d-none");
         }
     }
 
     //inserts new cart item row.
     addCartItem(cartItem){
-        document.querySelector(".my-cart-items-wrapper>ul").innerHTML += cartTemplates.getCartItemRowHtml(cartItem);
+        document.querySelector(".cart-items").innerHTML += cartTemplates.getCartItemRowHtml(cartItem);
     }
 
     getCartCountEls(){
