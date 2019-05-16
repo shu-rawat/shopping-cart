@@ -1,34 +1,40 @@
-@import '../../../../static/variables.scss';
-@import '../../../../static/_mixins.scss';
+@import '../../../../static/variables';
+@import '../../../../static/_mixins';
 
-.slider-wrapper{
+.slider-wrapper {
     position: relative;
     overflow: hidden;
-    .dots-wrapper{
+
+    .dots-wrapper {
         position: absolute;
     }
-    .btn-ctrl{
-        @include button(1rem, rgba(0,0,0,0.3), white);
+
+    .btn-ctrl {
+        @include button(1rem, rgba(0,0,0,0.3), #ffffff);
         position: absolute;        
         top: 50%;
         transform: translateY(-50%);
-        &:disabled{
+
+        &:disabled {
             background-color: rgba(0,0,0,0.1);
         }
-        &:first-child{
+
+        &:first-child {
             left: 0px;
         }   
-        &:last-child{
+
+        &:last-child {
             right: 0px;
         }     
     }
-    .dots-wrapper{
+    .dots-wrapper {
         position: absolute;
         width: 100%;
         bottom: 1rem;
         display: flex;
         justify-content: center;
-        .dot{
+
+        .dot {
             display: inline-block;
             width: 5px;
             height: 5px;
@@ -36,17 +42,20 @@
             margin-right: 10px;
             background: rgba(0,0,0,0.4); 
         }
-        .dot--active{
+
+        .dot--active {
             background: rgba(0,0,0,0.8);
         }
     }
 }
 
-.slider-content{
+.slider-content {
     position: relative;
-    .image-wrapper{
+
+    .image-wrapper {
         display: inline-block;
-        img{
+
+        img {
             display: inline-block;
         }
     }

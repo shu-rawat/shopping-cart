@@ -1,5 +1,5 @@
-@import '../../../static/variables.scss';
-@import '../../../static/_mixins.scss';
+@import '../../../static/variables';
+@import '../../../static/_mixins';
 
 footer {
 	display: flex;
@@ -9,10 +9,12 @@ footer {
 	padding: 0.5rem 0px 0px $container-margin;	
 }
 
-@include tablet{
-	footer{
+@include tablet {
+
+	footer {
 		padding: 0rem;		
 		justify-content: center;
+
 		p {
 			text-align: center;
 		}

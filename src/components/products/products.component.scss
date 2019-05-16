@@ -1,75 +1,85 @@
-@import '../../../static/variables.scss';
-@import '../../../static/_mixins.scss';
+@import '../../../static/variables';
+@import '../../../static/_mixins';
 
-.plp-wrapper{
-    .container{
+.plp-wrapper {
+    .container {
         display: flex;
     }
 }
 .js-add-item {
     cursor: pointer;
-    span,button{
+    span,button {
         cursor: pointer;
     }
 }
-aside.plp-catg-wrapper{
+aside.plp-catg-wrapper {
     flex: 3;
     display: flex;
-    ul{
-        flex: 1;
+    ul {        
         display: flex;
+        flex: 1;
         flex-direction: column;
         background-color: $footer-background;
-        li{
-            padding: 2rem;
+
+        li {       
+            border-bottom:1px solid $light-gray;     
             margin-left:0.6rem;
-            border-bottom:1px solid $light-gray;           
-            a{
+            padding: 2rem;               
+
+            a {
                 font-size: 1.5rem;
                 color:$light-gray;
                 font-weight: 600;
             }
-            &.visible a{
+
+            &.visible a {
                 color:$orangered;
             }
-            .arrow.down{
+
+            .arrow.down {
                 display: none;
             }
         }
     }
 }
 
-main.items-main{
+main.items-main {
     flex: 10;
-    ul{
+
+    ul {
         display: flex;        
-        flex-wrap: wrap;        
-        li{
+        flex-wrap: wrap; 
+              
+        li {
             flex:0 0 21%;
             margin:2%;
             overflow: hidden;
         }
+        
     }
 }
 
-.plp-items-wrapper{
+.plp-items-wrapper {
     display: flex;
     flex-direction: column;
-    h3{
+
+    h3 {
         height:40px;
         font-size: 1.5rem;
         font-weight: 700;
     }
     
-    .content{
+    .content {
         display: flex;
         flex-direction: column;
-        flex: 1;       
-        img{
+        flex: 1;     
+
+        img {
             height: 18rem;
             padding: 2rem;
         } 
-        p{
+
+        p {
             font-size: 1.1rem;
             font-weight: 600;
             padding:0.2rem;
@@ -77,14 +87,17 @@ main.items-main{
             justify-content: left;
             background-color: $color-background;
         }  
-        button{
+
+        button {
             display: none;
         }      
     }
-    .button{
+
+    .button {
         display: flex;
         border:1px solid $color-border;
-        span{
+
+        span {
             flex: 1;  
             display: flex;
             justify-content: flex-start;
@@ -92,127 +105,154 @@ main.items-main{
             font-weight: 600;  
             margin-left: 1rem;       
         }
-        button{
+
+        button {
             flex: 1;
-            @include button(1rem, $orangered, white);
+            @include button(1rem, $orangered, #ffffff);
         }
+
     }
-    .button-tbl{
+
+    .button-tbl {
         display: none;
     }
 }
 
-@include tablet{
-    main.items-main{
-        ul{       
-            li{
+@include tablet {
+    main.items-main {
+
+        ul {     
+
+            li {
                 margin: 2%;
                 flex: 0 0 43%;
             }
         }
     }
-    .plp-items-wrapper{
-        .content{
+
+    .plp-items-wrapper {
+
+        .content {
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            img{
+
+            img {
                 flex:1;
                 height: 10rem;
                 padding:0px;
             }
-            p{
+
+            p {
                 flex: 1;
             }
         }
-        .button{
+
+        .button {
             display: none;
         }
-        .button-tbl{
-            @include button(0.7rem, $orangered, white);            
+
+        .button-tbl {
+            @include button(0.7rem, $orangered, #ffffff);            
             display: flex;
-            color: white;
+            color: #ffffff;
             justify-content: center;
-            button{
+
+            button {
                 outline:none;
                 background:transparent;
                 border:0px;
-                color:white;
+                color:#ffffff;
                 font-size: 1rem;
             }
-            span{
-                color:white;
+
+            span {
+                color:#ffffff;
                 font-size: 1rem;
             }
         }
     }
 }
-@include mobile{
-    .plp-wrapper{
-        .container{
+@include mobile {
+    .plp-wrapper {
+
+        .container {
             flex-direction: column;
         }
     }
-    main.items-main{
-        ul{       
-            li{
+    main.items-main {
+        ul {       
+
+            li {
                 margin: 0%;
                 flex: 0 0 100%;
             }
         }
     }
-    aside.plp-catg-wrapper{
-        ul{       
-            margin-bottom: 2rem;    
-            li{
+    aside.plp-catg-wrapper {
+        ul {       
+            margin-bottom: 2rem;   
+
+            li {
                 position: relative;
                 margin-left: 0px;
-                &.visible{
-                    display: block;                    
+
+                &.visible {                                        
                     background-color: $orangered;
-                    a{
-                        color:white;
+                    display: block;
+
+                    a {
+                        color:#ffffff;
                     }
                 }
-                &:not(.visible){
+
+                &:not(.visible) {
                     display: none;
                 }
-                .arrow.down{                   
+
+                .arrow.down {                   
                     position: absolute;
                     right: 20px;
                 }
             }
-            li.visible{
-                .arrow.down{                       
+
+            li.visible {
+
+                .arrow.down {                       
                     display: inline-block;
                 }
             }
         }
 
 
-        ul.list-open{
-            li{
+        ul.list-open {
+
+            li {
                 display: block;
             }
-            li.visible{
+
+            li.visible {
                 order: -1;
             }
         }
     }
 
-    .plp-items-wrapper{
-        
-        padding:1rem;
+    .plp-items-wrapper {
+                
         box-sizing: border-box;
-        .button-tbl{
+        padding: 1rem;
+
+        .button-tbl {
             display: none;
         }
-        .content{
-            button{
-                @include button(0.7rem, $orangered, white);  
+
+        .content {
+
+            button {
+                @include button(0.7rem, $orangered, #ffffff);  
                 display: block;
+                margin-top: 2rem;                
                 width: 100%;
-                margin-top:2rem;
             }
         }
     }        

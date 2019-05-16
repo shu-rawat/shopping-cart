@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SassLintPlugin = require('sass-lint-webpack')
 
 module.exports = {
     entry: [
@@ -38,6 +39,7 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: "style.css"
-        })        
+        }) ,
+        // new SassLintPlugin()      
     ]
 };

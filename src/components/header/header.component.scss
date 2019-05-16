@@ -1,68 +1,75 @@
-@import '../../../static/variables.scss';
-@import '../../../static/_mixins.scss';
+@import '../../../static/variables';
+@import '../../../static/_mixins';
 
-header{
+header {
     margin-bottom:2px solid $color-background;
 }
 
-.container--header{
+.container--header {
     display: flex;
     justify-content: space-between;
 }
 
-#nav-logo{
+#nav-logo {
     display: flex;
     align-items: center;
-    img{
+
+    img {
         width: 15.5rem;
         height: auto;
         padding: 5px 0px;
     }
 }
 
-.nav-main{
+.nav-main {
     display: flex;
     flex: 1;
     align-items: flex-end;
     margin: 0px 0px 2rem 10%;
-    a{
-        &:link,&:visited{
+
+    a {
+        &:link, &:visited {
             color: $light-gray;
             font-weight: 700;
             font-size:1.5rem;
         }
-        &:first-child{
+
+        &:first-child {
             margin-right: 3rem;
         }
     }
 }
 
-.nav-cart{
+.nav-cart {
     display: flex;
     flex-direction: column;
     justify-self: flex-end;
 }
 
-.log-reg-wrapper{
+.log-reg-wrapper {
     display: flex;
     justify-content: flex-end;
     padding-bottom: 0.8rem;
-    a{
+
+    a {
         font-size: 1.3rem;
         font-weight: 600;
-        color: lighten(black,10%);       
-        &:first-child{
+        color: lighten(black,10%);   
+
+        &:first-child {
             margin-right: 0.8rem;
         }
     }
 }
 
-.cart-icon--desk{
-    .cursor{
+.cart-icon--desk {
+    position: relative;
+
+    .cursor {
         cursor:pointer;
     }
-    position: relative;
-    .cart-wrapper--modal{
+    
+    .cart-wrapper--modal {
         position: absolute;
         width: 50rem;
         right: 0px;
@@ -71,10 +78,11 @@ header{
     }
 }
 
-.cart-icon{
+.cart-icon {
     flex: 1;
     display: flex;
-    a{
+
+    a {
         flex:1;
         display: inline-flex;
         justify-content: center;
@@ -83,29 +91,34 @@ header{
         width: 12rem;
         box-sizing: border-box;
         background-color: $color-background;
-        img{
+
+        img {
             width: 30px;            
         }
-        .cart-count{
+
+        .cart-count {
             font-size: 1.6rem;
             padding-left: 0.8rem;
         }
     }
 }
 
-.cart-icon--mob{
+.cart-icon--mob {
     display: none;   
 }
 
 @include tablet {
-    .cart-icon--mob{
+    .cart-icon--mob {
         display: flex;
     }
-    .cart-icon--desk, .nav-main, .log-reg-wrapper{
+
+    .cart-icon--desk, .nav-main, .log-reg-wrapper {
         display: none;
     }
-    #nav-logo{
-        img{
+
+    #nav-logo {
+
+        img {
             height: 5rem;
         }
     }
