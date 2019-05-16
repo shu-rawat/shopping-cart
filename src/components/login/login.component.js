@@ -43,15 +43,21 @@ export class LoginComponent extends Component {
         let inputEl = e.target;
         let requiredEl = inputEl.parentElement.querySelector(".required");
         let invalidEl = inputEl.parentElement.querySelector(".invalid");
-
+        let inputEr = false;
         //if input element needs required validation
         if(requiredEl){   
-            this.showError(requiredEl,inputEl.value.length == 0);            
+            inputEr = inputEl.value.length == 0;
+            this.showError(requiredEl,inputEr);          
         }
 
         //if input element need validity validation based on pattern provided.
         if(invalidEl){
-            this.showError(invalidEl,!eval(`"${inputEl.value}".match(/${invalidEl.getAttribute("_pattern")}/)`));            
+            if(inputEr){
+                this.showError(invalidEl,false);
+            }
+            else{
+                this.showError(invalidEl,!eval(`"${inputEl.value}".match(/${invalidEl.getAttribute("_pattern")}/)`));            
+            }
         }
     }
 
@@ -70,6 +76,7 @@ export class LoginComponent extends Component {
         let isValid = true;
         this.inputEls.forEach(inputEl=>{
             //checking all error messages are passed for each input element.
+            let inputEr = false;
             Array.from(inputEl.parentElement.querySelectorAll(".error p")).forEach(errorEl=>{
                 let classList = errorEl.classList;
                 let reqCheck = classList.contains("required")?inputEl.value!=0:true;
@@ -77,10 +84,11 @@ export class LoginComponent extends Component {
                 //if error message is of required check and does not pass
                 if(!reqCheck){
                     isValid = false;
+                    inputEr = true;
                     this.showError(errorEl,true)
                 }
                 //if error message is of validity check and does not pass
-                if(!validCheck){
+                if(!validCheck && !inputEr){
                     isValid = false;
                     this.showError(errorEl,true);
                 }

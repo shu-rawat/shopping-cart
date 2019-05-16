@@ -42,21 +42,33 @@ export class RegisterComponent extends Component{
         let inputEl = e.target;
         let requiredEl = inputEl.parentElement.querySelector(".required");
         let invalidEl = inputEl.parentElement.querySelector(".invalid");
+        let mismatchEl = inputEl.parentElement.querySelector(".mismatch");
         let checkForMismatch = inputEl.hasAttribute("mismatch");
-
+        let inputEr = false;
         //if input element needs required validation
         if(requiredEl){   
-            this.showError(requiredEl,inputEl.value.length == 0);                        
+            inputEr = inputEl.value.length == 0
+            this.showError(requiredEl,inputEr);                        
         }
 
         //if input element need validity validation based on pattern provided.
         if(invalidEl){
-            this.showError(invalidEl,!eval(`"${inputEl.value}".match(/${invalidEl.getAttribute("_pattern")}/)`));
+            if(inputEr){
+                this.showError(invalidEl, false);
+            }
+            else{
+                this.showError(invalidEl,!eval(`"${inputEl.value}".match(/${invalidEl.getAttribute("_pattern")}/)`));
+            }
         }
 
         //if input element needs mismatch validation      
-        if(checkForMismatch){
-            this.showMismatchError();
+        if(checkForMismatch ){       
+            if(inputEr){
+                this.showError(mismatchEl, false);
+            }
+            else{                
+                this.showMismatchError();        
+            }
         }
     }
 
@@ -69,7 +81,7 @@ export class RegisterComponent extends Component{
         let isMismatch = false;
         if(inputsMismatch.length){
             let val = inputsMismatch[0].value;
-            inputsMismatch.forEach(inputMismatchEl=>{
+            inputsMismatch.forEach(inputMismatchEl=>{               
                 if(inputMismatchEl.value.length){
                     let misMatch = false;
                     //if both values are not same
@@ -104,6 +116,7 @@ export class RegisterComponent extends Component{
         let isValid = true;
         
         this.inputEls.forEach(inputEl=>{
+            let inputEr = false;
             //checking all error messages are passed for each input element
             Array.from(inputEl.parentElement.querySelectorAll(".error p")).forEach(errorEl=>{
                 let classList = errorEl.classList;
@@ -112,17 +125,18 @@ export class RegisterComponent extends Component{
                 //if error message is of required check and does not pass
                 if(!reqCheck){
                     isValid = false;
-                    this.showError(errorEl,true)
+                    this.showError(errorEl,true);
+                    inputEr = true;
                 }
 
                 //if error message is of validity check and does not pass
-                if(!validCheck){
+                if(!validCheck && !inputEr){
                     isValid = false;
                     this.showError(errorEl,true);
                 }
                 
                 //if error message is of validity check and does not pass
-                if(this.showMismatchError()){
+                if(this.showMismatchError() && !inputEr){
                     isValid = false;
                 }
             });
