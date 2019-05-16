@@ -1,9 +1,13 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+var autoprefixer = require('autoprefixer');
+var plugin = require('postcss-flexbugs-fixes');
 const SassLintPlugin = require('sass-lint-webpack')
 
 module.exports = {
-    entry: [
+    entry: [ 
+        "whatwg-fetch",     
         "./src/app"
     ],
     output: {
@@ -18,7 +22,8 @@ module.exports = {
                 use: [
                     {   loader:MiniCssExtractPlugin.loader, options: { publicPath: './dist'}},
                     { loader: 'css-loader', options: { url: false, sourceMap: true } },
-                    { loader: 'sass-loader', options: { sourceMap: true } }
+                    { loader: "postcss-loader", options: { sourceMap: true } } ,                    
+                    { loader: 'sass-loader', options: { sourceMap: true } },                                      
                 ],
             },          
             {
@@ -40,6 +45,14 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "style.css"
         }) ,
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                postcss: [
+                    autoprefixer(),
+                    plugin({ bug6: false })
+                ]
+            }
+        })
         // new SassLintPlugin()      
     ]
 };

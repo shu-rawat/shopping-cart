@@ -1,3 +1,4 @@
+
 import SPA from './base/spa';
 import  '../static/common.scss';
 import CartModel from './models/cartModel';
