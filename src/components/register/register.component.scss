@@ -1,5 +1,6 @@
 @import '../../../static/variables.scss';
 @import '../../../static/form_mixin.scss';
+@import '../../../static/_mixins.scss';
 
 .register-ul {
 	float: right;
@@ -58,5 +59,18 @@
 	color: white;
 	width: 100%;
     border: 0px;    
-	margin-top: 1.5rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+
+
+@include tablet{
+	.register-wrapper{        
+		.container{
+			flex-direction: column;
+		}
+		form{
+			margin-left:0rem;
+		}
+	}
 }

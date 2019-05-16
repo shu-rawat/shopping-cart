@@ -44,22 +44,34 @@ export class ProductsComponent extends Component{
                 ele.classList.remove("visible");
             });
             if(this.routeParams && this.routeParams.id){
-                let liCateg = this.querySelector(`.plp-catg-wrapper li[data-categ-id='${this.routeParams.id}']`)[0];
+                let liCateg = this.querySelector(`.plp-catg-wrapper li[data-categ-id='${this.routeParams.id}']`)[0];                                                              
                 liCateg.classList.add('visible');
             }
             else{
                 this.querySelector(".plp-catg-wrapper li.all").classList.add('visible');
             }
            
-            this.afterViewInit();
+            this.attachBuyEvents();
     }
     
 
     //Lifecycle hook
     //gets Called after component views rendered to dom.
     afterViewInit(){
-        //attaching events for buy now
-        Array.from(this.querySelector(".js-add-item"),(item)=>{
+       
+        this.attachBuyEvents();
+        Array.from(this.querySelector(".plp-catg-wrapper li"),(liEl)=>{
+            liEl.addEventListener("click", (e)=>{
+                console.log("clicked");
+                let ulEl = e.currentTarget.closest("ul");
+                ulEl.classList.toggle("list-open");
+            });
+        });
+    }
+
+    attachBuyEvents(){
+         //attaching events for buy now
+         Array.from(this.querySelector(".js-add-item"),(item)=>{
             item.addEventListener("click",this.onBuyNowListener);
         });
     }

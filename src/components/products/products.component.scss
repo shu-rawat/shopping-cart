@@ -17,6 +17,8 @@ aside.plp-catg-wrapper{
     display: flex;
     ul{
         flex: 1;
+        display: flex;
+        flex-direction: column;
         background-color: $footer-background;
         li{
             padding: 2rem;
@@ -160,7 +162,8 @@ main.items-main{
         }
     }
     aside.plp-catg-wrapper{
-        ul{           
+        ul{       
+            margin-bottom: 2rem;    
             li{
                 position: relative;
                 margin-left: 0px;
@@ -174,16 +177,33 @@ main.items-main{
                 &:not(.visible){
                     display: none;
                 }
-                .arrow.down{
-                    display: inline-block;
+                .arrow.down{                   
                     position: absolute;
                     right: 20px;
                 }
+            }
+            li.visible{
+                .arrow.down{                       
+                    display: inline-block;
+                }
+            }
+        }
+
+
+        ul.list-open{
+            li{
+                display: block;
+            }
+            li.visible{
+                order: -1;
             }
         }
     }
 
     .plp-items-wrapper{
+        
+        padding:1rem;
+        box-sizing: border-box;
         .button-tbl{
             display: none;
         }

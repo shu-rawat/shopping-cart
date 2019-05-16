@@ -1,10 +1,10 @@
 <div class="plp-wrapper">
     <div class="container">
         <aside class="plp-catg-wrapper">
-            <ul>
+            <ul class="list-open list--desk">
                 {{# each categories }}
                 {{#if enabled}}
-                <li {{#active}}class="visible" {{/active}} data-categ-id="{{id}}">
+                <li class="{{#active}}visible{{/active}}"  data-categ-id="{{id}}">
                     <a href="#products/{{id}}">{{name}}</a>
                     <i class="arrow down"> </i>
                 </li>

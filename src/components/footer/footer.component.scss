@@ -11,7 +11,8 @@ footer {
 
 @include tablet{
 	footer{
-		padding: 0rem;
+		padding: 0rem;		
+		justify-content: center;
 		p {
 			text-align: center;
 		}

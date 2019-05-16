@@ -22,13 +22,16 @@
                 </a>
             </div>
             <div class="cart-icon cart-icon--desk">
-                <a href="javascript:void(0)" class="cart-link">
-                    <img src="./static/images/cart.svg" alt="cart image" class="cart-img">
-                    <div class="cart-count">
-                        <span class="js-cart-count">{{ cartCount }}</span>
-                        <span> Items</span>
-                    </div>                   
-                </a>
+                <div class="cursor">
+                        <a href="javascript:void(0)" class="cart-link">
+                                <img src="./static/images/cart.svg" alt="cart image" class="cart-img">
+                                <div class="cart-count">
+                                    <span class="js-cart-count">{{ cartCount }}</span>
+                                    <span> Items</span>
+                                </div>                   
+                            </a>
+                </div>
+                
                 <div class="cart-wrapper--modal d-none">
                     <component comp-selector="app-cart" ></component>
                 </div>

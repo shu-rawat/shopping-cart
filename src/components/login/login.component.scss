@@ -1,5 +1,6 @@
 @import '../../../static/variables.scss';
 @import '../../../static/form_mixin.scss';
+@import '../../../static/_mixins.scss';
 
 .login-ul {
 	float: right;
@@ -59,4 +60,16 @@
 	width: 100%;
 	border: 0px;
 	margin-top: 1.5rem;
+	cursor: pointer;
+}
+
+@include tablet{
+	.login-wrapper{
+		.container{
+			flex-direction: column;
+		}
+		form{
+			margin-left:0rem;
+		}
+	}
 }

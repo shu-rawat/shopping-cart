@@ -58,7 +58,9 @@ header{
 }
 
 .cart-icon--desk{
-    cursor:pointer;
+    .cursor{
+        cursor:pointer;
+    }
     position: relative;
     .cart-wrapper--modal{
         position: absolute;
