@@ -97,7 +97,7 @@ header{
     display: none;   
 }
 
-@include mobile {
+@include tablet {
     .cart-icon--mob{
         display: flex;
     }
