@@ -9,6 +9,7 @@ import { SliderComponent } from './components/home/slider/slider.component';
 import { CategoriesComponent } from './components/home/categories/categories.component';
 import { ProductsComponent } from './components/products/products.component';
 import { LoginComponent } from './components/login/login.component';
+import { ToasterComponent } from './components/toaster/toaster.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/cart/cart.component';
 
@@ -67,7 +68,8 @@ const moduleConfig = {
         'app-products':ProductsComponent,
         'app-login':LoginComponent,
         'app-register':RegisterComponent,
-        'app-cart':CartComponent
+        'app-cart':CartComponent,
+        'app-toaster':ToasterComponent
     },
     providers:[DataService, ProductsResolver, CategoryResolver, BannerResolver]
 };

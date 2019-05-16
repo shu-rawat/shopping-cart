@@ -3,7 +3,8 @@ import './products.component.scss';
 import hbsTemplate from '../../views/shared/products.html';
 import prodItemsTemplate from '../../views/shared/product_items.html';
 import subject from '../../base/subject';
-
+import toasterType from '../../models/toasterType';
+import ToasterService from '../../services/toaster.service';
 
 export class ProductsComponent extends Component{
     constructor(){
@@ -69,10 +70,12 @@ export class ProductsComponent extends Component{
       if(cartItem.quantity == 1){
           subject.next("onCartItemAdded",cartItem);
           subject.next("cartUpdated",cartItem);
+          ToasterService.showToaster(toasterType.success,`${cartItem.name} added in cart`);
       }
       else{
         //cart item updated
         subject.next("cartUpdated",cartItem);
+        ToasterService.showToaster(toasterType.success,`${cartItem.name} cart item count is ${cartItem.quantity} `)
       }
     }
 

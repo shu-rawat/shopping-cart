@@ -10,7 +10,10 @@ footer {
 }
 
 @include tablet{
-	p {
-		text-align: center;
-	}
+	footer{
+		padding: 0rem;
+		p {
+			text-align: center;
+		}
+	}	
 }
