@@ -7,18 +7,20 @@
 .nav-mobile{    
     @include flex-center(); 
     display:none;
-    position: relative;
-    height: 6rem;
-    padding: 0px 15px;   
+    position: absolute;
+    right: 13rem;
+    top: 0;
+    height: 6rem;  
     .nav-dropdown{
         opacity: 0;
         visibility: hidden;
         position: absolute;
         top: 5rem;
+        right: 0;
         z-index: 5;
         background: $orangered;   
-        height:0px;     
-        transition: 0.5s height ease-in-out;
+        max-height: 0;     
+        transition: 0.5s max-height ease-in-out;
         a{
             font-size: 1.5rem;
             color: white;
@@ -85,7 +87,7 @@
   }
 
   #nav-icon.open{
-    transform: translateX(30px) scale(0.5);
+    transform: translateX(1.8rem) scale(0.5);
   }
   
   #nav-icon.open span:nth-child(1),#nav-icon.open span:nth-child(6) {
@@ -264,7 +266,7 @@ header {
             &.show{
                 opacity: 1;
                 visibility: visible;
-                height:18rem; 
+                max-height: 20rem;
             }
         }
     }
