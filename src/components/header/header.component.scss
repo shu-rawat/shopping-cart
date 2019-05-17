@@ -7,10 +7,12 @@
 .nav-mobile{    
     @include flex-center(); 
     display:none;
-    position: absolute;
-    right: 13rem;
-    top: 0;
+    // position: absolute;
+    // right: 13rem;
+    // top: 0;
+    justify-self: flex-end;
     height: 6rem;  
+    margin-left: 1rem;
     .nav-dropdown{
         opacity: 0;
         visibility: hidden;
@@ -85,9 +87,9 @@
     top: 20px;
   }
 
-  #nav-icon.open{
-    transform: translateX(1.8rem) scale(0.5);
-  }
+//   #nav-icon.open{
+//     transform: translateX(1.8rem) scale(0.5);
+//   }
   
   #nav-icon.open span:nth-child(1),#nav-icon.open span:nth-child(6) {
     -webkit-transform: rotate(45deg);
@@ -179,6 +181,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-self: flex-end;
+    margin-left: auto;
 }
 
 .log-reg-wrapper {

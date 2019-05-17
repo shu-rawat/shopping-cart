@@ -1,16 +1,16 @@
 {{# each products }}
 <li class="plp-items-wrapper js-item-wrapper" data-item-id="{{id}}">
-    <h3>{{name}}</h3>
+    <h3 tabindex="0">{{name}}</h3>
     <div class="content">     
         <img src="{{imageURL}}" alt="{{name}}">  
-        <p>
+        <p tabindex="0">
             {{description}}      
             
         <button class="js-add-item">Buy Now</button>                 
         </p>
     </div>
     <div class="button">
-        <span>MRP Rs {{price}}</span>
+        <span tabindex="0">MRP Rs {{price}}</span>
         <button class="js-add-item">Buy Now</button>
     </div>
     <div class="button-tbl js-add-item">
