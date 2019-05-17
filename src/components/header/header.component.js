@@ -54,8 +54,8 @@ export class HeaderComponent extends Component{
             divPrev.setAttribute("tabindex",0);
             let divNext= divPrev.cloneNode();
 
-            componentWrapperEl.insertBefore(divPrev,modalWrprEl);
-            componentWrapperEl.insertBefore(divNext,modalWrprEl.nextSibling);
+            // componentWrapperEl.insertBefore(divPrev,modalWrprEl);
+            // componentWrapperEl.insertBefore(divNext,modalWrprEl.nextSibling);
             this.querySelector(".cart-wrapper--modal")[0].classList.remove("d-none");
             document.querySelector(".overlay").classList.remove("d-none");
             document.querySelector("body").classList.add("no-scroll");
