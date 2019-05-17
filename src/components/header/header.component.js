@@ -24,8 +24,17 @@ export class HeaderComponent extends Component{
     //Lifecycle hook gets called component mounted.
     afterViewInit(){
         this.carteUpdateListener = this.carteUpdate.bind(this);
+        this.navMobDropDwnEl = this.querySelector(".js-nav-dropdown")[0];
+        this.navIconEl = this.querySelector(".js-nav-icon")[0];
         this.carteUpdateObservable = subject.subscribe("cartUpdated",this.carteUpdateListener);
-
+        this.navMobDropDwnEl.addEventListener("click",()=>{
+            this.navMobDropDwnEl.classList.remove("show");
+            this.navIconEl.classList.toggle("open");
+        });
+        this.navIconEl.addEventListener("click",()=>{
+            this.navMobDropDwnEl.classList.toggle("show");
+            this.navIconEl.classList.toggle("open");
+        });
         this.querySelector(".cart-icon--desk .cart-link")[0].addEventListener("click",this.modalAction.bind(this,true));
     }
 

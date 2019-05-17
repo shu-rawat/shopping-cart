@@ -22,7 +22,7 @@ export class ProductsComponent extends Component{
         this.onBuyNowListener = this.onBuyNow.bind(this);
         
         //state data required for hbs template
-        this.state = {};
+        this.state = {};            
         this.state.products = this.data.products;
         this.state.empty = this.data.products.length == 0;
         this.state.categories = this.data.categories.map(category=>{
@@ -58,15 +58,22 @@ export class ProductsComponent extends Component{
     //Lifecycle hook
     //gets Called after component views rendered to dom.
     afterViewInit(){
-       
+        this.allLi = this.querySelector("li.all")[0];
         this.attachBuyEvents();
         Array.from(this.querySelector(".plp-catg-wrapper li"),(liEl)=>{
             liEl.addEventListener("click", (e)=>{
-                console.log("clicked");
-                let ulEl = e.currentTarget.closest("ul");
+                console.log("clicked", e.currentTarget);
+                let ulEl = e.currentTarget.closest("ul");                
+                if(e.target.tagName != 'A'){
+                    let id = e.currentTarget.closest("li").getAttribute("data-categ-id");
+                    this.router.navigateByURL(`products${id?'/'+id:''}`);
+                }                
                 ulEl.classList.toggle("list-open");
             });
         });
+        if(!this.routeParams || !this.routeParams.id){
+            this.allLi.classList.add("visible");
+        }
     }
 
     attachBuyEvents(){

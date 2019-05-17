@@ -39,7 +39,8 @@ aside.plp-catg-wrapper {
             .arrow.down {
                 display: none;
             }
-        }
+        }    
+
     }
 }
 
@@ -72,7 +73,7 @@ main.items-main {
     .content {
         display: flex;
         flex-direction: column;
-        flex: 1;     
+        flex: 1 1 0%;     
 
         img {
             height: 18rem;
@@ -222,6 +223,8 @@ main.items-main {
                     display: inline-block;
                 }
             }
+
+            
         }
 
 

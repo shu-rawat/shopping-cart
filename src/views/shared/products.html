@@ -2,8 +2,12 @@
     <div class="container">
         <aside class="plp-catg-wrapper">
             <ul class="list--desk">
+                <li data-categ-id="" class="all">
+                    <a href="#products">All</a>
+                    <i class="arrow down"> </i>
+                </li>
                 {{# each categories }}
-                {{#if enabled}}
+                {{#if enabled}}               
                 <li class="{{#active}}visible{{/active}}"  data-categ-id="{{id}}">
                     <a href="#products/{{id}}">{{name}}</a>
                     <i class="arrow down"> </i>

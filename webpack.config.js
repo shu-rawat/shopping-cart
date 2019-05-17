@@ -48,8 +48,8 @@ module.exports = {
         new webpack.LoaderOptionsPlugin({
             options: {
                 postcss: [
-                    autoprefixer(),
-                    plugin({ bug6: false })
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({flexbox: "no-2009"})                    
                 ]
             }
         })

@@ -53,9 +53,7 @@ export default function SPA(routes, moduleConfig) {
     function bootstrap() {
         //listening for route change based on hash change strategy.
         //spa is implemented with hash change.
-        window.onhashchange = function (e) {
-            
-            console.log("new url",e.newURL,e);
+        window.onhashchange = function (e) {        
             let pageName = location.href.split("#")[1];
             if (!pageName) {
                 pageName = '';
