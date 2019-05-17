@@ -38,7 +38,7 @@
                 </a>
             </div>
             <div class="cart-icon cart-icon--desk">
-                <div class="cursor">
+                <div class="cursor" data-target="#dialog_cart">
                         <a href="javascript:void(0)" class="cart-link">
                                 <img src="./static/images/cart.svg" alt="cart image" class="cart-img">
                                 <div class="cart-count">
@@ -48,7 +48,8 @@
                             </a>
                 </div>
                 
-                <div class="cart-wrapper--modal d-none">
+                <div class="cart-wrapper--modal d-none" role="dialog" id="dialog_cart" aria-labelledby="dialog_cart" 
+                    aria-modal="true">
                     <component comp-selector="app-cart" ></component>
                 </div>
             </div>        

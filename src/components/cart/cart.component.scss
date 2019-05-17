@@ -33,12 +33,15 @@
         color:#ffffff;     
 
         .close {
-
+            outline: none;
+            border: 0;
+            background: transparent;
+            color: white;
             display: inline-block;
             position: absolute;
             right: 2rem;
             font-size: 5rem;
-            top: -8px;
+            top: -2px;
             cursor: pointer;
         }
     }

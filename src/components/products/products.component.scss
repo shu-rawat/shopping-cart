@@ -24,7 +24,8 @@ aside.plp-catg-wrapper {
         li {       
             border-bottom:1px solid $light-gray;     
             margin-left:0.6rem;
-            padding: 2rem;               
+            padding: 2rem;             
+            cursor: pointer;              
 
             a {
                 font-size: 1.5rem;
