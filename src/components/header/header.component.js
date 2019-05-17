@@ -46,16 +46,7 @@ export class HeaderComponent extends Component{
     }
 
     modalAction(show){
-        let componentWrapperEl = document.querySelector(".cart-icon--desk");
-        let modalWrprEl = document.querySelector(".cart-wrapper--modal");
-        if(show){
-            let divPrev = document.createElement("div");
-            divPrev.classList.add("circular");
-            divPrev.setAttribute("tabindex",0);
-            let divNext= divPrev.cloneNode();
-
-            // componentWrapperEl.insertBefore(divPrev,modalWrprEl);
-            // componentWrapperEl.insertBefore(divNext,modalWrprEl.nextSibling);
+        if(show){         
             this.querySelector(".cart-wrapper--modal")[0].classList.remove("d-none");
             document.querySelector(".overlay").classList.remove("d-none");
             document.querySelector("body").classList.add("no-scroll");

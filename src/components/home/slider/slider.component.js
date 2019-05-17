@@ -13,7 +13,6 @@ export class SliderComponent extends Component{
         this.banrWrprClass = "slider-content";
         this.banrOuterWrpr = "slider-wrapper";
         this.initOnce = false;
-        this.sliderTime = 600;
         this.nextSlideEventListener = null;
         this.prevSlideEventListener = null;
         this.resizeEventListener = null;
@@ -112,8 +111,7 @@ export class SliderComponent extends Component{
         //applies dynamic styling eg widht and height and left and animation.
         this.bannerWrapperEle.style.width = `${this.bannerWrapperWidth * this.bannersLength + 100}px`;
         this.bannerWrapperEle.style.left = `-${this.activeBanrIndx * this.bannerWrapperWidth}px`;  
-        this.bannerWrapperEle.style.height = `${this.bannerWrapperWidth / 4}px`;   
-        this.bannerWrapperEle.style.transition = `left ${this.sliderTime/1000}s linear`; 
+    
         Array.from(this.allBannersEles,banerImg=>{
             banerImg.style.width = `${this.bannerWrapperWidth}px`;            
         });
