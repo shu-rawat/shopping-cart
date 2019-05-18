@@ -4,36 +4,10 @@
 /*nav mobile css*/
 
 /* NAV Icon */
-.nav-mobile{    
-    @include flex-center(); 
-    display:none;
-    // position: absolute;
-    // right: 13rem;
-    // top: 0;
-    justify-self: flex-end;
-    height: 6rem;  
-    margin-left: 1rem;
-    .nav-dropdown{
-        opacity: 0;
-        visibility: hidden;
-        position: absolute;
-        top: 5rem;
-        right: 0;
-        z-index: 5;
-        background: $orangered;   
-        max-height: 0;     
-        transition: 0.5s max-height ease-in-out;
-        a{
-            font-size: 1.5rem;
-            color: white;
-            display: inline-block;
-            width: 100%;
-            padding: 1rem 3rem;
-            box-sizing: border-box;
-        }
-    }
-}
+
+
 #nav-icon {
+    display: none;
     width: 35px;
     cursor: pointer;
     height: 30px;
@@ -144,6 +118,7 @@ header {
 
 .container--header {
     display: flex;
+    position: relative;
     justify-content: space-between;
 }
 
@@ -186,6 +161,10 @@ header {
 
 .log-reg-wrapper {
     display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
     justify-content: flex-end;
     padding-bottom: 0.8rem;
 
@@ -203,6 +182,8 @@ header {
 .cart-icon--desk {
     position: relative;
     .cursor {
+        position: relative;
+        top: 2.5rem;
         cursor:pointer;
         a{
             pointer-events: none;
@@ -214,7 +195,7 @@ header {
         width: 50rem;
         right: 0px;
         z-index: 50;
-        top: 5.5rem;
+        top: 8rem;
     }
 }
 
@@ -250,6 +231,7 @@ header {
 @include tablet {
     .cart-icon--desk {
         .cursor{
+            top:0;
             a{
                 pointer-events: auto;
             }
@@ -258,9 +240,9 @@ header {
 
 
 
-    .nav-main, .log-reg-wrapper {
-        display: none;
-    }
+    // .nav-main, .log-reg-wrapper {
+    //     display: none;
+    // }
 
     #nav-logo {
 
@@ -269,15 +251,60 @@ header {
         }
     }
 
-    .nav-mobile{
+    #nav-icon{
+        display: flex;
+    }
+
+    .nav-mobile{    
+        @include flex-center();
+        // position: absolute;
+        // right: 13rem;
+        // top: 0;
+        justify-self: flex-end;
+        height: 6rem;  
+        margin-left: 1rem;
         display: flex;
         align-self: center;
-        .nav-dropdown{
+    }
+    .nav-dropdown{
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 5rem;
+            right: 0;
+            z-index: 5;
+            background: $orangered;   
+            max-height: 0;     
+            a{
+                font-size: 1.5rem;
+                color: white;
+                display: inline-block;
+                width: 100%;
+                padding: 1rem 3rem;
+                box-sizing: border-box;
+            }
             &.show{
+                display: flex;
+                flex-direction: column;
                 opacity: 1;
                 visibility: visible;
                 max-height: 20rem;
-            }
+                margin: 0;
+                color: white;
+                a{
+                    margin: 0;
+                    color: white;
+                }
+                .log-reg-wrapper{
+                    color: white;
+                    display: flex;
+                    position: relative;
+                    flex-direction: column;
+                    margin: 0;
+                    a{
+                        margin: 0;
+                    }
+                }
         }
     }
 }
