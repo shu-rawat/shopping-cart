@@ -202,9 +202,11 @@ header {
 
 .cart-icon--desk {
     position: relative;
-
     .cursor {
         cursor:pointer;
+        a{
+            pointer-events: none;
+        }
     }
     
     .cart-wrapper--modal {
@@ -246,11 +248,17 @@ header {
 }
 
 @include tablet {
-    .cart-icon--mob {
-        display: flex;
+    .cart-icon--desk {
+        .cursor{
+            a{
+                pointer-events: auto;
+            }
+        }
     }
 
-    .cart-icon--desk, .nav-main, .log-reg-wrapper {
+
+
+    .nav-main, .log-reg-wrapper {
         display: none;
     }
 

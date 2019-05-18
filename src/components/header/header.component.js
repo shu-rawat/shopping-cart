@@ -35,7 +35,7 @@ export class HeaderComponent extends Component{
             this.navMobDropDwnEl.classList.toggle("show");
             this.navIconEl.classList.toggle("open");
         });
-        this.querySelector(".cart-icon--desk .cart-link")[0].addEventListener("click",this.modalAction.bind(this,true));
+        this.querySelector(".cart-icon .cursor")[0].addEventListener("click",this.modalAction.bind(this,true));
     }
 
     carteUpdate(){
@@ -45,7 +45,14 @@ export class HeaderComponent extends Component{
         }); 
     }
 
-    modalAction(show){
+    modalAction(show,e){
+        if(document.getElementsByTagName("body")[0].offsetWidth <= 768){
+            return;
+        }
+        if(this.querySelector(".cart-icon--desk .cursor a")[0].style.pointerEvents == "cursor"){
+            return ;
+        }
+        
         if(show){         
             this.querySelector(".cart-wrapper--modal")[0].classList.remove("d-none");
             document.querySelector(".overlay").classList.remove("d-none");
