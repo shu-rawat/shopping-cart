@@ -9,9 +9,7 @@
         <section>
             <ul class="cart-items">
                 {{#each items}}
-                    <li class="cart-item js-item-wrapper" data-item-id="{{id}}">
-                        {{> cartItemRow.html }}
-                    </li>                
+                    {{> cartItemRow.html }}                
                 {{/each}}
             </ul>
             <div class="cart-advt {{#showAdvt}}d-flex{{/showAdvt}} js-advt-cart" tabindex="0">

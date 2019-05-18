@@ -1,14 +1,16 @@
-<img class="item-img" src="{{imageURL}}" alt="{{name}}">
-<div class="item-info">
-    <h2 tabindex="0">{{name}}</h2>
-    <div class="item-controls">
-        <button class="btn--cart js-remove-item" tabindex="0" role="button" aria-pressed="false">-</button>
-        <span class="item-count js-item-count" tabindex="0">{{ quantity }}</span>
-        <button class="btn--cart js-add-item" tabindex="0" role="button" aria-pressed="false">+</button>
-        <span class="mult">&times;</span>
-        <span tabindex="0">Rs{{price}}</span>
-        <div class="item-tot-price">            
-        Rs<span class="js-item-total" tabindex="0">{{totalPrice}}</span>
+<li class="cart-item js-item-wrapper" data-item-id="{{id}}">
+    <img class="item-img" src="{{imageURL}}" alt="{{name}}">
+    <div class="item-info">
+        <h2 tabindex="0">{{name}}</h2>
+        <div class="item-controls">
+            <button class="btn--cart js-remove-item" tabindex="0" role="button" aria-pressed="false">-</button>
+            <span class="item-count js-item-count" tabindex="0">{{ quantity }}</span>
+            <button class="btn--cart js-add-item" tabindex="0" role="button" aria-pressed="false">+</button>
+            <span class="mult">&times;</span>
+            <span tabindex="0">Rs{{price}}</span>
+            <div class="item-tot-price">            
+            Rs<span class="js-item-total" tabindex="0">{{totalPrice}}</span>
+            </div>
         </div>
-    </div>
-</div>
+    </div>                        
+</li>

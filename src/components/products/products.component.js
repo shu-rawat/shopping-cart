@@ -39,6 +39,7 @@ export class ProductsComponent extends Component{
             //for detaching events on previous products
             this.destroy();
             this.init();
+            
             this.querySelector(".js-items-ul")[0].innerHTML = prodItemsTemplate(this.state);
             Array.from(this.querySelector(".plp-catg-wrapper li"),ele=>{
                 ele.classList.remove("visible");
@@ -62,7 +63,6 @@ export class ProductsComponent extends Component{
         this.attachBuyEvents();
         Array.from(this.querySelector(".plp-catg-wrapper li"),(liEl)=>{
             liEl.addEventListener("click", (e)=>{
-                console.log("clicked", e.currentTarget);
                 let ulEl = e.currentTarget.closest("ul");                
                 if(e.target.tagName != 'A'){
                     let id = e.currentTarget.closest("li").getAttribute("data-categ-id");

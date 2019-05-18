@@ -45,14 +45,9 @@ export class CartComponent extends Component{
  //adds new cartItem to the cart view
     onCartItemAdded(cartItem){
         let ulWrapperEl = this.querySelector(".cart-items")[0];
-        let liEl = document.createElement("li");
-        liEl.classList.add("cart-item");
-        liEl.classList.add("js-item-wrapper");
-        liEl.setAttribute("data-item-id",cartItem.id);
-        liEl.innerHTML = cartItemRowTemp(cartItem);
-
+        //inserting in new cart row in dom
+        ulWrapperEl.insertAdjacentHTML('beforeend',cartItemRowTemp(cartItem));
         //attaching events for new add and remove btns inserted in DOM
-        ulWrapperEl.appendChild(liEl);
         let addBtnEl = this.getAddItemBtnEl(cartItem.id);
         this.addItemElEvent(addBtnEl);
         let rmvBtnEl = this.getRemoveItemBtnEl(cartItem.id);

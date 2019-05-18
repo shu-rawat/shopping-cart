@@ -1,20 +1,21 @@
 {{# each products }}
 <li class="plp-items-wrapper js-item-wrapper" data-item-id="{{id}}">
     <h3 tabindex="0">{{name}}</h3>
-    <div class="content">     
-        <img src="{{imageURL}}" alt="{{name}}">  
-        <p tabindex="0">
-            {{description}}      
-            
-        <button class="js-add-item">Buy Now</button>                 
-        </p>
-    </div>
-    <div class="button">
-        <span tabindex="0">MRP Rs {{price}}</span>
-        <button class="js-add-item">Buy Now</button>
-    </div>
-    <div class="button-tbl js-add-item">
-        <button>Buy Now @ <span>Rs {{price}}</span></button>
-    </div>
+    <div class="cont-wrpr">
+        <img src="{{imageURL}}" alt="{{name}}" />
+        <div class="content">
+            <p tabindex="0">
+                {{description}}
+            </p>
+            <div class="button js-add-item">
+                <button>
+                    <span>MRP</span> Rs.{{price}}
+                </button>
+                <button>
+                    Buy Now <span>@</span>
+                </button>
+            </div>
+        </div>
+    </div>   
 </li>
 {{/each}}
