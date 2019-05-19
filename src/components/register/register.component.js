@@ -62,7 +62,7 @@ export class RegisterComponent extends Component{
         }
 
         //if input element needs mismatch validation      
-        if(checkForMismatch ){       
+        if(checkForMismatch && mismatchEl){       
             if(inputEr){
                 this.showError(mismatchEl, false);
             }

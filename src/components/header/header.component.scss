@@ -256,6 +256,7 @@ header {
     }
 
     .nav-mobile{    
+        overflow: hidden;
         @include flex-center();
         // position: absolute;
         // right: 13rem;

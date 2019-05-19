@@ -3,17 +3,9 @@ export default class DataService {
 
     }
 
-    static getProducts(categId) {
+    static getProducts() {
         return fetch("/products/index.get.json")
-            .then(resp => resp.json())
-            .then(products => {
-                if (!categId) {
-                    return products;
-                }
-                else {
-                    return products.filter(product => product.category == categId);
-                }
-            });
+            .then(resp => resp.json());
     }
 
     static getCategories() {

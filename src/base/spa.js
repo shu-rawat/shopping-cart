@@ -235,7 +235,7 @@ export default function SPA(routes, moduleConfig) {
 
             //checks if current route is same route matched or the component that was previously rendered is
             //the same that needs to be rendered now for different route.
-            if (currentRoute == routeMatched || routes[currentRoute] == routes[routeMatched]) {
+            if (currentRoute == routeMatched || (currentRoute && routes[currentRoute].component == ComponentClass)) {
                 currentRoute = routeMatched;
                 let a = JSON.stringify(routeParams);
                 let b = JSON.stringify(currentRouteParams);

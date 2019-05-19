@@ -49,9 +49,6 @@ export class HeaderComponent extends Component{
         if(document.getElementsByTagName("body")[0].offsetWidth <= 768){
             return;
         }
-        if(this.querySelector(".cart-icon--desk .cursor a")[0].style.pointerEvents == "cursor"){
-            return ;
-        }
         
         if(show){         
             this.querySelector(".cart-wrapper--modal")[0].classList.remove("d-none");

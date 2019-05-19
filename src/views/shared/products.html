@@ -1,18 +1,17 @@
 <div class="plp-wrapper">
     <div class="container">
         <aside class="plp-catg-wrapper">
-            <ul class="list--desk">
-                <li data-categ-id="" class="all">
+            <ul class="list--desk js-aside-categ">
+                <li data-categ-id="" class="all js-all {{#allSelected}}visible{{/allSelected}}">
                     <a href="#products">All</a>
-                    <i class="arrow down"> </i>
                 </li>
                 {{# each categories }}
                 {{#if enabled}}               
                 <li class="{{#active}}visible{{/active}}"  data-categ-id="{{id}}">
                     <a href="#products/{{id}}">{{name}}</a>
-                    <i class="arrow down"> </i>
                 </li>
                 {{/if}}
+                <i class="arrow down"></i>
                 {{/each}}
             </ul>
         </aside>
