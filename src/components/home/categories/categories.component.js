@@ -26,9 +26,9 @@ export class CategoriesComponent extends Component{
     //Life cycle hook
     //gets called after component view part rendered to the dom.
     afterViewInit(){
-        this.exploreBtns = this.querySelector(".js-explore");
+        this.exploreBtns = Array.from(this.querySelector(".js-explore"));
         //attaching events.
-        Array.from(this.exploreBtns,(btnEle)=>{
+        this.exploreBtns.forEach(btnEle=>{
             btnEle.addEventListener("click",this.exploreListener);
         });
     }
@@ -38,7 +38,6 @@ export class CategoriesComponent extends Component{
         //navigating to products page for particular category products.
         this.router.navigateByURL(`products/${categoryId}`);        
     }
-
 
     //Lifecycle hook
     //gets called before component gets destroyed.

@@ -32,11 +32,11 @@ class Subject{
     }
 
     //triggers event
-    next(eventName,data){
+    next(eventName){
         if(this.events[eventName]){
             //calls event listeners attached with event name and passes data.
             this.events[eventName].forEach(eventListener=>{
-                eventListener(data);
+                eventListener.apply(null,[...arguments].slice(1))
             });
             return true;
         }

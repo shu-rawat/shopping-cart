@@ -7,11 +7,6 @@ export class SliderComponent extends Component{
     //Lifecycle hook
     //for initialising component
     init(){
-        
-        this.prevBtnId = 'prev';
-        this.nextBtnId = 'next';
-        this.banrWrprClass = "slider-content";
-        this.banrOuterWrpr = "slider-wrapper";
         this.initOnce = false;
         this.nextSlideEventListener = null;
         this.prevSlideEventListener = null;
@@ -52,12 +47,13 @@ export class SliderComponent extends Component{
 
     initData(){
         //saving dom elements and wrapper width 
-        this.prevBtnEle = document.getElementById(this.prevBtnId);
-        this.nextBtnEle = document.getElementById(this.nextBtnId);
-        this.allBannersEles = document.querySelectorAll(`.${this.banrWrprClass} img`);
-        this.bannerWrapperEle = document.getElementsByClassName(this.banrWrprClass)[0];
+        this.prevBtnEle = this.querySelector(".js-prev")[0];
+        this.nextBtnEle = this.querySelector(".js-next")[0];
+        this.allDotsEl = Array.from(this.querySelector(".dots-wrapper .dot"));
+        this.allBannersEles = Array.from(this.querySelector(".js-slider-content img"));
+        this.bannerWrapperEle = this.querySelector(".js-slider-content")[0];
+        this.bannerWrapperOuter = this.querySelector(".js-slider-wrapper")[0];
         this.bannersLength = this.allBannersEles.length;
-        this.bannerWrapperOuter = document.getElementsByClassName(this.banrOuterWrpr)[0];
         this.bannerWrapperWidth = this.bannerWrapperOuter.offsetWidth;
     }
     
@@ -94,11 +90,11 @@ export class SliderComponent extends Component{
 
     updatePoints(){
         //updates current dot based on current banner
-        var activeDot = document.querySelector(".dots-wrapper .dot--active");
+        var activeDot = this.querySelector(".dots-wrapper .dot--active")[0];
         if(activeDot){
             activeDot.classList.remove("dot--active");
         }
-        document.querySelectorAll(".dots-wrapper .dot")[this.activeBanrIndx].classList.add("dot--active");
+        this.allDotsEl[this.activeBanrIndx].classList.add("dot--active");
     }
 
     setDisableBtns(){
@@ -112,7 +108,7 @@ export class SliderComponent extends Component{
         this.bannerWrapperEle.style.width = `${this.bannerWrapperWidth * this.bannersLength + 100}px`;
         this.bannerWrapperEle.style.left = `-${this.activeBanrIndx * this.bannerWrapperWidth}px`;  
     
-        Array.from(this.allBannersEles,banerImg=>{
+        this.allBannersEles.forEach(banerImg=>{
             banerImg.style.width = `${this.bannerWrapperWidth}px`;            
         });
     }

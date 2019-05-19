@@ -239,6 +239,7 @@ export default function SPA(routes, moduleConfig) {
                 currentRoute = routeMatched;
                 let a = JSON.stringify(routeParams);
                 let b = JSON.stringify(currentRouteParams);
+                currentRouteParams = routeParams;
                 //here component does not gets re instantiated just route params or resolved data gets passed
                 if (currentRouteComponent && a != b) {
                     currentRouteComponent.data = resolvedObj;
@@ -251,6 +252,7 @@ export default function SPA(routes, moduleConfig) {
             else {
                 //when new compnent needs to be rendered in dom
                 currentRoute = routeMatched;
+                currentRouteParams = routeParams;
                 let componentSelector = rootModule.findSelector(ComponentClass);
                 //checks wheather component is registered with module or not.
                 if (!componentSelector) {

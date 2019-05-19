@@ -1,246 +1,212 @@
-import { Component } from  '../../base/component';
+import { Component } from '../../base/component';
 import './cart.component.scss';
 import subject from '../../base/subject';
 import hbsTemplate from '../../views/shared/cart.html';
 import cartItemRowTemp from '../../views/shared/cartItemRow.html';
 
-export class CartComponent extends Component{
+export class CartComponent extends Component {
 
-    constructor(){
+    constructor() {
         super();
         //component selector
-        this.selector = "app-cart"; 
-         //component view hbs template
+        this.selector = "app-cart";
+        //component view hbs template
         this.hbsTemplate = hbsTemplate;
 
         //binding functions so that this can be used.
-        this.onCartItemAddedListener = this.onCartItemAdded.bind(this);
-        this.onAddItemElListener =  this.onAddItemEl.bind(this);
-        this.onCartDeleteListener = this.deleteCartItem.bind(this);
+        this.onCartItemUpdateListener = this.onCartItemUpdate.bind(this);
+        this.onAddItemElListener = this.onAddItemEl.bind(this);
         this.onRemoveItemElListener = this.onRemoveItemEl.bind(this);
-        this.cartUIUpdateListener = this.updateCartUI.bind(this);
+        this.modalCloseActionListener = this.modalCloseAction.bind(this);
+        //listening to changes from any other components.
+        subject.subscribe("cartItemUpdated", this.onCartItemUpdateListener);
     }
 
     //Component Lifecycle hook
     //it gets called after Component has been instantiated, used for initializing Component
-    init(){
-        
-       //setting data inside state for data to be provided for template.
+    init() {
+        let totalQuantity = window.cartModel.getTotalQty();
+        let totalAmount = window.cartModel.getTotalAmount(); 
+        //setting data inside state for data to be provided for template.
         this.state = {
-            items:window.cartModel.items.map(item=>{
+            items: window.cartModel.items.map(item => {
                 item.totalPrice = item.getTotalAmount();
-                return item;
+                return {...item};
             }),
-            totalQuantity:window.cartModel.getTotalQty(),
-            totalAmount:window.cartModel.getTotalAmount(),
+            totalQuantity,
+            totalAmount,
+            showEmptyCart: totalQuantity==0,
+            showAdvt: totalQuantity!=0
         };
-        this.state.showEmptyCart  = (this.state.totalQuantity == 0);
-        this.state.showAdvt = !this.state.showEmptyCart;
-
-        //listening to changes from any other components.
-        subject.subscribe("onCartItemAdded",this.onCartItemAddedListener);
-        subject.subscribe("cartUpdated",this.cartUIUpdateListener);
-        subject.subscribe("deleteCartItem",this.onCartDeleteListener);
-    }
- //adds new cartItem to the cart view
-    onCartItemAdded(cartItem){
-        let ulWrapperEl = this.querySelector(".cart-items")[0];
-        //inserting in new cart row in dom
-        ulWrapperEl.insertAdjacentHTML('beforeend',cartItemRowTemp(cartItem));
-        //attaching events for new add and remove btns inserted in DOM
-        let addBtnEl = this.getAddItemBtnEl(cartItem.id);
-        this.addItemElEvent(addBtnEl);
-        let rmvBtnEl = this.getRemoveItemBtnEl(cartItem.id);
-        this.removeItemElEvent(rmvBtnEl);        
-
-        //notifing for cart item update so that other components can be notified.
-        subject.next("cartUpdated",cartItem);
-    }
-
-    
-
-    addItemElEvent(addItemEl){
-        //adds click event listening on cart item add btn
-        addItemEl.addEventListener("click",this.onAddItemElListener);
-    }
-
-    onAddItemEl(e){
-        //updates added item in cart model and notifies for cart updation.
-        let cartItemId = this.getItemId(e.target);
-        let cartItem = window.cartModel.addItemCount(cartItemId);
-        if(cartItem.quantity == 1){
-            window.cartModel.addCartItem(cartItem);
-        }
-        subject.next("cartUpdated",cartItem);
-    }
-
-    removeItemElEvent(removeItemEl){
-        //minus button event listener attaching
-        removeItemEl.addEventListener("click",this.onRemoveItemElListener);
-    }
-
-    onRemoveItemEl(e){
-        //removes or decrement cart item count in model and notifies for views updated by deleteCartItem and cartUpdated
-        let cartItemId = this.getItemId(e.target);
-        let cartItem = window.cartModel.removeItemCount(cartItemId);
-        subject.next("deleteCartItem",cartItem);
-        subject.next("cartUpdated",cartItem);
-    }
-
-    deleteCartItem(cartItem){
-        //checks for item quantity if zero removes from DOM
-        if(cartItem.quantity == 0){
-            let WrapperEl = this.querySelector(`.js-item-wrapper[data-item-id='${cartItem.id}']`)[0];            
-            WrapperEl.parentNode.removeChild(WrapperEl);
-        }
-
-        //calling function for showing no cart item present in cart 
-        this.checkEmptyCart(window.cartModel.getTotalQty());
     }
 
     // Component lifecycle hook
     // functions gets called After component view has been rendered in dom Component lifecycle hook
-    afterViewInit(){
-        let addItemEls = this.getAddItemBtnEls();
-        let removeItemEls = this.getRemoveItemBtnEls();
-        
+    afterViewInit() {
+        this.initData();
+        this.attachEvents();
+    }
+
+    initData() {
+        this.addItemEls = Array.from(this.querySelector(".js-add-item"));
+        this.removeItemEls = Array.from(this.querySelector(".js-remove-item"));
+        this.closeIconEl = this.querySelector(".close")[0];
+        this.cartItemsWrpEl = this.querySelector(".cart-items")[0];
+        this.cartTotalCountEl = this.querySelector(".js-cart-count")[0];
+        this.cartTotalAmtEl = this.querySelector(".js-cart-final")[0];
+        this.cartModalEl = document.querySelector(".cart-wrapper--modal");
+        this.overlayEl = document.querySelector(".overlay");
+        this.bodyEl = document.querySelector("body");
+    }
+
+    attachEvents() {
         //initial add and remove event listeners binding.
-        Array.from(addItemEls,(item)=>{this.addItemElEvent(item)});
-        Array.from(removeItemEls,(item)=>{this.removeItemElEvent(item)});
-        this.querySelector(".close")[0].addEventListener("click",()=>{            
-            document.querySelector(".cart-wrapper--modal").classList.add("d-none");
-            document.querySelector(".overlay").classList.add("d-none");
-            document.querySelector("body").classList.remove("no-scroll");
-        });
+        this.addItemEls.forEach(item => { this.addItemElEvent(item) });
+        this.removeItemEls.forEach(item => { this.removeItemElEvent(item) });
+        this.closeIconEl.addEventListener("click", this.modalCloseActionListener);
     }
 
-    updateCartTotalCount(cartTotalItems){    
-        //updated cart total items count wherever in cart component required.        
-        Array.from(this.getCartCountEls(),(cartCountEl)=>{
-            cartCountEl.textContent = cartTotalItems;
-        });                   
+    modalCloseAction() {
+        this.cartModalEl.classList.add("d-none");
+        document.querySelector(".overlay").classList.add("d-none");
+        document.querySelector("body").classList.remove("no-scroll");
     }
 
-    
-    //updated cart total amount
-    updateCartTotalAmount(cartAmount){
-        this.getCartTotalAmtEl().textContent = cartAmount;
+    addItemElEvent(addItemEl) {
+        //adds click event listening on cart item add btn
+        addItemEl.addEventListener("click", this.onAddItemElListener);
     }
 
-    //updated cart item count for particular cart item in dom
-    updateCartItemCount(cartItemId,itemCount){
-        let el = this.getItemCountEl(cartItemId);
-        el?el.textContent = itemCount:null;
+    removeItemElEvent(removeItemEl) {
+        //minus button event listener attaching
+        removeItemEl.addEventListener("click", this.onRemoveItemElListener);
     }
 
-    //updated cart item amount for particular cart item in dom
-    updateCartItemAmount(cartItemId,itemPrice){
-        let el = this.getItemTotalAmountEl(cartItemId);
-        el?el.textContent = itemPrice:null;
+    onAddItemEl(e) {
+        //updates added item in cart model and notifies for cart updation.
+        let cartItemId = this.getItemId(e.target);
+        let cartItem = window.cartModel.addItemCount(cartItemId);
+        subject.next("cartItemUpdated", cartItem);
     }
 
-    //updates cart ui based on cart changed in cart item.
-    updateCartUI(cartItem){
-        let itemTotalCount = cartItem.quantity;
-        let itemTotalAmount = cartItem.getTotalAmount();
+    onRemoveItemEl(e) {
+        //removes or decrement cart item count in model and notifies for views updated by deleteCartItem and cartUpdated
+        let cartItemId = this.getItemId(e.target);
+        let cartItem = window.cartModel.removeItemCount(cartItemId);
+        subject.next("cartItemUpdated", cartItem);
+    }
+
+    //updated cartItem to the cart view
+    onCartItemUpdate(cartItem, isNewItem) {
         let cartTotalCount = cartModel.getTotalQty();
         let cartTotalAmount = cartModel.getTotalAmount();
 
-        this.updateCartItemCount(cartItem.id,itemTotalCount);
-        this.updateCartItemAmount(cartItem.id,itemTotalAmount);
-        this.updateCartTotalCount(cartTotalCount);
-        this.updateCartTotalAmount(cartTotalAmount);
-        this.checkEmptyCart(cartTotalCount);       
+        if (isNewItem) {
+            //new item
+            this.insertNewItemInDOM(cartItem);
+        }
+        else if(cartItem.quantity == 0){
+            //deleted item
+            this.deleteCartItemView(cartItem);
+        }
+        else{
+            //changed item count
+            this.updateCartItemView(cartItem);
+        }
+        
+        //checking for cart empty 
+        this.checkEmptyCart(window.cartModel.getTotalQty());
+        this.cartTotalCountEl.textContent = cartTotalCount;
+        this.cartTotalAmtEl.textContent = cartTotalAmount;
     }
 
-    checkEmptyCart(cartTotalCount){
+    insertNewItemInDOM(cartItem) {
+        //inserting in new cart row in dom
+        //using partials
+        this.cartItemsWrpEl.insertAdjacentHTML('beforeend', cartItemRowTemp({...cartItem, totalPrice:cartItem.getTotalAmount()}));
+        //attaching events for new add and remove btns inserted in DOM
+        let addBtnEl = this.getAddItemBtnEl(cartItem.id);
+        let rmvBtnEl = this.getRemoveItemBtnEl(cartItem.id);
+        this.addItemElEvent(addBtnEl);
+        this.addItemEls.push(addBtnEl);
+        this.removeItemElEvent(rmvBtnEl);
+        this.removeItemEls.push(rmvBtnEl);
+    }
+
+    updateCartItemView(cartItem){
+        let itemCountEl = this.getItemCountEl(cartItem.id);
+        let itemFinalAmtEl = this.getItemTotalAmountEl(cartItem.id);
+
+        itemCountEl ? itemCountEl.textContent = cartItem.quantity : null;
+        itemFinalAmtEl ? itemFinalAmtEl.textContent = cartItem.getTotalAmount() : null;
+    }
+
+    deleteCartItemView(cartItem) {
+        let WrapperEl = this.querySelector(`.js-item-wrapper[data-item-id='${cartItem.id}']`)[0];
+        let addBtnEl = this.getAddItemBtnEl(cartItem.id);
+        let rmvBtnEl = this.getRemoveItemBtnEl(cartItem.id);
+
+        this.addItemEls.splice(this.addItemEls.indexOf(addBtnEl),1);
+        this.removeItemEls.splice(this.removeItemEls.indexOf(rmvBtnEl),1);
+        addBtnEl.removeEventListener("click",this.onAddItemElListener);
+        rmvBtnEl.removeEventListener("click",this.onRemoveItemElListener);
+        this.cartItemsWrpEl.removeChild(WrapperEl);
+    }
+
+    checkEmptyCart(cartTotalCount) {
         //function for show/hiding empty and advt info divs
-        if(cartTotalCount == 0){
+        if (cartTotalCount == 0) {
             this.querySelector(".js-advt-cart")[0].classList.remove("d-flex");
             this.querySelector(".js-empty-cart")[0].classList.add("d-flex");
             this.querySelector(".cart-footer")[0].classList.add("d-none");
         }
-        else{
+        else {
             this.querySelector(".js-advt-cart")[0].classList.add("d-flex");
             this.querySelector(".js-empty-cart")[0].classList.remove("d-flex");
             this.querySelector(".cart-footer")[0].classList.remove("d-none");
         }
     }
 
-    //inserts new cart item row.
-    addCartItem(cartItem){
-        document.querySelector(".cart-items").innerHTML += cartTemplates.getCartItemRowHtml(cartItem);
-    }
-
-    getCartCountEls(){
-        //returns cart count elements.
-        return this.querySelector(".js-cart-count")
-    }
-
-    getAddItemBtnEls(){
-        //returns all add btn elements
-        return this.querySelector(".js-add-item");
-    }
-
-    getAddItemBtnEl(cartItemId){
+    getAddItemBtnEl(cartItemId) {
         //returns add item btn for cart item
         return this.querySelector(`.js-item-wrapper[data-item-id='${cartItemId}'] .js-add-item`)[0];
     }
-    
-    getRemoveItemBtnEls(){
-        //returns all remove btn
-        return this.querySelector(".js-remove-item");
-    }
 
-    getRemoveItemBtnEl(cartItemId){
+    getRemoveItemBtnEl(cartItemId) {
         //returns particular remove btn for cart item
         return this.querySelector(`.js-item-wrapper[data-item-id='${cartItemId}'] .js-remove-item`)[0];
     }
 
 
-    getItemCountEl(cartItemId){
-         //returns items count element for cart item
+    getItemCountEl(cartItemId) {
+        //returns items count element for cart item
         let els = this.querySelector(`.js-item-wrapper[data-item-id='${cartItemId}'] .js-item-count`);
-        return els?els[0]:null;
+        return els ? els[0] : null;
     }
 
-    getItemTotalAmountEl(cartItemId){
+    getItemTotalAmountEl(cartItemId) {
         //return total amoutn element for cart item
         let els = this.querySelector(`.js-item-wrapper[data-item-id='${cartItemId}'] .js-item-total`);
-        return els?els[0]:null;
+        return els ? els[0] : null;
     }
 
-    getItemId(el){
+    getItemId(el) {
         //returns wrapper element for passed inner child element.
         return el.closest(`.js-item-wrapper`).getAttribute("data-item-id");
     }
 
-    getCartItemRowHtml(data){
-        // returns html for cart item row.
-        return cartItemRowTemp(data);
-    }
-
-    getCartTotalAmtEl(){
-        //returns final cart amoutn Element.
-        let el = this.querySelector(".js-cart-final");
-        return el?el[0]:null;
-    }
-    
     //Component Lifecycle hook
     //it gets called when component is destroyed.
-    destroy(){
+    destroy() {
         //unsubscribing events and removing event listeners from dom for this component elements.
-        subject.unsubscribe("onCartItemAdded",this.onCartItemAddedListener);
-        subject.unsubscribe("cartUpdated",this.cartUIUpdateListener);
-        let addBtns = this.querySelector(".js-add-item");
-        let remvBtns = this.querySelector(".js-remove-item");
-        subject.unsubscribe("deleteCartItem",this.onCartDeleteListener);
-        Array.from(addBtns,(btn)=>{
-            btn.removeEventListener("click",this.onAddItemElListener);
+        this.closeIconEl.removeEventListener("click", this.modalCloseActionListener);
+        subject.unsubscribe("cartItemUpdated", this.onCartItemUpdateListener);
+        this.addItemEls.forEach(btn=>{
+            btn.removeEventListener("click", this.onAddItemElListener);
         });
-        
-        Array.from(remvBtns,(btn)=>{
-            btn.removeEventListener("click",this.onRemoveItemElListener);
+
+        this.removeItemEls.forEach((btn)=>{
+            btn.removeEventListener("click", this.onRemoveItemElListener);
         });
     }
 }

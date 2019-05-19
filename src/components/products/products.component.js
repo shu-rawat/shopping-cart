@@ -19,6 +19,8 @@ export class ProductsComponent extends Component {
     // for initializing component
     init() {
         this.onBuyNowListener = this.onBuyNow.bind(this);
+        this.categLinkActionListener = this.categLinkAction.bind(this);
+        
         // state data required for hbs template
         this.state = {
             products: this.data.products.map(product => {
@@ -56,19 +58,14 @@ export class ProductsComponent extends Component {
 
     showSelectedProducts(){
         this.allProdWrperItems.forEach((prodWrapperEl) => {
-            let hideEle = this.routeParams.id && prodWrapperEl.getAttribute("data-categ-id") != this.routeParams.id;
-            prodWrapperEl.style.display = hideEle?'none':'flex';
+            let showEle = !this.routeParams.id || prodWrapperEl.getAttribute("data-categ-id") == this.routeParams.id;
+            prodWrapperEl.style.display = showEle?'flex':'none';
         });
     }
 
     attachSelectCategEvent(){
-        let prevSelectedEle = this.querySelector(".js-aside-categ li.visible")[0];
-        this.categUlEle.addEventListener("click",e=>{
-            prevSelectedEle.classList.remove("visible");
-            e.target.parentNode.classList.add("visible");
-            e.currentTarget.classList.toggle("list-open");
-            prevSelectedEle = e.target.parentNode;
-        });
+        this.prevSelectedEle = this.querySelector(".js-aside-categ li.visible")[0];
+        this.categUlEle.addEventListener("click",this.categLinkActionListener);
     }
 
     attachBuyEvents() {
@@ -80,17 +77,16 @@ export class ProductsComponent extends Component {
 
     onBuyNow(e) {
         let cartItem = window.cartModel.addItemCount(this.getItemId(e.target));
-        // when new item gets added 
-        if (cartItem.quantity == 1) {
-            subject.next("onCartItemAdded", cartItem);
-            subject.next("cartUpdated", cartItem);
-            ToasterService.showToaster(toasterType.success, `${cartItem.name} added in cart`);
-        }
-        else {
-            // cart item updated
-            subject.next("cartUpdated", cartItem);
-            ToasterService.showToaster(toasterType.success, `${cartItem.name} cart item count is ${cartItem.quantity} `)
-        }
+        subject.next("cartItemUpdated",cartItem,cartItem.quantity == 1);
+        ToasterService.showToaster(toasterType.success, `${cartItem.name} 
+            ${cartItem.quantity == 1 ?' added in cart': 'cart item count is '+cartItem.quantity}`);
+    }
+
+    categLinkAction(e){
+        this.prevSelectedEle.classList.remove("visible");
+        e.target.parentNode.classList.add("visible");
+        e.currentTarget.classList.toggle("list-open");
+        this.prevSelectedEle = e.target.parentNode;
     }
 
     // returns product id based on child product element
@@ -104,6 +100,7 @@ export class ProductsComponent extends Component {
         this.allBuyBtnEle.forEach(item=>{
             item.removeEventListener("click", this.onBuyNowListener);
         });
+        this.categUlEle.removeEventListener("click",this.categLinkActionListener);
     }
 
 }
