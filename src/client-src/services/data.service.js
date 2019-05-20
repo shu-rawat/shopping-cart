@@ -9,7 +9,7 @@ export default class DataService {
 
     static getProducts() {
         if(products.length){
-            return products;
+            return Promise.resolve(products);
         };
 
         return fetch("/products")
@@ -22,7 +22,7 @@ export default class DataService {
 
     static getCategories() {
         if(categories.length){
-            return categories;
+            return Promise.resolve(categories);
         }
 
         return fetch("/categories")
@@ -35,7 +35,7 @@ export default class DataService {
 
     static getBanners(){
         if(banners.length){
-            return banners;
+            return Promise.resolve(banners);
         }
 
         return fetch("/banners")
