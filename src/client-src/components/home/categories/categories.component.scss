@@ -1,0 +1,47 @@
+@import '../../../css/variables';
+@import '../../../css/_mixins';
+
+.category-box {
+    display: flex;
+    align-items: center;
+    padding: 2rem 0px;
+
+    &:nth-child(2n) {
+        flex-direction: row-reverse;
+    }
+
+    .img-wrapper {
+        width:30%;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .category-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex:1;
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0px;
+        }
+
+        p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: $text-color;
+        }
+
+        button {
+            @include button(1rem, $orangered, #ffffff);
+        }
+    }
+}
+

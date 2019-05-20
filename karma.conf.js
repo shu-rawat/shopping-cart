@@ -15,7 +15,7 @@ module.exports = function(config) {
       files: [
         // 'test/**/*.js',
   
-        'test/**/*.[sS]pec.js',
+        'src/test/**/*.[sS]pec.js',
         // 'dist/*.js',
       ],
   
@@ -30,7 +30,7 @@ module.exports = function(config) {
       // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
       preprocessors: {
         'dist/*.js': ['coverage'],
-        'test/**/*.[sS]pec.js': ['webpack'],
+        'src/test/**/*.[sS]pec.js': ['webpack'],
       },
       // test results reporter to use
       // possible values: 'dots', 'progress'

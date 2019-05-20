@@ -2,17 +2,17 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var autoprefixer = require('autoprefixer');
-var plugin = require('postcss-flexbugs-fixes');
-const SassLintPlugin = require('sass-lint-webpack')
+// var plugin = require('postcss-flexbugs-fixes');
+// const SassLintPlugin = require('sass-lint-webpack')
 
 module.exports = {
     entry: [ 
         "whatwg-fetch",     
-        "./src/app"
+        "./src/client-src/app"
     ],
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: "main.js",
+        path: path.resolve(__dirname, 'public'),
+        filename: "js/app.js",
         chunkFilename: "[id].js"
     },
     module : {
@@ -34,7 +34,7 @@ module.exports = {
             {
                 test: /\.html$/,
                 include: [
-                    path.resolve(__dirname, 'src/views/shared')
+                    path.resolve(__dirname, 'src/client-src/views/shared')
                 ],
                 loader: "handlebars-loader"
             }
@@ -43,7 +43,7 @@ module.exports = {
     devtool: 'source-map',
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "style.css"
+            filename: "/css/style.css"
         }) ,
         new webpack.LoaderOptionsPlugin({
             options: {
