@@ -229,9 +229,6 @@ export default function SPA(routes, moduleConfig) {
             return;
         }
         else {
-            //if component requires any data to resolve before it gets instantiated.
-            //it will resolve data and wait for it.
-            let resolvedObj = await updateResolveObj(routeMatched, _pageName);
 
             //checks if current route is same route matched or the component that was previously rendered is
             //the same that needs to be rendered now for different route.
@@ -240,9 +237,8 @@ export default function SPA(routes, moduleConfig) {
                 let a = JSON.stringify(routeParams);
                 let b = JSON.stringify(currentRouteParams);
                 currentRouteParams = routeParams;
-                //here component does not gets re instantiated just route params or resolved data gets passed
+                //here component does not gets re instantiated just route params
                 if (currentRouteComponent && a != b) {
-                    currentRouteComponent.data = resolvedObj;
                     //when routed params are different 
                     //component is notified through routePramsChanged life cycle hook
                     currentRouteComponent.routePramsChanged(routeParams);
@@ -250,6 +246,10 @@ export default function SPA(routes, moduleConfig) {
                 return;
             }
             else {
+                //if component requires any data to resolve before it gets instantiated.
+                //it will resolve data and wait for it.
+                let resolvedObj = await updateResolveObj(routeMatched, _pageName);
+
                 //when new compnent needs to be rendered in dom
                 currentRoute = routeMatched;
                 currentRouteParams = routeParams;
