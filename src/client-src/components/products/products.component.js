@@ -86,7 +86,9 @@ export class ProductsComponent extends Component {
     }
 
     categLinkAction(e){
-        this.prevSelectedEle.classList.remove("visible");
+        if(this.prevSelectedEle){
+            this.prevSelectedEle.classList.remove("visible");
+        }
         e.target.parentNode.classList.add("visible");
         e.currentTarget.classList.toggle("list-open");
         this.prevSelectedEle = e.target.parentNode;
