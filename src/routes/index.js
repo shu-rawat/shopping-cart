@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var banners = require('../data/banners/index.get.json');
-var products = require("../data/products/index.get.json");
 var categories = require("../data/categories/index.get.json");
 var addToCart = require("../data/addToCart/index.post.json");
 
+const Product = require("../entities/product");
+const CartItem = require("../entities/cartItem")
 /* GET index page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
@@ -16,7 +17,10 @@ router.get('/banners', function(req, res){
 });
 
 router.get('/products', function(req, res){
-  res.send(products);
+  Product.find().then((products)=>{
+    console.log(products.length);
+    res.send(products);
+  })
 });
 
 router.get('/categories', function(req, res){

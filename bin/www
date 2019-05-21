@@ -7,6 +7,10 @@
 var app = require('../src/server');
 var debug = require('debug')('node-shopping-cart:server');
 var http = require('http');
+const dotenv = require('dotenv');
+dotenv.config();
+
+const connectDb  = require('../src/connection');
 
 /**
  * Get port from environment and store in Express.
@@ -25,7 +29,11 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+connectDb().then(async () => {
+  app.listen(process.env.PORT, () =>
+    console.log(`Shopping cart  app listening on port ${process.env.PORT}!`),
+  );
+});
 server.on('error', onError);
 server.on('listening', onListening);
 
