@@ -40,7 +40,24 @@ export class ProductsComponent extends Component {
     // here it is used when product category gets changed so routeParams.id is different now.
     routePramsChanged(routeParams) {
         super.routePramsChanged(routeParams);
-        this.showSelectedProducts();
+        let selectedCategLiEl;
+        if(this.prevSelectedEle){
+            this.prevSelectedEle.classList.remove("visible");
+        }
+        
+        if(this.routeParams.id){
+            selectedCategLiEl = this.querySelector(`.js-aside-categ [data-categ-id='${this.routeParams.id}']`)[0];            
+        }
+        else{
+            selectedCategLiEl = this.allLiEle;
+            this.allLiEle.classList.add("visible");
+        }
+
+        if(selectedCategLiEl){
+            selectedCategLiEl.classList.add("visible");            
+            this.prevSelectedEle =selectedCategLiEl;
+            this.showSelectedProducts();
+        }       
     }
 
     // Lifecycle hook
@@ -93,12 +110,12 @@ export class ProductsComponent extends Component {
     }
 
     categLinkAction(e){
-        if(this.prevSelectedEle){
-            this.prevSelectedEle.classList.remove("visible");
-        }
-        e.target.parentNode.classList.add("visible");
+        // if(this.prevSelectedEle){
+        //     this.prevSelectedEle.classList.remove("visible");
+        // }
+        // e.target.parentNode.classList.add("visible");
         e.currentTarget.classList.toggle("list-open");
-        this.prevSelectedEle = e.target.parentNode;
+        // this.prevSelectedEle = e.target.parentNode;
     }
 
     // returns product id based on child product element
