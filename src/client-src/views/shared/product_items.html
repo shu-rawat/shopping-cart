@@ -1,8 +1,8 @@
 {{# each products }}
-<li class="plp-items-wrapper js-item-wrapper" data-item-id="{{id}}" data-categ-id="{{category}}">
-    <h3 tabindex="0">{{name}}</h3>
+<li class="plp-items-wrapper js-item-wrapper" data-item-id="{{id}}" data-categ-id="{{category}}" tabindex="0" aria-label="{{name}}">
+    <h3>{{name}}</h3>
     <div class="cont-wrpr">
-        <img src="{{imageURL}}" alt="{{name}}" />
+        <img src="{{imageURL}}" alt="{{name}}" aria-label="" />
         <div class="content">
             <p tabindex="0">
                 {{description}}

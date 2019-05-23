@@ -1,14 +1,14 @@
 <div class="plp-wrapper">
     <div class="container">
-        <aside class="plp-catg-wrapper">
+        <aside class="plp-catg-wrapper"  aria-label="choose products of different categories" tabindex="0">
             <ul class="list--desk js-aside-categ">
                 <li data-categ-id="" class="all js-all {{#allSelected}}visible{{/allSelected}}">
-                    <a href="#products">All</a>
+                    <a href="#products" aria-label="click here for all products" >All</a>
                 </li>
                 {{# each categories }}
                 {{#if enabled}}               
                 <li class="{{#active}}visible{{/active}}"  data-categ-id="{{id}}">
-                    <a href="#products/{{id}}">{{name}}</a>
+                    <a href="#products/{{id}}" aria-label="click here for {{name}}">{{name}}</a>
                 </li>
                 {{/if}}
                 <i class="arrow down"></i>

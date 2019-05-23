@@ -1,11 +1,11 @@
-<li class="cart-item js-item-wrapper" data-item-id="{{id}}">
+<li class="cart-item js-item-wrapper" data-item-id="{{id}}" tabindex="0" aria-label="{{name}}">
     <img class="item-img" src="{{imageURL}}" alt="{{name}}">
     <div class="item-info">
-        <h2 tabindex="0">{{name}}</h2>
+        <h2>{{name}}</h2>
         <div class="item-controls">
-            <button class="btn--cart js-remove-item" tabindex="0" role="button" aria-pressed="false">-</button>
+            <button class="btn--cart js-remove-item" tabindex="0" role="button" aria-pressed="false" aria-label="decrease item count button">-</button>
             <span class="item-count js-item-count" tabindex="0">{{ quantity }}</span>
-            <button class="btn--cart js-add-item" tabindex="0" role="button" aria-pressed="false">+</button>
+            <button class="btn--cart js-add-item" tabindex="0" role="button" aria-pressed="false" aria-label="increase item count button">+</button>
             <span class="mult">&times;</span>
             <span tabindex="0">Rs{{price}}</span>
             <div class="item-tot-price">            
