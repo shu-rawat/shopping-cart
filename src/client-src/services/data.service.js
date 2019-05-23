@@ -33,6 +33,11 @@ export default class DataService {
             });
     }
 
+    static getCartItems(){
+        return fetch("/cartItems")
+        .then(resp => resp.json());
+    }
+
     static getBanners(){
         if(banners.length){
             return Promise.resolve(banners);
@@ -47,8 +52,18 @@ export default class DataService {
     }
 
     static postAddToCart(productId){
-        let data = {productId};
-        return fetch("/addToCart",{method: 'POST',body:JSON.stringify(data)})
+        let data = {productId, decreaseCount:false};
+
+        return fetch("/addToCart",{method: 'POST', headers: {
+            'Content-Type': 'application/json'},body:JSON.stringify(data)})
+        .then(resp=>resp.json());
+    }
+
+    static postRemoveFromCart(productId){
+        let data = {productId, decreaseCount: true };
+        
+        return fetch("/addToCart",{method: 'POST', headers: {
+            'Content-Type': 'application/json'},body:JSON.stringify(data)})
         .then(resp=>resp.json());
     }
 }

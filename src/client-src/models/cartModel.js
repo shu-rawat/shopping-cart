@@ -9,17 +9,20 @@ export default function CartModel() {
 }
 
 CartModel.prototype.init = function () {
-
-    return DataService.getCategories().then((categories) => {
-        this.categories = categories;
-        return true;
-    }).then(() => {
-        return DataService.getProducts().then((products) => {
-            this.products = products;
-            this.readStorage();
+    return Promise.all([
+        DataService.getCategories().then((categories) => {
+            this.categories = categories;
             return true;
-        });
-    });
+        }),
+        DataService.getProducts().then((products) => {
+            this.products = products;            
+            return products;
+        }).then(()=>{
+           return DataService.getCartItems().then((cartItems)=>{
+            this.items = this.getSavedCart(cartItems);
+            });
+        })                        
+    ]);
 }
 
 CartModel.prototype.addItemCount = function (id) {
@@ -45,8 +48,6 @@ CartModel.prototype.addItemCount = function (id) {
         // item present in cart
         item.increaseCount();
     }
-    this.saveCart();
-
     return item;
 }
 
@@ -76,7 +77,6 @@ CartModel.prototype.removeItemCount = function (id) {
             this.removeItem(item.id);
         }
     }
-    this.saveCart();
     return item;
 }
 
@@ -103,25 +103,15 @@ CartModel.prototype.findProductById = function (id) {
     return this.products.find(product => product.id == id);
 }
 
-CartModel.prototype.saveCart = function () {
-    localStorage.setItem("items", JSON.stringify(this.items));
-}
-
-CartModel.prototype.getSavedCart = function () {
-    let itemsString = localStorage.getItem("items");
-    let itemsObject = JSON.parse(itemsString);
+CartModel.prototype.getSavedCart = function (itemsList) {
     let items = []
-    if (!itemsObject) {
+    if (!itemsList) {
         items = [];
     }
     else {
-        items = itemsObject.map(item => {
+        items = itemsList.map(item => {
             return new Item(item.id, item.price, item.quantity, item.name, item.imageURL, item.description, item.stock, item.category, item.sku);
         });
     }
     return items;
-}
-
-CartModel.prototype.readStorage = function () {
-    this.items = this.getSavedCart();
 }

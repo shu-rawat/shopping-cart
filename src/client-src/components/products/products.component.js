@@ -79,9 +79,16 @@ export class ProductsComponent extends Component {
     onBuyNow(e) {
         let productId = this.getItemId(e.target);
         DataService.postAddToCart(productId).then((resp)=>{
-            let cartItem = window.cartModel.addItemCount(productId);
-            subject.next("cartItemUpdated",cartItem,cartItem.quantity == 1);
-            ToasterService.showToaster(toasterType.success, resp.responseMessage);
+            if(resp.response === "Failure"){
+                ToasterService.showToaster(toasterType.error, resp.responseMessage);
+            }
+            else{
+                let cartItem = window.cartModel.addItemCount(productId);
+                subject.next("cartItemUpdated",cartItem,cartItem.quantity == 1);
+                ToasterService.showToaster(toasterType.success, resp.responseMessage);
+            }            
+        },()=>{
+            ToasterService.showToaster(toasterType.error, "Something went wrong");
         });        
     }
 

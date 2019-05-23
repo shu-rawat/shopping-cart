@@ -29,7 +29,7 @@ export default class ToasterService {
                 }  
             },600); 
               
-        },3000);
+        },1000);
     }
 
     

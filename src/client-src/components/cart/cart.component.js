@@ -3,6 +3,9 @@ import './cart.component.scss';
 import subject from '../../base/subject';
 import hbsTemplate from '../../views/shared/cart.html';
 import cartItemRowTemp from '../../views/shared/cartItemRow.html';
+import DataService from '../../services/data.service';
+import toasterType from '../../models/toasterType';
+import ToasterService from '../../services/toaster.service';
 
 export class CartComponent extends Component {
 
@@ -85,15 +88,36 @@ export class CartComponent extends Component {
     onAddItemEl(e) {
         //updates added item in cart model and notifies for cart updation.
         let cartItemId = this.getItemId(e.target);
-        let cartItem = window.cartModel.addItemCount(cartItemId);
-        subject.next("cartItemUpdated", cartItem);
+        DataService.postAddToCart(cartItemId).then((resp)=>{
+            if(resp.response === "Failure"){
+                ToasterService.showToaster(toasterType.error, resp.responseMessage);
+            }
+            else{
+                let cartItem = window.cartModel.addItemCount(cartItemId);
+                subject.next("cartItemUpdated", cartItem);
+                ToasterService.showToaster(toasterType.success, resp.responseMessage);
+            }
+        },()=>{
+            ToasterService.showToaster(toasterType.error, "Something went wrong");
+        });        
     }
 
     onRemoveItemEl(e) {
         //removes or decrement cart item count in model and notifies for views updated by deleteCartItem and cartUpdated
         let cartItemId = this.getItemId(e.target);
-        let cartItem = window.cartModel.removeItemCount(cartItemId);
-        subject.next("cartItemUpdated", cartItem);
+        DataService.postRemoveFromCart(cartItemId).then((resp)=>{
+
+            if(resp.response === "Failure"){
+                ToasterService.showToaster(toasterType.error, resp.responseMessage);
+            }
+            else{
+                let cartItem = window.cartModel.removeItemCount(cartItemId);
+                subject.next("cartItemUpdated", cartItem);
+                ToasterService.showToaster(toasterType.success, resp.responseMessage);
+            }
+        },()=>{
+            ToasterService.showToaster(toasterType.error, "Something went wrong");
+        });        
     }
 
     //updated cartItem to the cart view
