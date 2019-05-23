@@ -6,3 +6,5 @@ screenshots/
 dist/
 screenshots/
 coverage/
+public/js
+public/css
