@@ -1,0 +1,18 @@
+<main>
+    <div class="container slider-wrapper js-slider-wrapper">
+        <div class="slider-content js-slider-content">
+            {{# each banners}}
+            <div class="image-wrapper">
+                <img src="{{bannerImageUrl}}" alt="{{bannerImageAlt}}" class="active-image gallery-image" id="img1" />
+            </div>
+            {{/each}}
+        </div>
+        <div class="dots-wrapper">
+            {{# each banners}}
+            <span class="dot"></span>
+            {{/each }}
+        </div>
+        <button class="btn-ctrl js-prev">PREV</button>
+        <button class="btn-ctrl js-next">NEXT</button>        
+    </div>
+</main>

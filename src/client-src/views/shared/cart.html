@@ -1,0 +1,32 @@
+<main class="cart-wrapper">
+        <header class="cart-header">
+            <h3 tabindex="0">My Cart</h3>
+            <div class="cart-count" tabindex="0">
+                (<span class="js-cart-count" >{{ totalQuantity }} </span> Item)
+            </div>
+            <button class="close" tabindex="0" role="button">&times;</button>
+        </header>
+        <section>
+            <ul class="cart-items js-cart-items">
+                {{#each items}}
+                    {{> cartItemRow.html }}                
+                {{/each}}
+            </ul>
+            <div class="cart-advt {{#showAdvt}}d-flex{{/showAdvt}} js-advt-cart" tabindex="0">
+                <img src="./static/images/lowest-price.png" alt="lowest price">
+                <p>Your won't find it cheaper anywhere</p>
+            </div>
+            <div class="empty-div {{#showEmptyCart}}d-flex{{/showEmptyCart}} js-empty-cart" tabindex="0">
+                <h2>No items in your cart</h2>
+                <p>your favourite items are just a click away</p>
+                <a href="#products">start shopping</a>
+            </div>
+        </section>
+        <footer class="cart-footer {{#showEmptyCart}}d-none{{/showEmptyCart}}">
+            <span>Promo code can be applied on </span>
+            <button tabindex="0">
+                <span class="checkout-txt">Proceed to checkout</span>                
+                <span class="cart-final-price">Rs <span class="js-cart-final">{{totalAmount}}</span> </span>
+            </button>
+        </footer>
+</main>

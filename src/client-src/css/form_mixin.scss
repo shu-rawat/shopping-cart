@@ -1,0 +1,32 @@
+@mixin form-group() {
+    
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column-reverse;
+
+    input {
+        border: 0;
+        width: 100%;        
+        outline: none;
+        transition: all ease-in 0.3s;
+        border-bottom: 1px solid black;
+
+        &:focus {
+            border: 0;
+            border-bottom: 1px solid rgb(97, 210, 230);
+        }
+    }
+   
+    label {
+        display: block;
+        font-size: 1.2rem;
+        color:gray;
+    }
+
+    .effect:focus + label {
+        position: relative;
+        top:-5px;
+        color: rgb(97, 210, 230);
+    }
+
+}

@@ -1,0 +1,30 @@
+ @import './variables.scss';
+
+    @mixin button($padding,$bgColor,$textColor){
+        display: inline-block;
+        padding: $padding;
+        color: $textColor;
+        background-color: $bgColor;
+        font-size: 1rem;
+        border: 0px;
+        outline: none;
+        cursor: pointer;
+    }
+
+    @mixin flex-center(){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @mixin tablet {
+        @media (max-width: #{$breakpoint-tablet}){
+            @content;
+        }
+    }
+
+    @mixin mobile {
+        @media (max-width: #{$breakpoint-mobile}) {
+            @content;
+        }
+    } 

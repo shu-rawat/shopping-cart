@@ -1,0 +1,22 @@
+@import '../../css/variables';
+@import '../../css/_mixins';
+
+footer {
+	display: flex;
+    font-weight: 600;
+    font-size: 1.3rem;
+	background: $footer-background;	
+	padding: 0.5rem 0px 0px $container-margin;	
+}
+
+@include tablet {
+
+	footer {
+		padding: 0rem;		
+		justify-content: center;
+
+		p {
+			text-align: center;
+		}
+	}	
+}

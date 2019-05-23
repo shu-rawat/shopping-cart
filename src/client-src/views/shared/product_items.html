@@ -1,0 +1,21 @@
+{{# each products }}
+<li class="plp-items-wrapper js-item-wrapper" data-item-id="{{id}}" data-categ-id="{{category}}">
+    <h3 tabindex="0">{{name}}</h3>
+    <div class="cont-wrpr">
+        <img src="{{imageURL}}" alt="{{name}}" />
+        <div class="content">
+            <p tabindex="0">
+                {{description}}
+            </p>
+            <div class="button js-add-item">
+                <button>
+                    <span>MRP</span> Rs.{{price}}
+                </button>
+                <button>
+                    Buy Now <span>@</span>
+                </button>
+            </div>
+        </div>
+    </div>   
+</li>
+{{/each}}

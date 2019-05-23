@@ -1,0 +1,17 @@
+<section class="category-wrapper">
+    <div class="container category-content">
+        {{# each categories}}
+        {{#if enabled}}
+        <div class="category-box" data-categ-id="{{id}}">
+            <div class="img-wrapper">
+                <img src="{{imageUrl}}" alt="{{name}}" class="category-img" tabindex="0">
+            </div>
+            <div class="category-info">
+                <h3 tabindex="0">{{name}}</h3>
+                <p tabindex="0">{{description}}</p>
+                <button class="js-explore" >Explore {{name}}</button>
+            </div>
+        </div>        
+        {{/if}}
+        {{/each}}
+</section>

@@ -1,13 +1,18 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+var autoprefixer = require('autoprefixer');
+// var plugin = require('postcss-flexbugs-fixes');
+// const SassLintPlugin = require('sass-lint-webpack')
 
 module.exports = {
-    entry: [
-        "./src/app"
+    entry: [ 
+        "whatwg-fetch",     
+        "./src/client-src/app"
     ],
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: "main.js",
+        path: path.resolve(__dirname, 'public'),
+        filename: "js/app.js",
         chunkFilename: "[id].js"
     },
     module : {
@@ -17,7 +22,8 @@ module.exports = {
                 use: [
                     {   loader:MiniCssExtractPlugin.loader, options: { publicPath: './dist'}},
                     { loader: 'css-loader', options: { url: false, sourceMap: true } },
-                    { loader: 'sass-loader', options: { sourceMap: true } }
+                    { loader: "postcss-loader", options: { sourceMap: true } } ,                    
+                    { loader: 'sass-loader', options: { sourceMap: true } },                                      
                 ],
             },          
             {
@@ -28,7 +34,7 @@ module.exports = {
             {
                 test: /\.html$/,
                 include: [
-                    path.resolve(__dirname, 'src/views/shared')
+                    path.resolve(__dirname, 'src/client-src/views/shared')
                 ],
                 loader: "handlebars-loader"
             }
@@ -37,7 +43,16 @@ module.exports = {
     devtool: 'source-map',
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "style.css"
-        })        
+            filename: "/css/style.css"
+        }) ,
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                postcss: [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({flexbox: "no-2009"})                    
+                ]
+            }
+        })
+        // new SassLintPlugin()      
     ]
 };
