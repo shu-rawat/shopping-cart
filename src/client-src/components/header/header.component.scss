@@ -185,7 +185,7 @@ header {
         position: relative;
         top: 2.5rem;
         cursor:pointer;
-        a{
+        a.cart-link{
             pointer-events: none;
         }
     }
@@ -232,7 +232,7 @@ header {
     .cart-icon--desk {
         .cursor{
             top:0;
-            a{
+            a.cart-link{
                 pointer-events: auto;
             }
         }

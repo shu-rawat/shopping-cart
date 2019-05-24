@@ -9,7 +9,6 @@ var debug = require('debug')('node-shopping-cart:server');
 var http = require('http');
 const dotenv = require('dotenv');
 dotenv.config();
-console.log("in bbb")
 const connectDb  = require('../src/connection');
 
 /**
