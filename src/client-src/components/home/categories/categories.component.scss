@@ -39,7 +39,7 @@
             color: $text-color;
         }
 
-        button {
+        a {
             @include button(1rem, $orangered, #ffffff);
         }
     }

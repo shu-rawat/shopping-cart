@@ -217,7 +217,7 @@ export default function SPA(routes, moduleConfig) {
                             let param = fragment.split(":")[1];
                             routeParams[param] = pathFragments[index];
                         }
-                    }, {});
+                    });
                 }
                 //finding Component Class for that particular route matched.
                 ComponentClass = routes[routeMatched].component;

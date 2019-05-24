@@ -53,6 +53,7 @@ export class SliderComponent extends Component{
         this.allBannersEles = Array.from(this.querySelector(".js-slider-content img"));
         this.bannerWrapperEle = this.querySelector(".js-slider-content")[0];
         this.bannerWrapperOuter = this.querySelector(".js-slider-wrapper")[0];
+        this.dotsWrapperEl = this.querySelector(".js-dots-wrapper")[0];
         this.bannersLength = this.allBannersEles.length;
         this.bannerWrapperWidth = this.bannerWrapperOuter.offsetWidth;
     }
@@ -60,19 +61,31 @@ export class SliderComponent extends Component{
     attachEvents(){
         //attaching event listeners
         this.initOnce = true;
-        this.nextSlideEventListener = this.slideToImageIndex.bind(this,-1);
-        this.prevSlideEventListener = this.slideToImageIndex.bind(this,1);
+        this.nextSlideEventListener = this.slideToImageIndex.bind(this,-1,null);
+        this.prevSlideEventListener = this.slideToImageIndex.bind(this,1,null);
+        this.dotsEventListener = this.onDotsClick.bind(this);
         this.resizeEventListener = this.onResize.bind(this);
 
         this.prevBtnEle.addEventListener("click",this.nextSlideEventListener);
         this.nextBtnEle.addEventListener("click",this.prevSlideEventListener);
-    
+        this.dotsWrapperEl.addEventListener("click",this.dotsEventListener);
         window.addEventListener("resize",this.resizeEventListener);
     }
 
-    slideToImageIndex(directionCount=0){    
+    onDotsClick(e){
+        let targetIndex = 0;
+        if(e.target.tagName == "SPAN"){
+            targetIndex = Array.from(e.currentTarget.children).indexOf(e.target);
+            this.slideToImageIndex(0,targetIndex);
+        }
+        return false;
+    }
+
+    slideToImageIndex(directionCount=0,targetBnrIndx){  
         //slides to image index given        
-        var targetBnrIndx = (this.activeBanrIndx + directionCount) % this.bannersLength; 
+        if(targetBnrIndx == null){
+            targetBnrIndx = (this.activeBanrIndx + directionCount) % this.bannersLength; 
+        }
         //sets wrapper left 
         this.updateWrapperLeft(targetBnrIndx);            
         this.activeBanrIndx = targetBnrIndx;

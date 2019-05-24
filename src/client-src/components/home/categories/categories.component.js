@@ -9,9 +9,6 @@ export class CategoriesComponent extends Component{
         this.selector = "app-categories";
         //hbs template
         this.hbsTemplate = hbsTemplate;
-        //function binding to this
-        this.exploreListener = this.onExploreClicked.bind(this);
-        this.exploreBtns = [];
     }
 
     //Lifecycle hook
@@ -23,28 +20,4 @@ export class CategoriesComponent extends Component{
         };
     }
 
-    //Life cycle hook
-    //gets called after component view part rendered to the dom.
-    afterViewInit(){
-        this.exploreBtns = Array.from(this.querySelector(".js-explore"));
-        //attaching events.
-        this.exploreBtns.forEach(btnEle=>{
-            btnEle.addEventListener("click",this.exploreListener);
-        });
-    }
-
-    onExploreClicked(e){
-        let categoryId = e.target.closest(".category-box").getAttribute("data-categ-id");
-        //navigating to products page for particular category products.
-        this.router.navigateByURL(`products/${categoryId}`);        
-    }
-
-    //Lifecycle hook
-    //gets called before component gets destroyed.
-    destroy(){
-        //detaching event listeners.
-        this.exploreBtns.forEach((btnEle)=>{
-            btnEle.removeEventListener("click",this.exploreListener);
-        })
-    }
 }

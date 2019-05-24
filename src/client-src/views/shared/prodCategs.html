@@ -6,10 +6,11 @@
             <div class="img-wrapper">
                 <img src="{{imageUrl}}" alt="image of {{name}}" class="category-img" tabindex="0">
             </div>
-            <div class="category-info">
+            <div class="category-info ">
                 <h3 tabindex="0" aria-label="{{name}}">{{name}}</h3>
                 <p tabindex="0">{{description}}</p>
-                <button class="js-explore"  aria-label="Click on button to Explore {{name}}">Explore {{name}}</button>
+                <a class="js-explore" aria-label="Click on button to Explore {{name}}" href="#products/{{id}}">Explore {{name}}</a>
+                <!-- <button class="js-explore"  aria-label="Click on button to Explore {{name}}">Explore {{name}}</button> -->
             </div>
         </div>        
         {{/if}}
