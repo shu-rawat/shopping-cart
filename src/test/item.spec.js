@@ -1,5 +1,5 @@
 
-import Item from "../src/models/cartItem";
+import Item from "../client-src/models/cartItem";
 describe("cart item", function(){
     let item;
     beforeEach(function(){     

@@ -1,5 +1,4 @@
-import CartModel from '../src/models/cartModel';
-import Item from '../src/models/cartItem';
+import CartModel from '../client-src/models/cartModel';
 
 describe("cart model", function () {
     let cartModel;
