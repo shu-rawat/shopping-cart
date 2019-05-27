@@ -53,7 +53,7 @@ export class CartComponent extends Component {
     initData() {
         this.addItemEls = Array.from(this.querySelector(".js-add-item"));
         this.removeItemEls = Array.from(this.querySelector(".js-remove-item"));
-        this.closeIconEl = this.querySelector(".close")[0];
+        this.closeIconEls = Array.from(this.querySelector(".js-close"));
         this.cartItemsWrpEl = this.querySelector(".cart-items")[0];
         this.cartTotalCountEl = this.querySelector(".js-cart-count")[0];
         this.cartTotalAmtEl = this.querySelector(".js-cart-final")[0];
@@ -66,7 +66,9 @@ export class CartComponent extends Component {
         //initial add and remove event listeners binding.
         this.addItemEls.forEach(item => { this.addItemElEvent(item) });
         this.removeItemEls.forEach(item => { this.removeItemElEvent(item) });
-        this.closeIconEl.addEventListener("click", this.modalCloseActionListener);
+        this.closeIconEls.forEach((closeEl)=>{
+            closeEl.addEventListener("click", this.modalCloseActionListener);
+        });
     }
 
     modalCloseAction() {
@@ -223,7 +225,7 @@ export class CartComponent extends Component {
     //it gets called when component is destroyed.
     destroy() {
         //unsubscribing events and removing event listeners from dom for this component elements.
-        this.closeIconEl.removeEventListener("click", this.modalCloseActionListener);
+        this.closeIconEls.forEach((el)=>{el.removeEventListener("click", this.modalCloseActionListener)});
         subject.unsubscribe("cartItemUpdated", this.onCartItemUpdateListener);
         this.addItemEls.forEach(btn=>{
             btn.removeEventListener("click", this.onAddItemElListener);
