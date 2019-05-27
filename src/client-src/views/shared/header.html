@@ -14,11 +14,12 @@
         <nav class="nav-cart">
             <div class="cart-icon cart-icon--desk">
                 <div class="cursor" data-target="#dialog_cart" >
-                    <a href="#cart" class="cart-link" aria-label="{{ cartCount }} items in cart" tabindex="0">
-                        <img src="./static/images/cart.svg" alt="cart image" class="cart-img">
+                    <a href="#cart" class="cart-link" tabindex="0">
+                        <img src="./static/images/cart.svg" class="cart-img" aria-hidden="true">
                         <div class="cart-count">
                             <span class="js-cart-count">{{ cartCount }}</span>
                             <span> Items</span>
+                            <span aria-label="in cart"></span>
                         </div>
                     </a>
                 </div>
