@@ -46,7 +46,7 @@ aside.plp-catg-wrapper {
 
 main.items-main {
     flex: 10;
-
+    min-height: 80vh;
     ul {
         display: flex;        
         flex-wrap: wrap; 
