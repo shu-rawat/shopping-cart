@@ -10,8 +10,6 @@ export class ProductsComponent extends Component {
     
     constructor() {
         super();
-        // component selector
-        this.selector = "app-products";
         // hbs template for component view
         this.hbsTemplate = hbsTemplate;
     }

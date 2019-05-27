@@ -10,8 +10,6 @@ export class RegisterComponent extends Component{
     //Lifecycle hook
     //for initializing component
     init(){
-        //component selector
-        this.selector = "app-register";
         //hbs template for component view.
         this.hbsTemplate = hbsTemplate;
         //binding function to this

@@ -10,8 +10,6 @@ export class LoginComponent extends Component {
     //Lifecycle hook
     //for initializing component
     init(){
-        //component selector
-        this.selector = "app-login";
         //hbs template for component view.
         this.hbsTemplate = hbsTemplate;
         //binding function to this

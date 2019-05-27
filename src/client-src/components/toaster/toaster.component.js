@@ -6,8 +6,6 @@ export class ToasterComponent extends Component{
 
     constructor(){
         super();
-        //component selector
-        this.selector = "app-toaster"
         //component hbs template view.
         this.hbsTemplate = hbsTemplate;
     }

@@ -27,8 +27,6 @@ export class SliderComponent extends Component{
         super(router);
         //component hbs templated file.
         this.hbsTemplate = hbsTemplate;
-        //component selector.
-        this.selector = "app-slider";
         this.activeBanrIndx = 0;
         // data to be used by hbs template.
         this.state = {            

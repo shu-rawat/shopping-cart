@@ -6,8 +6,6 @@ export class FooterComponent extends Component{
 
     constructor(){
         super();
-        //component selector
-        this.selector = "app-footer"
         //component hbs template view.
         this.hbsTemplate = hbsTemplate;
     }

@@ -8,8 +8,6 @@ export class HomeComponent extends Component{
     //Lifecyle hook
     //gets called after comopnent has been instantiated.
     init(){
-        //component selector in the dom
-        this.selector = "app-home";
         //component view hbs template.
         this.hbsTemplate = hbsTemplate;
     }

@@ -11,8 +11,6 @@ export class CartComponent extends Component {
 
     constructor() {
         super();
-        //component selector
-        this.selector = "app-cart";
         //component view hbs template
         this.hbsTemplate = hbsTemplate;
 

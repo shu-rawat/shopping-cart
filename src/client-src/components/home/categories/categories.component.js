@@ -5,8 +5,6 @@ import hbsTemplate from '../../../views/shared/prodCategs.html';
 export class CategoriesComponent extends Component{
     constructor(router){
         super(router);
-        //component selector.
-        this.selector = "app-categories";
         //hbs template
         this.hbsTemplate = hbsTemplate;
     }
