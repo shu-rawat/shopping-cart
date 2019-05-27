@@ -56,7 +56,8 @@ export class LoginComponent extends Component {
                 this.showError(invalidEl,false);
             }
             else{
-                this.showError(invalidEl,!eval(`"${inputEl.value}".match(/${invalidEl.getAttribute("_pattern")}/)`));            
+                const regExp = RegExp(invalidEl.getAttribute("_pattern"));
+                this.showError(invalidEl,!regExp.test(inputEl.value));               
             }
         }
     }

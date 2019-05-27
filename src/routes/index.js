@@ -44,8 +44,8 @@ router.get("/cartItems", function(req, res){
 router.post("/addToCart", async function(req, res){
   let product;
   let cartItem;
-  let productId = req.body.productId;
-  let isDecrCount = req.body.decreaseCount;
+  ({productId, decreaseCount:isDecrCount} = req.body);
+
   let isItemNew = false;
   if(productId){
     cartItem = await CartItem.findOne({id:productId});
@@ -57,6 +57,7 @@ router.post("/addToCart", async function(req, res){
           "responseMessage": "Product not Found"
         });        
       }
+      
       ({_id,...productObj} = product._doc);
       cartItem = new CartItem({...productObj});
       await cartItem.save();
@@ -67,7 +68,7 @@ router.post("/addToCart", async function(req, res){
     if(isDecrCount){
       if(cartItem.quantity == 1){
         await cartItem.delete();
-        return res.send({"response":"Success","responseMessage":"Deleted product from cart"});
+        return res.send({"response":"Success","responseMessage":"Removed product from cart"});
       }
       else{
         cartItem = await CartItem.findOneAndUpdate({ id: productId }, { $inc: { quantity: -1 } }, {new: true });
@@ -87,7 +88,7 @@ router.post("/addToCart", async function(req, res){
   else{
     return res.send({
       "response": "Failure",
-      "responseMessage": "Product Id not provided"
+      "responseMessage": "Product not found"
     });
   }
 });
