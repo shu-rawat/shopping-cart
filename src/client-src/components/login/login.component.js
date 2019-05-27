@@ -49,7 +49,8 @@ export class LoginComponent extends Component {
             inputEr = inputEl.value.length == 0;
             this.showError(requiredEl,inputEr);          
         }
-
+        // console.log("m", `"${inputEl.value}".match(/${invalidEl.getAttribute("_pattern")}/)`);
+               
         //if input element need validity validation based on pattern provided.
         if(invalidEl){
             if(inputEr){
